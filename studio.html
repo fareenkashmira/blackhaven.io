@@ -29,6 +29,59 @@
             background-color: var(--black);
             color: var(--cream);
             overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-follower {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Text Selection */
+        ::selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        ::-moz-selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Mobile - disable custom cursor */
+        @media (hover: none) and (pointer: coarse) {
+            body {
+                cursor: auto;
+            }
+            .cursor,
+            .cursor-follower {
+                display: none;
+            }
         }
 
         /* Navigation */
@@ -357,20 +410,19 @@
     <nav>
         <div class="logo">Black Haven</div>
         <ul class="nav-links">
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="research.html">Research</a></li>
-            <li><a href="credentials.html">Credentials</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#credentials">Credentials</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
             <div class="hero-subtitle">Design Studio</div>
-            <div class="hero-subtitle" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--gold); opacity: 0; animation: fadeInUp 1s ease-out 0.4s forwards;">
+            <div class="hero-subtitle" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--gold); opacity: 0; animation: fadeInUp 1s ease-out 0.4s forwards;">    
             </div>
-          
             <h1 class="hero-title">
                 Where vision meets
                 <span class="accent">execution</span>
@@ -378,31 +430,100 @@
             <p class="hero-description">
                 Crafting refined digital experiences through meticulous design, strategic thinking, and unwavering attention to detail. We transform concepts into reality.
             </p>
+      <p class="sub-description">
+             Collaborated with companies across the globe like Baghdad, Iraq · Seeta, Uganda · Muscat, Oman · London, UK.
+         </p>
+            
             <div class="decorative-line"></div>
             <a href="#portfolio" class="cta-button">View Our Work</a>
         </div>
         <div class="scroll-indicator"></div>
     </section>
 
+
+     <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="/images/BH.jpeg" alt="Black Haven Logo" class="footer-logo-image">
+        <span class="footer-logo-text">BLACK HAVEN - Design Studio</span>
+      </div>
+      
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="termnconditions.html">Term & Conditions</a>
+        <a href="privacypolicy.html">Privacy Policy</a>
+      </div>
+
     <footer class="social-footer">
-        <a href="https://www.instagram.com/ablackhaven" class="social-link" title="Instagram">
+        <a href="#" class="social-link" title="Instagram">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://www.behance.net/fareenkashmira" class="social-link" title="Behance">
+        <a href="#" class="social-link" title="Behance">
             <i class="fab fa-behance"></i>
         </a>
-        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a?" class="social-link" title="LinkedIn">
+        <a href="#" class="social-link" title="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
         </a>
-        <a href="https://pin.it/5dFK2KAS9" class="social-link" title="Pinterest">
+        <a href="#" class="social-link" title="Pinterest">
             <i class="fab fa-pinterest-p"></i>
         </a>
         <a href="mailto:info@blackhaven.co.in" class="social-link" title="Email">
             <i class="far fa-envelope"></i>
         </a>
-        <a href="https://wa.me/7011403207" class="social-link" title="WhatsApp">
+        <a href="https://wa.me/+917011403207" class="social-link" title="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
+          </div>
+ 
+      <p class="footer-copyright">
+        © 2025 Black Haven. All rights reserved. | Designed by Fareen.
+      </p>
+    </div>
     </footer>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <script>
+        // Custom Cursor Animation
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            // Smooth cursor movement
+            cursorX += (mouseX - cursorX) * 0.3;
+            cursorY += (mouseY - cursorY) * 0.3;
+            
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .cta-button');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+    </script>
 </body>
 </html>
