@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions — Black Haven</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --maroon: #800020;
+      --gold: #e5bb61;
+      --baby-pink: #f4c6cf;
+      --baby-pink-deep: #e8a4b0;
+      --baby-pink-pale: #fdf0f2;
+      --grey: #6a6a6a;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.8;
+      cursor: none;
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background-color: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+      box-shadow: 0 0 12px rgba(229, 187, 97, 0.6), 0 0 24px rgba(229, 187, 97, 0.3);
+    }
+
+    .custom-cursor.active { opacity: 1; }
+    .custom-cursor.hovering {
+      width: 16px;
+      height: 16px;
+      background-color: var(--baby-pink-deep);
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      body { cursor: auto; }
+      .custom-cursor { display: none; }
+    }
+
+    .magnify-target {
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+
+    ::selection {
+      background: var(--baby-pink);
+      color: var(--maroon);
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid rgba(128, 0, 32, 0.1);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--maroon);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--black);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--maroon), var(--gold));
+      transition: width 0.4s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--maroon);
+      transform: scale(1.05);
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    main {
+      padding: 10rem 4rem 8rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .page-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--maroon);
+      margin-bottom: 1rem;
+    }
+
+    .last-updated {
+      font-size: 0.8rem;
+      color: var(--grey);
+      letter-spacing: 0.1em;
+    }
+
+    .content-section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--baby-pink);
+    }
+
+    .section-text {
+      font-size: 1rem;
+      color: var(--grey);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      color: var(--maroon);
+      font-weight: 600;
+    }
+
+    ul {
+      list-style: none;
+      margin-left: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--grey);
+    }
+
+    ul li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .notice-box {
+      background: var(--baby-pink-pale);
+      border-left: 4px solid var(--maroon);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .notice-box p {
+      color: var(--black);
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      border-top: 2px solid var(--baby-pink);
+      padding: 3rem 4rem 1.5rem;
+      background: var(--maroon);
+      color: var(--white);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo-text {
+      font-family: 'Bodoni Moda', serif;
+      font-size: 1rem;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-logo-text span { color: var(--gold); }
+
+    .social-links {
+      display: flex;
+      gap: 2.5rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--white);
+      transform: translateY(-4px) scale(1.1);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+      transform: scale(1.05);
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.05em;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 1.2rem 2rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      main { padding: 12rem 2rem 6rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="custom-cursor" id="cursor"></div>
+
+  <nav>
+    <a href="index.html" class="logo">Black <span>Haven</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="magnify-target">Home</a></li>
+      <li><a href="studio.html" class="magnify-target">Studio</a></li>
+      <li><a href="store.html" class="magnify-target">Store</a></li>
+      <li><a href="contact.html" class="magnify-target">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <h1 class="page-title magnify-target">Terms & Conditions</h1>
+      <p class="last-updated">Last Updated: January 2025</p>
+    </div>
+
+    <section class="content-section">
+      <p class="section-text">
+        Welcome to Black Haven. By accessing and using our website and services, you agree to comply with and be bound by the following Terms and Conditions. Please read them carefully before making any purchase or using our services.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">General Terms</h2>
+      <p class="section-text">
+        These Terms and Conditions govern your use of the Black Haven website and the purchase of products from our store. By placing an order, you acknowledge that you have read, understood, and agreed to these terms.
+      </p>
+      <p class="section-text">
+        We reserve the right to update or modify these Terms and Conditions at any time without prior notice. Changes will be effective immediately upon posting on this page.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Product Information & Pricing</h2>
+      <p class="section-text">
+        We strive to provide accurate product descriptions, images, and pricing. However:
+      </p>
+      <ul>
+        <li>Colors may vary slightly due to screen settings and lighting conditions</li>
+        <li>Product availability is subject to change without notice</li>
+        <li>Prices are listed in Indian Rupees (INR) and are subject to change without prior notification</li>
+        <li>We reserve the right to correct any pricing errors on our website</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Ordering & Payment</h2>
+      <p class="section-text">
+        Orders are placed via WhatsApp communication. Payment details and methods will be provided during the order confirmation process. By placing an order, you:
+      </p>
+      <ul>
+        <li>Confirm that all information provided is accurate and complete</li>
+        <li>Authorize us to process payment for the ordered items</li>
+        <li>Agree to pay the total amount including applicable taxes and shipping fees</li>
+        <li>Understand that order confirmation is subject to product availability</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Shipping & Delivery</h2>
+      <p class="section-text">
+        We aim to process and ship orders within <span class="highlight">3-5 business days</span> of order confirmation. Delivery times may vary based on location and shipping method. For detailed shipping information, please refer to our <a href="shippingpolicy.html" style="color: var(--maroon); text-decoration: underline;">Shipping Policy</a>.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Returns & Exchanges</h2>
+      <p class="section-text">
+        We accept returns and exchanges within <span class="highlight">7 days</span> of delivery, subject to our <a href="returnexchange.html" style="color: var(--maroon); text-decoration: underline;">Returns & Exchange Policy</a>. Items must be unworn, unwashed, and in their original condition with all tags attached.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Intellectual Property</h2>
+      <p class="section-text">
+        All content on this website, including but not limited to text, images, logos, designs, and graphics, is the property of Black Haven and is protected by copyright and intellectual property laws. Unauthorized use, reproduction, or distribution is strictly prohibited.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">User Conduct</h2>
+      <p class="section-text">
+        You agree not to:
+      </p>
+      <ul>
+        <li>Use the website for any unlawful or fraudulent purposes</li>
+        <li>Attempt to gain unauthorized access to our systems or networks</li>
+        <li>Upload or transmit harmful or malicious content</li>
+        <li>Violate the rights of other users or third parties</li>
+      </ul>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Limitation of Liability</h2>
+      <p class="section-text">
+        Black Haven shall not be liable for any indirect, incidental, or consequential damages arising from the use of our website or products. Our total liability is limited to the purchase price of the product in question.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Privacy & Data Protection</h2>
+      <p class="section-text">
+        Your privacy is important to us. Please review our <a href="privacypolicy.html" style="color: var(--maroon); text-decoration: underline;">Privacy Policy</a> to understand how we collect, use, and protect your personal information.
+      </p>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title">Governing Law</h2>
+      <p class="section-text">
+        These Terms and Conditions are governed by the laws of India. Any disputes arising from these terms will be subject to the exclusive jurisdiction of the courts in Delhi, India.
+      </p>
+    </section>
+
+    <div class="notice-box">
+      <p><strong>Questions or Concerns?</strong></p>
+      <p>If you have any questions regarding these Terms and Conditions, please contact us at:</p>
+      <p><span class="highlight">Email:</span> info@blackhaven.co.in</p>
+      <p><span class="highlight">WhatsApp:</span> +91 70114 03207</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="footer-logo-text">BLACK <span>HAVEN</span> — Modest Fashion</span>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.instagram.com/ablackhaven" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.behance.net/fareenkashmira" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Behance">
+          <i class="fab fa-behance"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="https://in.pinterest.com/ablackhaven" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Pinterest">
+          <i class="fab fa-pinterest-p"></i>
+        </a>
+        <a href="mailto:info@blackhaven.co.in" class="social-link magnify-target" title="Email">
+          <i class="far fa-envelope"></i>
+        </a>
+        <a href="https://wa.me/+917011403207" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+
+      <div class="footer-links">
+        <a href="about.html" class="magnify-target">About</a>
+        <a href="termncondiotion.html" class="magnify-target">Terms & Conditions</a>
+        <a href="privacypolicy.html" class="magnify-target">Privacy Policy</a>
+        <a href="returnnexchange.html" class="magnify-target">Returns & Exchange</a>
+        <a href="shippingpolicy.html" class="magnify-target">Shipping Policy</a>
+      </div>
+
+      <p class="copyright">
+        &copy; 2025 Black Haven. All rights reserved. | Designed by Fareen.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    let mx = 0, my = 0, dx = 0, dy = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.classList.add('active');
+    });
+
+    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+
+    (function animateCursor() {
+      dx += (mx - dx) * 0.2;
+      dy += (my - dy) * 0.2;
+      cursor.style.left = dx + 'px';
+      cursor.style.top = dy + 'px';
+      requestAnimationFrame(animateCursor);
+    })();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+    });
+
+    const magnifyTargets = document.querySelectorAll('.magnify-target, nav a, .page-title');
+    document.addEventListener('mousemove', e => {
+      magnifyTargets.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
+        const threshold = 120;
+        
+        if (dist < threshold) {
+          const scale = 1 + (1 - dist / threshold) * 0.08;
+          el.style.transform = `scale(${scale})`;
+          el.style.transformOrigin = 'center';
+        } else {
+          el.style.transform = 'scale(1)';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
