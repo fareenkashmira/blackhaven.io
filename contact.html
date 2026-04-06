@@ -1,366 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact — Black Haven Design Studio</title>
-
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Contact Black Haven Design Studio — Project inquiries, budget tiers, and collaboration. WhatsApp, email, or Telegram.">
+  <meta name="keywords" content="hire designer india, design studio contact, brand design inquiry, graphic design freelancer india, contact black haven, design project quote, ux designer for hire, whatsapp designer india, design agency contact, brand designer new delhi">
+  <meta name="author" content="Fareen Kashmira — Black Haven">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e3b54d">
+  <link rel="canonical" href="https://blackhaven.co.in/contact.html">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Contact Black Haven | Design Studio Inquiries & Budget Tiers">
+  <meta property="og:description" content="Contact Black Haven Design Studio — Project inquiries, budget tiers, and collaboration. WhatsApp, email, or Telegram.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blackhaven.co.in/contact.html">
+  <meta property="og:image" content="https://blackhaven.co.in/images/BH.png">
+  <meta property="og:site_name" content="Black Haven">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Black Haven | Design Studio Inquiries & Budget Tiers">
+  <meta name="twitter:description" content="Contact Black Haven Design Studio — Project inquiries, budget tiers, and collaboration. WhatsApp, email, or Telegram.">
+  <meta name="twitter:image" content="https://blackhaven.co.in/images/BH.png">
+  <title>Contact Black Haven | Design Studio Inquiries & Budget Tiers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Big+Shoulders+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root{--white:#fff;--off-white:#faf9f7;--deep-blue:#0f1f45;--deep-blue-light:#1a3266;--gold:#e3b54d;--baby-pink:#f5d6df;--baby-pink-light:#fdf0f3;--baby-pink-mid:#eebdcc;--text-muted:#6b7ba8;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Cormorant Garamond',serif;background:var(--white);color:var(--deep-blue);line-height:1.6;cursor:none;overflow-x:hidden;min-height:100vh;}
+    ::selection{background:var(--baby-pink-mid);color:var(--deep-blue);}
 
-    :root {
-      --white:           #ffffff;
-      --off-white:       #faf9f7;
-      --deep-blue:       #0f1f45;
-      --deep-blue-light: #1a3266;
-      --gold:            #C9A84C;
-      --gold-dark:       #b8941f;
-      --baby-pink:       #f5d6df;
-      --baby-pink-light: #fdf0f3;
-      --baby-pink-mid:   #eebdcc;
-      --text-muted:      #6b7ba8;
-    }
+    .custom-cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s;}
+    .custom-cursor.hover{width:14px;height:14px;background:#c9a03a;}
+    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}
+    .magnify{display:inline-block;transition:transform .25s cubic-bezier(.34,1.56,.64,1),color .25s;}
+    .magnify:hover{transform:scale(1.07);color:var(--gold);}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--white);
-      color: var(--deep-blue);
-      line-height: 1.6;
-      cursor: none;
-      overflow-x: hidden;
-      min-height: 100vh;
-    }
+    .bg-blob{position:fixed;border-radius:50%;pointer-events:none;z-index:0;}
+    .bg-blob-1{top:-12%;right:-10%;width:560px;height:560px;background:radial-gradient(circle,rgba(245,214,223,.42) 0%,transparent 68%);}
+    .bg-blob-2{bottom:5%;left:-12%;width:420px;height:420px;background:radial-gradient(circle,rgba(15,31,69,.055) 0%,transparent 68%);}
 
-    .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--gold); border-radius: 50%;
-      position: fixed; pointer-events: none; z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width .18s ease, height .18s ease, background .18s ease;
-    }
-    .cursor-dot.hover { width: 14px; height: 14px; background: var(--gold-dark); }
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.8rem 4rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(14px);background:rgba(255,255,255,.95);border-bottom:1px solid rgba(244,214,223,.7);box-shadow:0 1px 30px rgba(15,31,69,.05);}
+    .logo-text{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;background:linear-gradient(135deg,#0d1b3e,#2a4080,#e3b54d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;letter-spacing:0.04em;}
+    nav ul{display:flex;gap:2.5rem;list-style:none;}
+    nav a{font-family:'DM Sans',sans-serif;color:var(--deep-blue);text-decoration:none;font-size:.82rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;position:relative;transition:color .3s;}
+    nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .4s;}
+    nav a:hover{color:var(--gold);}
+    nav a:hover::after{width:100%;}
 
-    @media (hover: none) and (pointer: coarse) {
-      body { cursor: auto; }
-      .cursor-dot { display: none; }
-    }
+    main{position:relative;z-index:1;padding:9rem 4rem 7rem;max-width:1300px;margin:0 auto;}
 
-    ::selection { background: var(--baby-pink-mid); color: var(--deep-blue); }
+    .page-header{margin-bottom:5rem;animation:fadeUp .7s ease both;}
+    .page-subtitle{font-family:'DM Sans',sans-serif;font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.9rem;}
+    .page-title{font-family:'Cinzel',serif;font-size:clamp(2rem,5vw,4rem);font-weight:700;color:var(--deep-blue);line-height:1.1;margin-bottom:1.2rem;}
+    .page-title em{font-style:italic;color:var(--gold);}
+    .page-description{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text-muted);max-width:500px;line-height:1.85;}
 
-    .bg-blob { position: fixed; border-radius: 50%; pointer-events: none; z-index: 0; }
-    .bg-blob-1 { top: -12%; right: -10%; width: 560px; height: 560px; background: radial-gradient(circle, rgba(245,214,223,.42) 0%, transparent 68%); }
-    .bg-blob-2 { bottom: 5%; left: -12%; width: 420px; height: 420px; background: radial-gradient(circle, rgba(15,31,69,.055) 0%, transparent 68%); }
-    .bg-blob-3 { top: 45%; right: 5%; width: 260px; height: 260px; background: radial-gradient(circle, rgba(201,168,76,.06) 0%, transparent 70%); }
+    .contact-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:5rem;align-items:start;}
+    .contact-info{display:flex;flex-direction:column;gap:0;}
 
-    /* Nav */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 1.8rem 4rem;
-      display: flex; justify-content: space-between; align-items: center;
-      backdrop-filter: blur(14px);
-      background: rgba(255,255,255,.92);
-      border-bottom: 1px solid rgba(245,214,223,.7);
-      box-shadow: 0 1px 30px rgba(15,31,69,.05);
-    }
-    .logo {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.4rem; font-weight: 700; letter-spacing: .06em;
-      color: var(--deep-blue); text-transform: uppercase; text-decoration: none;
-      transition: color .3s;
-    }
-    .logo:hover { color: var(--gold); }
-    nav ul { display: flex; gap: 2.5rem; list-style: none; }
-    nav a {
-      color: var(--deep-blue); text-decoration: none;
-      font-size: .82rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
-      position: relative; transition: color .3s;
-    }
-    nav a::after {
-      content: ''; position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 1.5px; background: var(--gold); transition: width .4s;
-    }
-    nav a:hover { color: var(--gold); }
-    nav a:hover::after { width: 100%; }
+    .info-block{display:flex;gap:1.4rem;align-items:flex-start;padding:1.8rem 0;border-bottom:1px solid rgba(244,214,223,.8);animation:fadeUp .7s ease both;}
+    .info-block:first-child{padding-top:0;}
+    .info-icon{width:48px;height:48px;flex-shrink:0;background:var(--baby-pink-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.15rem;color:var(--deep-blue);transition:background .3s,color .3s;}
+    .info-block:hover .info-icon{background:var(--deep-blue);color:var(--gold);}
+    .info-label{font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.3rem;}
+    .info-value{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--deep-blue);font-weight:500;line-height:1.65;}
+    .info-value a{color:inherit;text-decoration:none;transition:color .25s;}
+    .info-value a:hover{color:var(--gold);}
+    .info-value small{color:var(--text-muted);font-size:.86rem;display:block;margin-top:.15rem;}
 
-    /* Main */
-    main {
-      position: relative; z-index: 1;
-      padding: 9rem 4rem 7rem;
-      max-width: 1300px; margin: 0 auto;
-    }
+    .reach-section{margin-top:2.2rem;animation:fadeUp .7s ease .4s both;}
+    .reach-label{font-family:'DM Sans',sans-serif;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);font-weight:600;margin-bottom:1rem;display:block;}
+    .reach-buttons{display:flex;flex-direction:column;gap:.75rem;}
+    .reach-btn{display:flex;align-items:center;gap:1rem;padding:1rem 1.4rem;border:1px solid rgba(244,214,223,.9);background:var(--off-white);text-decoration:none;color:var(--deep-blue);font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:500;position:relative;overflow:hidden;transition:border-color .3s;}
+    .reach-btn::before{content:'';position:absolute;inset:0;background:var(--baby-pink-light);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0;}
+    .reach-btn:hover::before{transform:scaleX(1);}
+    .reach-btn:hover{border-color:var(--baby-pink-mid);}
+    .reach-btn i,.reach-btn span,.reach-btn .arr{position:relative;z-index:1;}
+    .reach-btn i{font-size:1.05rem;color:var(--gold);width:22px;flex-shrink:0;}
+    .reach-btn span{flex:1;}
+    .arr{color:var(--text-muted);font-size:.85rem;transition:transform .25s,color .25s;}
+    .reach-btn:hover .arr{transform:translateX(4px);color:var(--gold);}
 
-    /* Header */
-    .page-header { margin-bottom: 5rem; animation: fadeUp .7s ease both; }
-    .page-subtitle {
-      font-size: .8rem; letter-spacing: .35em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: .9rem;
-    }
-    .page-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 700;
-      color: var(--deep-blue); line-height: 1.05; margin-bottom: 1.2rem;
-    }
-    .page-title em { font-style: italic; color: var(--gold); }
-    .page-description { font-size: 1.05rem; color: var(--text-muted); max-width: 500px; line-height: 1.85; }
+    .budget-column{display:flex;flex-direction:column;gap:1.4rem;animation:fadeUp .7s ease .15s both;}
+    .budget-title{font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:var(--deep-blue);margin-bottom:.5rem;}
+    .budget-title em{font-style:italic;color:var(--gold);}
+    .budget-subtitle{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--text-muted);line-height:1.75;max-width:420px;}
 
-    /* Grid */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: 5rem; align-items: start;
-    }
+    .tier-card{border:1px solid rgba(244,214,223,.85);background:var(--white);padding:2rem 2.2rem;position:relative;overflow:hidden;transition:all .4s;box-shadow:0 2px 20px rgba(15,31,69,.04);}
+    .tier-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--baby-pink-mid));transform:scaleX(0);transform-origin:left;transition:transform .45s;}
+    .tier-card:hover{transform:translateY(-6px);border-color:var(--baby-pink-mid);box-shadow:0 16px 40px rgba(15,31,69,.09);}
+    .tier-card:hover::before{transform:scaleX(1);}
+    .tier-card.featured{background:var(--deep-blue);border-color:var(--deep-blue);}
+    .tier-card.featured .tier-name{color:var(--baby-pink-light);}
+    .tier-card.featured .tier-price{color:var(--gold);}
+    .tier-card.featured .tier-sep,.tier-card.featured .tier-desc{color:rgba(255,255,255,.5);}
+    .tier-card.featured .tier-feat{color:rgba(255,255,255,.82);border-color:rgba(255,255,255,.08);}
+    .tier-card.featured .tier-feat::before{color:var(--gold);}
+    .tier-card.featured .t-badge{background:var(--gold);color:var(--deep-blue);}
+    .tier-card.featured .tier-cta{background:var(--gold);color:var(--deep-blue);border-color:var(--gold);}
+    .tier-card.featured .cta-fill{background:var(--white);}
 
-    /* ── LEFT ── */
-    .contact-info { display: flex; flex-direction: column; gap: 0; }
+    .t-badge{display:inline-block;padding:.25rem .8rem;background:var(--baby-pink);color:var(--deep-blue);font-family:'DM Sans',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.85rem;}
+    .t-badge.ghost{visibility:hidden;}
+    .t-badge.gold-badge{background:var(--gold);color:var(--deep-blue);}
+    .tier-name{font-family:'Big Shoulders Display',cursive;font-size:1.4rem;font-weight:700;text-transform:uppercase;color:var(--deep-blue);margin-bottom:.3rem;letter-spacing:1px;}
+    .tier-price-row{display:flex;align-items:baseline;gap:.35rem;margin-bottom:.5rem;}
+    .tier-price{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:var(--deep-blue);line-height:1;}
+    .tier-sep{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--text-muted);}
+    .tier-desc{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--text-muted);line-height:1.72;margin-bottom:1.3rem;}
+    .tier-divider{height:1px;background:linear-gradient(90deg,var(--baby-pink-mid),transparent);margin-bottom:1.1rem;opacity:.6;}
+    .tier-card.featured .tier-divider{background:linear-gradient(90deg,rgba(255,255,255,.15),transparent);}
+    .tier-feats{list-style:none;margin-bottom:1.5rem;}
+    .tier-feat{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--deep-blue);padding:.45rem 0;border-bottom:1px solid rgba(244,214,223,.7);display:flex;align-items:center;gap:.7rem;}
+    .tier-feat:last-child{border-bottom:none;}
+    .tier-feat::before{content:'→';color:var(--gold);font-weight:700;flex-shrink:0;font-size:.78rem;}
+    .tier-cta{display:flex;align-items:center;justify-content:center;gap:.7rem;width:100%;padding:.9rem 1.5rem;background:transparent;border:1px solid var(--deep-blue);color:var(--deep-blue);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;position:relative;overflow:hidden;transition:color .35s;}
+    .cta-fill{position:absolute;inset:0;background:var(--deep-blue);transform:scaleX(0);transform-origin:left;transition:transform .35s;z-index:0;}
+    .tier-cta:hover .cta-fill{transform:scaleX(1);}
+    .tier-cta:hover{color:var(--white);}
+    .tier-cta span,.tier-cta i{position:relative;z-index:1;}
 
-    .info-block {
-      display: flex; gap: 1.4rem; align-items: flex-start;
-      padding: 1.8rem 0;
-      border-bottom: 1px solid rgba(245,214,223,.8);
-      animation: fadeUp .7s ease both;
-    }
-    .info-block:first-child { padding-top: 0; }
-    .info-block:nth-child(1) { animation-delay: .08s; }
-    .info-block:nth-child(2) { animation-delay: .16s; }
-    .info-block:nth-child(3) { animation-delay: .24s; }
-    .info-block:nth-child(4) { animation-delay: .32s; }
+    .custom-note{background:linear-gradient(135deg,var(--deep-blue) 0%,var(--deep-blue-light) 100%);padding:1.8rem 2.2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+    .custom-note-title{font-family:'Big Shoulders Display',cursive;font-size:1.15rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:.25rem;letter-spacing:1px;}
+    .custom-note-title em{font-style:normal;color:var(--gold);}
+    .custom-note-sub{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:rgba(255,255,255,.52);}
+    .custom-note-btn{display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.6rem;background:var(--gold);color:var(--deep-blue);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;white-space:nowrap;transition:background .3s;}
+    .custom-note-btn:hover{background:#c9a03a;}
 
-    .info-icon {
-      width: 48px; height: 48px; flex-shrink: 0;
-      background: var(--baby-pink-light); border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.15rem; color: var(--deep-blue);
-      transition: background .3s, color .3s;
-    }
-    .info-block:hover .info-icon { background: var(--deep-blue); color: var(--gold); }
+    .social-strip{margin-top:5rem;padding-top:3rem;border-top:1px solid rgba(244,214,223,.8);display:flex;align-items:center;gap:3rem;flex-wrap:wrap;animation:fadeUp .7s ease .5s both;}
+    .social-strip-label{font-family:'DM Sans',sans-serif;font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-muted);font-weight:600;white-space:nowrap;}
+    .social-icons{display:flex;gap:1rem;flex-wrap:wrap;}
+    .social-link{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--baby-pink-light);color:var(--deep-blue);text-decoration:none;font-size:1rem;transition:all .3s;}
+    .social-link:hover{background:var(--deep-blue);color:var(--gold);transform:translateY(-4px);}
 
-    .info-label {
-      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
-      color: var(--gold); font-weight: 600; margin-bottom: .3rem;
-    }
-    .info-value { font-size: 1rem; color: var(--deep-blue); font-weight: 500; line-height: 1.65; }
-    .info-value a { color: inherit; text-decoration: none; transition: color .25s; }
-    .info-value a:hover { color: var(--gold); }
-    .info-value small { color: var(--text-muted); font-size: .86rem; display: block; margin-top: .15rem; }
+    footer{padding:2.5rem 4rem 1.5rem;background:linear-gradient(160deg,var(--deep-blue) 0%,#0a1228 60%,#050c1a 100%);border-top:1px solid rgba(227,181,77,0.15);}
+    .footer-content{max-width:1200px;margin:0 auto;}
+    .footer-logo{display:flex;justify-content:center;margin-bottom:1.5rem;}
+    .footer-logo-text{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;}
+    .footer-links{display:flex;gap:2rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .footer-links a{font-family:'DM Sans',sans-serif;color:var(--gold);text-decoration:none;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:all .3s;}
+    .footer-links a:hover{opacity:0.7;transform:scale(1.05);}
+    .copyright{font-family:'DM Sans',sans-serif;text-align:center;font-size:.75rem;color:var(--gold);letter-spacing:.05em;margin-top:1.5rem;opacity:.8;}
 
-    .reach-section { margin-top: 2.2rem; animation: fadeUp .7s ease .4s both; }
-    .reach-label {
-      font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--text-muted); font-weight: 600; margin-bottom: 1rem; display: block;
-    }
-    .reach-buttons { display: flex; flex-direction: column; gap: .75rem; }
-
-    .reach-btn {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 1.4rem;
-      border: 1px solid rgba(245,214,223,.9);
-      background: var(--off-white);
-      text-decoration: none; color: var(--deep-blue);
-      font-size: .9rem; font-weight: 500;
-      position: relative; overflow: hidden;
-      transition: border-color .3s;
-    }
-    .reach-btn::before {
-      content: ''; position: absolute; inset: 0;
-      background: var(--baby-pink-light);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .35s ease; z-index: 0;
-    }
-    .reach-btn:hover::before { transform: scaleX(1); }
-    .reach-btn:hover { border-color: var(--baby-pink-mid); }
-    .reach-btn i, .reach-btn span, .reach-btn .arr { position: relative; z-index: 1; }
-    .reach-btn i { font-size: 1.05rem; color: var(--gold); width: 22px; flex-shrink: 0; }
-    .reach-btn span { flex: 1; }
-    .arr { color: var(--text-muted); font-size: .85rem; transition: transform .25s, color .25s; }
-    .reach-btn:hover .arr { transform: translateX(4px); color: var(--gold); }
-
-    /* ── RIGHT — Tiers ── */
-    .budget-column { display: flex; flex-direction: column; gap: 1.4rem; animation: fadeUp .7s ease .15s both; }
-
-    .budget-header { margin-bottom: .4rem; }
-    .budget-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.9rem; font-weight: 700; color: var(--deep-blue); margin-bottom: .5rem;
-    }
-    .budget-title em { font-style: italic; color: var(--gold); }
-    .budget-subtitle { font-size: .93rem; color: var(--text-muted); line-height: 1.75; max-width: 420px; }
-
-    /* Tier card */
-    .tier-card {
-      border: 1px solid rgba(245,214,223,.85);
-      background: var(--white);
-      padding: 2rem 2.2rem;
-      position: relative; overflow: hidden;
-      transition: all .4s cubic-bezier(.22,1,.36,1);
-      box-shadow: 0 2px 20px rgba(15,31,69,.04);
-    }
-    .tier-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--baby-pink-mid));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .45s cubic-bezier(.22,1,.36,1);
-    }
-    .tier-card::after {
-      content: ''; position: absolute; top: 0; right: 0;
-      width: 80px; height: 80px;
-      background: radial-gradient(circle at top right, var(--baby-pink) 0%, transparent 70%);
-      opacity: .6; pointer-events: none;
-      transition: opacity .4s, width .4s, height .4s;
-    }
-    .tier-card:hover { transform: translateY(-6px); border-color: var(--baby-pink-mid); box-shadow: 0 16px 40px rgba(15,31,69,.09), 0 4px 16px rgba(245,214,223,.5); }
-    .tier-card:hover::before { transform: scaleX(1); }
-    .tier-card:hover::after { width: 110px; height: 110px; opacity: 1; }
-
-    /* Featured */
-    .tier-card.featured { background: var(--deep-blue); border-color: var(--deep-blue); }
-    .tier-card.featured::after { background: radial-gradient(circle at top right, rgba(201,168,76,.18) 0%, transparent 70%); }
-    .tier-card.featured .tier-name  { color: var(--baby-pink-light); }
-    .tier-card.featured .tier-price { color: var(--gold); }
-    .tier-card.featured .tier-sep   { color: rgba(255,255,255,.4); }
-    .tier-card.featured .tier-desc  { color: rgba(255,255,255,.58); }
-    .tier-card.featured .tier-feat  { color: rgba(255,255,255,.82); border-color: rgba(255,255,255,.08); }
-    .tier-card.featured .tier-feat::before { color: var(--gold); }
-    .tier-card.featured .tier-divider { background: linear-gradient(90deg, rgba(255,255,255,.15), transparent); }
-    .tier-card.featured .t-badge { background: var(--gold); color: var(--deep-blue); }
-    .tier-card.featured .tier-cta { background: var(--gold); color: var(--deep-blue); border-color: var(--gold); }
-    .tier-card.featured .tier-cta .cta-fill { background: var(--white); }
-    .tier-card.featured .tier-cta:hover { color: var(--deep-blue); }
-
-    .t-badge {
-      display: inline-block;
-      padding: .25rem .8rem;
-      background: var(--baby-pink);
-      color: var(--deep-blue);
-      font-size: .68rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase;
-      margin-bottom: .85rem;
-    }
-    .t-badge.ghost { visibility: hidden; }
-    .t-badge.gold { background: var(--gold); color: var(--deep-blue); }
-
-    .tier-name {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.3rem; font-weight: 600; color: var(--deep-blue); margin-bottom: .3rem;
-    }
-    .tier-price-row { display: flex; align-items: baseline; gap: .35rem; margin-bottom: .5rem; }
-    .tier-price { font-family: 'Bodoni Moda', serif; font-size: 2.3rem; font-weight: 700; color: var(--deep-blue); line-height: 1; }
-    .tier-sep { font-size: .85rem; color: var(--text-muted); }
-    .tier-desc { font-size: .87rem; color: var(--text-muted); line-height: 1.72; margin-bottom: 1.3rem; }
-
-    .tier-divider { height: 1px; background: linear-gradient(90deg, var(--baby-pink-mid), transparent); margin-bottom: 1.1rem; opacity: .6; }
-
-    .tier-feats { list-style: none; margin-bottom: 1.5rem; }
-    .tier-feat {
-      font-size: .87rem; color: var(--deep-blue);
-      padding: .45rem 0;
-      border-bottom: 1px solid rgba(245,214,223,.7);
-      display: flex; align-items: center; gap: .7rem;
-    }
-    .tier-feat:last-child { border-bottom: none; }
-    .tier-feat::before { content: '→'; color: var(--gold); font-weight: 700; flex-shrink: 0; font-size: .78rem; }
-
-    .tier-cta {
-      display: flex; align-items: center; justify-content: center; gap: .7rem;
-      width: 100%; padding: .9rem 1.5rem;
-      background: transparent; border: 1px solid var(--deep-blue); color: var(--deep-blue);
-      text-decoration: none;
-      font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; font-weight: 700;
-      position: relative; overflow: hidden; transition: color .35s;
-    }
-    .cta-fill { position: absolute; inset: 0; background: var(--deep-blue); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; z-index: 0; }
-    .tier-cta:hover .cta-fill { transform: scaleX(1); }
-    .tier-cta:hover { color: var(--white); }
-    .tier-cta span, .tier-cta i { position: relative; z-index: 1; }
-
-    /* Custom note */
-    .custom-note {
-      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--deep-blue-light) 100%);
-      padding: 1.8rem 2.2rem;
-      display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
-    }
-    .custom-note-title { font-family: 'Bodoni Moda', serif; font-size: 1.1rem; color: var(--white); margin-bottom: .25rem; }
-    .custom-note-title em { font-style: italic; color: var(--gold); }
-    .custom-note-sub { font-size: .83rem; color: rgba(255,255,255,.52); }
-    .custom-note-btn {
-      display: inline-flex; align-items: center; gap: .6rem;
-      padding: .8rem 1.6rem;
-      background: var(--gold); color: var(--deep-blue);
-      text-decoration: none;
-      font-size: .78rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
-      white-space: nowrap; transition: background .3s, box-shadow .3s;
-    }
-    .custom-note-btn:hover { background: var(--gold-dark); box-shadow: 0 4px 20px rgba(201,168,76,.35); }
-
-    /* Social strip */
-    .social-strip {
-      margin-top: 5rem; padding-top: 3rem;
-      border-top: 1px solid rgba(245,214,223,.8);
-      display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
-      animation: fadeUp .7s ease .5s both;
-    }
-    .social-strip-label { font-size: .75rem; letter-spacing: .22em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
-    .social-icons { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .social-link {
-      width: 42px; height: 42px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%; background: var(--baby-pink-light); color: var(--deep-blue);
-      text-decoration: none; font-size: 1rem; transition: all .3s ease;
-    }
-    .social-link:hover { background: var(--deep-blue); color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 20px rgba(15,31,69,.15); }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(245,214,223,.8);
-      padding: 2.5rem 4rem;
-      display: flex; flex-direction: column; align-items: center; gap: 1.4rem;
-      background: var(--off-white); position: relative; z-index: 1;
-    }
-    .footer-links { display: flex; gap: 2rem; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; }
-    .footer-links a { color: var(--text-muted); text-decoration: none; transition: color .3s; }
-    .footer-links a:hover { color: var(--gold); }
-    .copyright { font-size: .78rem; color: var(--text-muted); letter-spacing: .05em; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .magnify { display: inline-block; transition: transform .25s cubic-bezier(.34,1.56,.64,1), color .25s; }
-    .magnify:hover { transform: scale(1.07); color: var(--gold); }
-
-    @media (max-width: 1024px) { .contact-grid { grid-template-columns: 1fr; gap: 4rem; } }
-    @media (max-width: 768px) {
-      nav { padding: 1.4rem 2rem; flex-direction: column; gap: 1.2rem; }
-      nav ul { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
-      main { padding: 11rem 1.5rem 5rem; }
-      footer { padding: 2rem 1.5rem; }
-      .footer-links { flex-direction: column; gap: .8rem; text-align: center; }
-      .social-strip { gap: 1.5rem; }
-      .custom-note { flex-direction: column; }
-    }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+    @media(max-width:1024px){.contact-grid{grid-template-columns:1fr;gap:4rem;}}
+    @media(max-width:768px){nav{padding:1.4rem 2rem;flex-direction:column;gap:1.2rem;}nav ul{gap:1.2rem;flex-wrap:wrap;justify-content:center;}main{padding:11rem 1.5rem 5rem;}footer{padding:2rem 1.5rem;}.footer-links{flex-direction:column;gap:.8rem;text-align:center;}.social-strip{gap:1.5rem;}.custom-note{flex-direction:column;}}
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMK04PPSV2');
+  </script>
 </head>
 <body>
-
-  <div class="cursor-dot"></div>
+  <div class="custom-cursor" id="bh-cursor"></div>
   <div class="bg-blob bg-blob-1"></div>
   <div class="bg-blob bg-blob-2"></div>
-  <div class="bg-blob bg-blob-3"></div>
 
   <nav>
-    <a href="index.html" class="logo">Black Haven</a>
+    <a href="index.html" class="logo-text magnify">Black Haven</a>
     <ul>
-      <li><a href="index.html"       class="magnify">Home</a></li>
-      <li><a href="store.html"       class="magnify">Store</a></li>
-      <li><a href="portfolio.html"   class="magnify">Portfolio</a></li>
-      <li><a href="services.html"    class="magnify">Services</a></li>
-      <li><a href="research.html"    class="magnify">Research</a></li>
+      <li><a href="index.html" class="magnify">Home</a></li>
+      <li><a href="store.html" class="magnify">Store</a></li>
+      <li><a href="portfolio.html" class="magnify">Portfolio</a></li>
+      <li><a href="services.html" class="magnify">Services</a></li>
+      <li><a href="research.html" class="magnify">Research</a></li>
       <li><a href="credentials.html" class="magnify">Credentials</a></li>
-      <li><a href="contact.html"     class="magnify">Contact</a></li>
+      <li><a href="contact.html" class="magnify">Contact</a></li>
     </ul>
   </nav>
 
@@ -372,81 +186,57 @@
     </div>
 
     <div class="contact-grid">
-
       <!-- LEFT -->
       <div class="contact-info">
-
         <div class="info-block">
           <div class="info-icon"><i class="fas fa-envelope"></i></div>
-          <div class="info-text">
+          <div>
             <p class="info-label">Email Us</p>
-            <p class="info-value">
-              <a href="mailto:hello@blackhaven.studio">info@blackhaven.co.in</a>
-              <small>For proposals & project briefs</small>
-            </p>
+            <p class="info-value"><a href="/cdn-cgi/l/email-protection#563f38303916343a37353d3e37203338783539783f38"><span class="__cf_email__" data-cfemail="60090e060f20020c01030b080116050e4e030f4e090e">[email&#160;protected]</span></a><small>For proposals &amp; project briefs</small></p>
           </div>
         </div>
-
         <div class="info-block">
           <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
-          <div class="info-text">
+          <div>
             <p class="info-label">WhatsApp</p>
-            <p class="info-value">
-              <a href="https://wa.me/+917011403207" target="_blank">+91 70114 03207</a>
-              <small>Quickest way to reach us</small>
-            </p>
+            <p class="info-value"><a href="https://wa.me/+917011403207" target="_blank">+91 70114 03207</a><small>Quickest way to reach us</small></p>
           </div>
         </div>
-
         <div class="info-block">
           <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-          <div class="info-text">
+          <div>
             <p class="info-label">Based In</p>
             <p class="info-value">New Delhi, India<small>Working with clients worldwide</small></p>
           </div>
         </div>
-
         <div class="info-block">
           <div class="info-icon"><i class="fas fa-clock"></i></div>
-          <div class="info-text">
+          <div>
             <p class="info-label">Response Time</p>
             <p class="info-value">Within 24 hours<small>Mon – Sat, 10 am – 7 pm IST</small></p>
           </div>
         </div>
-
         <div class="reach-section">
           <span class="reach-label">Reach us directly via</span>
           <div class="reach-buttons">
-            <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20your%20services" target="_blank" class="reach-btn">
-              <i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span><span class="arr">→</span>
-            </a>
-            <a href="https://t.me/+917011403207" target="_blank" class="reach-btn">
-              <i class="fab fa-telegram-plane"></i><span>Message on Telegram</span><span class="arr">→</span>
-            </a>
-            <a href="mailto:hello@blackhaven.studio" class="reach-btn">
-              <i class="fas fa-paper-plane"></i><span>Send an Email</span><span class="arr">→</span>
-            </a>
+            <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20your%20services" target="_blank" class="reach-btn"><i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span><span class="arr">→</span></a>
+            <a href="https://t.me/+917011403207" target="_blank" class="reach-btn"><i class="fab fa-telegram-plane"></i><span>Message on Telegram</span><span class="arr">→</span></a>
+            <a href="/cdn-cgi/l/email-protection#442d2a222b04262825272f2c2532212a6a272b6a2d2a" class="reach-btn"><i class="fas fa-paper-plane"></i><span>Send an Email</span><span class="arr">→</span></a>
           </div>
         </div>
-
       </div>
 
       <!-- RIGHT — Budget Tiers -->
       <div class="budget-column">
-
-        <div class="budget-header">
+        <div>
           <h2 class="budget-title">Pick Your <em>Budget Tier</em></h2>
-          <p class="budget-subtitle">All prices in USD. Every tier includes dedicated revision rounds and final file delivery. Not sure which fits? Just reach out.</p>
+          <p class="budget-subtitle">All prices in USD. Every tier includes dedicated revision rounds and final file delivery.</p>
         </div>
 
-        <!-- Starter -->
         <div class="tier-card">
           <div class="t-badge ghost">—</div>
           <p class="tier-name">Starter</p>
-          <div class="tier-price-row">
-            <span class="tier-price">$300</span>
-            <span class="tier-sep">– $700</span>
-          </div>
+          <div class="tier-price-row"><span class="tier-price">$300</span><span class="tier-sep">– $700</span></div>
           <p class="tier-desc">For solopreneurs and small businesses needing a focused deliverable — a logo, social templates, or a single-page layout.</p>
           <div class="tier-divider"></div>
           <ul class="tier-feats">
@@ -455,21 +245,14 @@
             <li class="tier-feat">5 – 7 day turnaround</li>
             <li class="tier-feat">Print + digital files included</li>
           </ul>
-          <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20tier" target="_blank" class="tier-cta">
-            <div class="cta-fill"></div>
-            <span>Get Started</span><i class="fab fa-whatsapp"></i>
-          </a>
+          <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20the%20Starter%20tier" target="_blank" class="tier-cta"><div class="cta-fill"></div><span>Get Started</span><i class="fab fa-whatsapp"></i></a>
         </div>
 
-        <!-- Studio — featured -->
         <div class="tier-card featured">
           <div class="t-badge">Most Popular</div>
           <p class="tier-name">Studio</p>
-          <div class="tier-price-row">
-            <span class="tier-price">$800</span>
-            <span class="tier-sep">– $2,000</span>
-          </div>
-          <p class="tier-desc">For growing brands that need a complete identity system, a multi-page editorial layout, or a full UX/UI project.</p>
+          <div class="tier-price-row"><span class="tier-price">$800</span><span class="tier-sep">– $2,000</span></div>
+          <p class="tier-desc">For growing brands that need a complete identity system, multi-page editorial layout, or a full UX/UI project.</p>
           <div class="tier-divider"></div>
           <ul class="tier-feats">
             <li class="tier-feat">Full project scope</li>
@@ -478,81 +261,63 @@
             <li class="tier-feat">Brand guidelines document</li>
             <li class="tier-feat">Priority response</li>
           </ul>
-          <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20the%20Studio%20tier" target="_blank" class="tier-cta">
-            <div class="cta-fill"></div>
-            <span>Let's Talk</span><i class="fab fa-whatsapp"></i>
-          </a>
+          <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20the%20Studio%20tier" target="_blank" class="tier-cta"><div class="cta-fill"></div><span>Let's Talk</span><i class="fab fa-whatsapp"></i></a>
         </div>
 
-        <!-- Black Haven Premium -->
         <div class="tier-card">
-          <div class="t-badge gold">Premium</div>
+          <div class="t-badge gold-badge">Premium</div>
           <p class="tier-name">Black Haven</p>
-          <div class="tier-price-row">
-            <span class="tier-price">$2,500</span>
-            <span class="tier-sep">+</span>
-          </div>
-          <p class="tier-desc">End-to-end brand strategy and design for established businesses — from research and identity to digital presence and full collateral.</p>
+          <div class="tier-price-row"><span class="tier-price">$2,500</span><span class="tier-sep">+</span></div>
+          <p class="tier-desc">End-to-end brand strategy and design — from research and identity to digital presence and full collateral.</p>
           <div class="tier-divider"></div>
           <ul class="tier-feats">
-            <li class="tier-feat">Full brand strategy & design</li>
+            <li class="tier-feat">Full brand strategy &amp; design</li>
             <li class="tier-feat">Unlimited revisions</li>
             <li class="tier-feat">Timeline agreed per project</li>
             <li class="tier-feat">Dedicated project manager</li>
             <li class="tier-feat">30-day post-delivery support</li>
           </ul>
-          <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20the%20Black%20Haven%20premium%20tier" target="_blank" class="tier-cta">
-            <div class="cta-fill"></div>
-            <span>Inquire Now</span><i class="fab fa-whatsapp"></i>
-          </a>
+          <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20the%20Black%20Haven%20premium%20tier" target="_blank" class="tier-cta"><div class="cta-fill"></div><span>Inquire Now</span><i class="fab fa-whatsapp"></i></a>
         </div>
 
-        <!-- Custom note -->
         <div class="custom-note">
           <div>
-            <p class="custom-note-title">Need something <em>custom?</em></p>
+            <p class="custom-note-title">Need something <em>Custom?</em></p>
             <p class="custom-note-sub">Video production, research reports, retainers — let's discuss scope.</p>
           </div>
-          <a href="https://wa.me/+917011403207?text=Hi%2C%20I%20have%20a%20custom%20project%20I'd%20like%20to%20discuss" target="_blank" class="custom-note-btn">
-            <i class="fab fa-whatsapp"></i> Chat With Us
-          </a>
+          <a href="https://wa.me/+917011403207?text=Hi%2C%20I%20have%20a%20custom%20project" target="_blank" class="custom-note-btn"><i class="fab fa-whatsapp"></i> Chat With Us</a>
         </div>
-
       </div>
     </div>
 
-    <!-- Social strip -->
     <div class="social-strip">
       <span class="social-strip-label">Follow Our Work</span>
       <div class="social-icons">
-        <a href="https://www.instagram.com/ablackhaven"                 class="social-link" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.behance.net/fareenkashmira"                class="social-link" title="Behance"   target="_blank"><i class="fab fa-behance"></i></a>
-        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link" title="LinkedIn"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://in.pinterest.com/ablackhaven"                  class="social-link" title="Pinterest" target="_blank"><i class="fab fa-pinterest-p"></i></a>
-        <a href="https://www.youtube.com/@ablackhaven"                  class="social-link" title="YouTube"   target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://wa.me/+917011403207"                           class="social-link" title="WhatsApp"  target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://t.me/+917011403207"                            class="social-link" title="Telegram"  target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://www.instagram.com/ablackhaven" class="social-link" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.behance.net/fareenkashmira" class="social-link" title="Behance" target="_blank"><i class="fab fa-behance"></i></a>
+        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://in.pinterest.com/ablackhaven" class="social-link" title="Pinterest" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+        <a href="https://www.youtube.com/@ablackhaven" class="social-link" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://wa.me/+917011403207" class="social-link" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://t.me/+917011403207" class="social-link" title="Telegram" target="_blank"><i class="fab fa-telegram-plane"></i></a>
       </div>
     </div>
   </main>
 
   <footer>
-    <div class="footer-links">
-      <a href="privacypolicy.html">Privacy Policy</a>
-      <a href="TnC.html">Terms & Conditions</a>
+    <div class="footer-content">
+      <div class="footer-logo"><span class="footer-logo-text">BLACK HAVEN — Design Studio</span></div>
+      <div class="footer-links">
+        <a href="about.html" class="magnify">About</a>
+        <a href="termncondition.html" class="magnify">Terms &amp; Conditions</a>
+        <a href="privacypolicy.html" class="magnify">Privacy Policy</a>
+      </div>
+      <p class="copyright">&copy; 2022&ndash;2025 Black Haven Design Studio. All rights reserved. | Designed by Fareen.</p>
     </div>
-    <p class="copyright">&copy; 2022–2025 Black Haven Design Studio. All rights reserved.</p>
   </footer>
 
-  <script>
-    const dot = document.querySelector('.cursor-dot');
-    let mx = 0, my = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function tick() { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; requestAnimationFrame(tick); })();
-    document.querySelectorAll('a, .tier-card, .reach-btn').forEach(el => {
-      el.addEventListener('mouseenter', () => dot.classList.add('hover'));
-      el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
-    });
-  </script>
-</body>
-</html>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const dot=document.getElementById('bh-cursor');
+    let mx=0,my=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    (function t(){dot.style.left=mx+'px';dot.style.to
