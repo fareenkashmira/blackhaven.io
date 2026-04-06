@@ -1,16 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio — Black Haven Design Studio</title>
-
-  <!-- Google Fonts -->
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Black Haven Portfolio — Selected design works including logos, brand identities, websites, videos, PDFs, and virtual designs.">
+  <meta name="keywords" content="design portfolio india, logo design portfolio, website design portfolio, brand design work, graphic design portfolio, black haven portfolio, creative work india, ux design showcase, fareen kashmira portfolio, design studio work">
+  <meta name="author" content="Fareen Kashmira — Black Haven">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e3b54d">
+  <link rel="canonical" href="https://blackhaven.co.in/portfolio.html">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Black Haven Portfolio | Design Work — Logos, Websites, Videos & Virtual Designs">
+  <meta property="og:description" content="Black Haven Portfolio — Selected design works including logos, brand identities, websites, videos, PDFs, and virtual designs.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blackhaven.co.in/portfolio.html">
+  <meta property="og:image" content="https://blackhaven.co.in/images/BH.png">
+  <meta property="og:site_name" content="Black Haven">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Black Haven Portfolio | Design Work — Logos, Websites, Videos & Virtual Designs">
+  <meta name="twitter:description" content="Black Haven Portfolio — Selected design works including logos, brand identities, websites, videos, PDFs, and virtual designs.">
+  <meta name="twitter:image" content="https://blackhaven.co.in/images/BH.png">
+  <title>Black Haven Portfolio | Design Work — Logos, Websites, Videos & Virtual Designs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Big+Shoulders+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
 
+    :root{--white:#ffffff;--deep-blue:#0d1b3e;--deep-blue-mid:#1a2d5a;--deep-blue-light:#2a4080;--gold:#e3b54d;--baby-pink:#f4c6cf;--baby-pink-deep:#e8a4b0;--baby-pink-pale:#fdf0f2;--grey:#8a9ab5;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Cormorant Garamond',serif;background:var(--white);color:var(--deep-blue);line-height:1.85;cursor:none;overflow-x:hidden;}
+    
+    .custom-cursor{position:fixed;width:8px;height:8px;background:#e3b54d;border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transform:translate(-50%,-50%);transition:opacity 0.3s,width 0.2s,height 0.2s,background-color 0.2s;box-shadow:0 0 12px rgba(227,181,77,0.6),0 0 24px rgba(227,181,77,0.3);}
+    .custom-cursor.active{opacity:1;}
+    .custom-cursor.hovering{width:16px;height:16px;background:#f4c6cf;}
+    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}
+    .magnify-target{transition:transform 0.2s ease;display:inline-block;}
+    ::selection{background:#f4c6cf;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(255,255,255,0.95);border-bottom:1px solid rgba(13,27,62,0.12);box-shadow:0 2px 20px rgba(13,27,62,0.06);}
+    .logo-text{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;background:linear-gradient(135deg,#0d1b3e,#2a4080,#e3b54d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;letter-spacing:0.04em;}
+    .nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center;}
+    .nav-links a{font-family:'DM Sans',sans-serif;color:var(--deep-blue);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;position:relative;transition:all 0.3s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--baby-pink-deep));transition:width 0.4s;}
+    .nav-links a:hover{color:var(--gold);transform:scale(1.05);}
+    .nav-links a:hover::after{width:100%;}
+    main{padding:10rem 4rem 8rem;max-width:1000px;margin:0 auto;}
+    .page-header{text-align:center;margin-bottom:4rem;}
+    .page-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:700;color:var(--deep-blue);margin-bottom:1rem;letter-spacing:0.04em;}
+    .last-updated,.page-subtitle-small{font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--grey);letter-spacing:0.1em;}
+    .content-section{margin-bottom:3rem;}
+    .section-title{font-family:'Big Shoulders Display',cursive;font-size:1.7rem;font-weight:700;text-transform:uppercase;color:var(--deep-blue);margin-bottom:1.2rem;padding-bottom:0.5rem;border-bottom:2px solid var(--baby-pink);letter-spacing:0.04em;}
+    .section-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--grey);line-height:1.85;margin-bottom:1rem;}
+    .highlight{color:var(--gold);font-weight:600;}
+    ul{list-style:none;margin-left:1.5rem;margin-top:1rem;}
+    ul li{position:relative;padding-left:1.5rem;margin-bottom:0.8rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--grey);line-height:1.75;}
+    ul li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:0.8rem;top:0.25rem;}
+    .notice-box{background:var(--baby-pink-pale);border-left:4px solid var(--deep-blue);padding:1.5rem;margin:2rem 0;}
+    .notice-box p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--deep-blue);margin-bottom:0.5rem;}
+    footer{padding:3rem 4rem 1.5rem;background:linear-gradient(160deg,var(--deep-blue) 0%,#0a1228 60%,#050c1a 100%);border-top:2px solid var(--baby-pink);}
+    .footer-content{max-width:1200px;margin:0 auto;}
+    .footer-logo{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.5rem;}
+    .footer-logo-text{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;}
+    .social-links{display:flex;gap:2.5rem;justify-content:center;align-items:center;margin-bottom:1.5rem;padding:1rem 0;border-top:1px solid rgba(227,181,77,0.2);border-bottom:1px solid rgba(227,181,77,0.2);flex-wrap:wrap;}
+    .social-link{color:var(--gold);text-decoration:none;font-size:1.2rem;transition:all 0.3s;}
+    .social-link:hover{color:var(--gold);opacity:0.7;transform:translateY(-4px) scale(1.1);}
+    .footer-links{display:flex;gap:2rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .footer-links a{font-family:'DM Sans',sans-serif;color:var(--gold);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.3s;}
+    .footer-links a:hover{color:var(--gold);opacity:0.7;transform:scale(1.05);}
+    .copyright{font-family:'DM Sans',sans-serif;text-align:center;font-size:0.75rem;color:var(--gold);letter-spacing:0.05em;margin-top:1.5rem;opacity:0.85;}
+    @media(max-width:768px){nav{padding:1.2rem 2rem;flex-direction:column;gap:1rem;}.nav-links{gap:1.2rem;flex-wrap:wrap;justify-content:center;}main{padding:12rem 2rem 6rem;}}
+
+
+    .content-category{margin-bottom:6rem;}
+    .category-title{font-family:'Big Shoulders Display',cursive;font-size:2rem;font-weight:700;text-transform:uppercase;color:var(--deep-blue);margin-bottom:2.5rem;padding-bottom:1rem;border-bottom:2px solid var(--baby-pink);letter-spacing:2px;}
+    .grid-view{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2.5rem;}
+    .card{background:var(--white);border:2px solid var(--baby-pink);overflow:hidden;transition:all 0.4s;position:relative;box-shadow:0 4px 20px rgba(13,27,62,0.06);}
+    .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--baby-pink-deep));transform:scaleX(0);transition:transform 0.4s;z-index:1;}
+    .card:hover{transform:translateY(-10px);border-color:var(--gold);box-shadow:0 8px 30px rgba(227,181,77,0.25);}
+    .card:hover::before{transform:scaleX(1);}
+    .card img{width:100%;height:260px;object-fit:cover;display:block;transition:transform 0.4s;cursor:pointer;}
+    .card:hover img{transform:scale(1.05);}
+    .card iframe{width:100%;height:260px;border:none;display:block;}
+    .card-body{padding:1.5rem;}
+    .card-title{font-family:'Big Shoulders Display',cursive;font-size:1.3rem;font-weight:700;text-transform:uppercase;color:var(--deep-blue);margin-bottom:0.7rem;letter-spacing:1px;}
+    .card-text{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--grey);line-height:1.6;}
+    .website-card{background:linear-gradient(135deg,var(--deep-blue) 0%,var(--deep-blue-mid) 100%);border:2px solid var(--gold);padding:2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:260px;transition:all 0.4s;position:relative;overflow:hidden;text-decoration:none;}
+    .website-card:hover{transform:translateY(-10px);box-shadow:0 12px 40px rgba(227,181,77,0.3);}
+    .website-icon{font-size:2.5rem;color:var(--gold);margin-bottom:1rem;}
+    .website-name{font-family:'Big Shoulders Display',cursive;font-size:1.5rem;font-weight:700;color:var(--gold);margin-bottom:0.7rem;letter-spacing:2px;}
+    .website-desc{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--baby-pink);margin-bottom:1.5rem;}
+    .website-btn{display:inline-block;padding:0.7rem 1.8rem;background:var(--gold);color:var(--deep-blue);font-family:'DM Sans',sans-serif;font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;font-weight:700;transition:all 0.3s;}
+    .website-btn:hover{background:transparent;color:var(--gold);}
+    .contact-cta{text-align:center;margin:5rem 0;}
+    .cta-button{display:inline-block;padding:1.2rem 3rem;background:var(--deep-blue);border:2px solid var(--deep-blue);color:var(--white);font-family:'DM Sans',sans-serif;text-decoration:none;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;font-weight:600;position:relative;overflow:hidden;transition:all 0.4s;isolation:isolate;}
+    .cta-button::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,var(--gold),var(--baby-pink-deep));transition:left 0.4s;z-index:-1;}
+    .cta-button:hover{color:var(--deep-blue);border-color:var(--gold);transform:scale(1.04);}
+    .cta-button:hover::before{left:0;}
+    .lightbox{display:none;position:fixed;z-index:2000;top:0;left:0;width:100%;height:100%;background:rgba(13,27,62,0.95);justify-content:center;align-items:center;cursor:pointer;}
+    .lightbox img{max-width:90%;max-height:90%;object-fit:contain;}
+    @media(max-width:768px){main{padding:12rem 2rem 6rem;}.grid-view{grid-template-columns:1fr;}}
+
+  </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
   <script>
@@ -19,559 +113,13 @@
     gtag('js', new Date());
     gtag('config', 'G-XMK04PPSV2');
   </script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --white: #ffffff;
-      --deep-blue: #0d1b3e;
-      --deep-blue-mid: #1a2d5a;
-      --deep-blue-light: #2a4080;
-      --gold: #e5bb61;
-      --gold-bright: #e3b54d;
-      --baby-pink: #f4c6cf;
-      --baby-pink-deep: #e8a4b0;
-      --baby-pink-pale: #fdf0f2;
-      --grey: #8a9ab5;
-      --text-blue: #0d1b3e;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--white);
-      color: var(--text-blue);
-      line-height: 1.6;
-      cursor: none;
-    }
-
-    /* Tiny Golden Dot Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background-color: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-      box-shadow: 0 0 12px rgba(229, 187, 97, 0.6), 0 0 24px rgba(229, 187, 97, 0.3);
-    }
-
-    .custom-cursor.active {
-      opacity: 1;
-    }
-
-    .custom-cursor.hovering {
-      width: 16px;
-      height: 16px;
-      background-color: var(--baby-pink-deep);
-      box-shadow: 0 0 18px rgba(232, 164, 176, 0.8);
-    }
-
-    /* Hide cursor on mobile */
-    @media (hover: none) and (pointer: coarse) {
-      body {
-        cursor: auto;
-      }
-      .custom-cursor {
-        display: none;
-      }
-    }
-
-    /* Text magnify effect */
-    .magnify-target {
-      transition: transform 0.2s ease, color 0.2s ease;
-      display: inline-block;
-    }
-
-    /* Text Selection */
-    ::selection {
-      background: var(--baby-pink);
-      color: var(--deep-blue);
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 1.5rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 1px solid rgba(13, 27, 62, 0.1);
-      box-shadow: 0 2px 20px rgba(13, 27, 62, 0.05);
-    }
-
-    .logo {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--deep-blue);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--gold);
-    }
-
-    nav ul {
-      display: flex;
-      gap: 2.8rem;
-      list-style: none;
-    }
-
-    nav a {
-      color: var(--deep-blue);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--baby-pink-deep));
-      transition: width 0.4s ease;
-    }
-
-    nav a:hover {
-      color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* Main content */
-    main {
-      padding: 10rem 4rem 8rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    /* Page header */
-    .page-header {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-
-    .page-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--deep-blue);
-      margin-bottom: 1rem;
-    }
-
-    .page-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* Category sections */
-    .content-category {
-      margin-bottom: 6rem;
-    }
-
-    .category-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--deep-blue);
-      margin-bottom: 2.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid var(--baby-pink);
-      letter-spacing: 0.05em;
-    }
-
-    /* Grid layout */
-    .grid-view {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2.5rem;
-    }
-
-    /* Card styling */
-    .card {
-      background: var(--white);
-      border: 2px solid var(--baby-pink);
-      overflow: hidden;
-      transition: all 0.4s ease;
-      position: relative;
-      box-shadow: 0 4px 20px rgba(13, 27, 62, 0.08);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--baby-pink-deep));
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
-      z-index: 1;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 8px 30px rgba(229, 187, 97, 0.25);
-    }
-
-    .card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .card img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-      cursor: pointer;
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card iframe {
-      width: 100%;
-      height: 280px;
-      border: none;
-      display: block;
-    }
-
-    .card-body {
-      padding: 1.5rem;
-    }
-
-    .card-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--deep-blue);
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.02em;
-    }
-
-    .card-text {
-      font-size: 0.95rem;
-      color: var(--grey);
-      line-height: 1.6;
-    }
-
-    /* Website Button Card */
-    .website-card {
-      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--deep-blue-mid) 100%);
-      border: 2px solid var(--gold);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 280px;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .website-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(229, 187, 97, 0.1), transparent);
-      transition: left 0.8s ease;
-    }
-
-    .website-card:hover::before {
-      left: 100%;
-    }
-
-    .website-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 40px rgba(229, 187, 97, 0.3);
-    }
-
-    .website-icon {
-      font-size: 3rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .website-name {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 0.8rem;
-      letter-spacing: 0.05em;
-    }
-
-    .website-desc {
-      font-size: 0.9rem;
-      color: var(--baby-pink);
-      margin-bottom: 1.5rem;
-    }
-
-    .website-btn {
-      display: inline-block;
-      padding: 0.8rem 2rem;
-      background: var(--gold);
-      color: var(--deep-blue);
-      text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border: 2px solid var(--gold);
-    }
-
-    .website-btn:hover {
-      background: transparent;
-      color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    /* Contact CTA */
-    .contact-cta {
-      text-align: center;
-      margin: 5rem 0 6rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      padding: 1.2rem 3rem;
-      background: var(--deep-blue);
-      border: 2px solid var(--deep-blue);
-      color: var(--white);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 500;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-      isolation: isolate;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--baby-pink-deep));
-      transition: left 0.4s ease;
-      z-index: -1;
-    }
-
-    .cta-button:hover {
-      color: var(--deep-blue);
-      border-color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    .cta-button:hover::before {
-      left: 0;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 2px solid var(--baby-pink);
-      padding: 3rem 4rem 1.5rem;
-      background: var(--white);
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-logo-text {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1rem;
-      color: var(--deep-blue);
-      letter-spacing: 0.05em;
-    }
-
-    .footer-logo-text span {
-      color: var(--gold);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 2.5rem;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding: 1rem 0;
-      border-top: 1px solid rgba(13, 27, 62, 0.1);
-      border-bottom: 1px solid rgba(13, 27, 62, 0.1);
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-link:hover {
-      color: var(--baby-pink-deep);
-      transform: translateY(-4px) scale(1.1);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--text-blue);
-      text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--grey);
-      letter-spacing: 0.05em;
-      margin-top: 1.5rem;
-    }
-
-    /* Lightbox */
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(13, 27, 62, 0.95);
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      object-fit: contain;
-    }
-
-    /* Mobile responsive */
-    @media (max-width: 768px) {
-      nav {
-        padding: 1.2rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      nav ul {
-        gap: 1.2rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      main {
-        padding: 12rem 2rem 6rem;
-      }
-
-      .grid-view {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .page-title {
-        font-size: 2rem;
-      }
-
-      .category-title {
-        font-size: 1.5rem;
-      }
-
-      footer {
-        padding: 2rem;
-      }
-
-      .social-links {
-        gap: 1rem;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-      }
-    }
-  </style>
 </head>
-
 <body>
-  <!-- Tiny Golden Dot Cursor -->
-  <div class="custom-cursor" id="cursor"></div>
-
-  <!-- Navigation -->
+  <div class="custom-cursor" id="bh-cursor"></div>
   <nav>
-    <a href="index.html" class="logo">Black <span>Haven</span></a>
-    <ul>
+    <a href="index.html" class="logo-text magnify-target">Black Haven</a>
+    <ul class="nav-links">
+
       <li><a href="index.html" class="magnify-target">Home</a></li>
       <li><a href="store.html" class="magnify-target">Store</a></li>
       <li><a href="portfolio.html" class="magnify-target">Portfolio</a></li>
@@ -579,361 +127,115 @@
       <li><a href="research.html" class="magnify-target">Research</a></li>
       <li><a href="credentials.html" class="magnify-target">Credentials</a></li>
       <li><a href="contact.html" class="magnify-target">Contact</a></li>
+
     </ul>
   </nav>
 
   <main>
-    <!-- Page Header -->
     <div class="page-header">
       <h1 class="page-title magnify-target">Portfolio</h1>
-      <p class="page-subtitle">Selected Works</p>
+      <p class="page-subtitle-small">Selected Works</p>
     </div>
 
-    <!-- PHOTOS SECTION -->
     <section class="content-category">
       <h2 class="category-title">Photos</h2>
       <div class="grid-view">
-
-        <div class="card">
-          <img src="../images/Aris.png" alt="Aris Logo">
-          <div class="card-body">
-            <h3 class="card-title">Aris Logo</h3>
-            <p class="card-text">Logo design for beauty product company located in Uganda.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/AS Logo.jpg" alt="AS Logo">
-          <div class="card-body">
-            <h3 class="card-title">AS Logo</h3>
-            <p class="card-text">Logo design for a recruitment firm</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/KP Logo.png" alt="KP Logo">
-          <div class="card-body">
-            <h3 class="card-title">KP Logo</h3>
-            <p class="card-text">Logo design for a letting company in UK London</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/BS Logo.png" alt="Logo Design">
-          <div class="card-body">
-            <h3 class="card-title">Logo</h3>
-            <p class="card-text">This is from a client who wanted a 3D Logo design.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/packaging.jpg" alt="Packaging Design">
-          <div class="card-body">
-            <h3 class="card-title">Packaging Design</h3>
-            <p class="card-text">Sample package design</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/tshirt.jpg" alt="T Shirt Print">
-          <div class="card-body">
-            <h3 class="card-title">T Shirt Print</h3>
-            <p class="card-text">Sample for apparel and T Shirts prints</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/label.jpg" alt="Aris Body Cream Label">
-          <div class="card-body">
-            <h3 class="card-title">Aris Body Cream Label</h3>
-            <p class="card-text">Label design for beauty product company located in Uganda.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/coffee & cakes.png" alt="Kooky Poster">
-          <div class="card-body">
-            <h3 class="card-title">Kooky Poster</h3>
-            <p class="card-text">This is a poster for a cake shop.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="../images/KP Letterhead.png" alt="Letterhead Design">
-          <div class="card-body">
-            <h3 class="card-title">Letterhead Design</h3>
-            <p class="card-text">Letterhead Design for a letting company in London</p>
-          </div>
-        </div>
-
+        <div class="card"><img src="../images/Aris.png" alt="Aris Logo"><div class="card-body"><h3 class="card-title">Aris Logo</h3><p class="card-text">Logo design for beauty product company, Uganda.</p></div></div>
+        <div class="card"><img src="../images/AS Logo.jpg" alt="AS Logo"><div class="card-body"><h3 class="card-title">AS Logo</h3><p class="card-text">Logo design for a recruitment firm.</p></div></div>
+        <div class="card"><img src="../images/KP Logo.png" alt="KP Logo"><div class="card-body"><h3 class="card-title">KP Logo</h3><p class="card-text">Logo design for a letting company in London, UK.</p></div></div>
+        <div class="card"><img src="../images/BS Logo.png" alt="3D Logo"><div class="card-body"><h3 class="card-title">3D Logo</h3><p class="card-text">Client-commissioned 3D logo design.</p></div></div>
+        <div class="card"><img src="../images/packaging.jpg" alt="Packaging Design"><div class="card-body"><h3 class="card-title">Packaging Design</h3><p class="card-text">Sample package design.</p></div></div>
+        <div class="card"><img src="../images/tshirt.jpg" alt="T Shirt Print"><div class="card-body"><h3 class="card-title">T-Shirt Print</h3><p class="card-text">Sample apparel and T-shirt print design.</p></div></div>
+        <div class="card"><img src="../images/label.jpg" alt="Aris Body Cream Label"><div class="card-body"><h3 class="card-title">Aris Body Cream Label</h3><p class="card-text">Label design for Aris Beauty, Uganda.</p></div></div>
+        <div class="card"><img src="../images/coffee & cakes.png" alt="Kooky Poster"><div class="card-body"><h3 class="card-title">Kooky Poster</h3><p class="card-text">Poster design for a cake shop.</p></div></div>
+        <div class="card"><img src="../images/KP Letterhead.png" alt="Letterhead Design"><div class="card-body"><h3 class="card-title">Letterhead Design</h3><p class="card-text">Letterhead for a letting company in London.</p></div></div>
       </div>
     </section>
 
-    <!-- VIRTUAL DESIGNS SECTION -->
     <section class="content-category">
       <h2 class="category-title">Virtual Designs</h2>
       <div class="grid-view">
-
-        <!-- Visiting Cards -->
-        <div class="card">
-          <div style="background: linear-gradient(135deg, var(--baby-pink-pale) 0%, var(--white) 100%); height: 280px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--baby-pink);">
-            <i class="fas fa-address-card" style="font-size: 4rem; color: var(--gold);"></i>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">Visiting Cards</h3>
-            <p class="card-text">Professional virtual business card designs for various clients.</p>
-            <a href="visiting-cards.html" style="display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: var(--deep-blue); color: var(--white); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease;">View Collection</a>
-          </div>
-        </div>
-
-        <!-- Menus -->
-        <div class="card">
-          <div style="background: linear-gradient(135deg, var(--baby-pink-pale) 0%, var(--white) 100%); height: 280px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--baby-pink);">
-            <i class="fas fa-utensils" style="font-size: 4rem; color: var(--gold);"></i>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">Restaurant Menus</h3>
-            <p class="card-text">Interactive digital menu designs for restaurants and cafes.</p>
-            <a href="menus.html" style="display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: var(--deep-blue); color: var(--white); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease;">View Collection</a>
-          </div>
-        </div>
-
-        <!-- Magazines -->
-        <div class="card">
-          <div style="background: linear-gradient(135deg, var(--baby-pink-pale) 0%, var(--white) 100%); height: 280px; display: flex; align-items: center; justify-content: center; border-bottom: 2px solid var(--baby-pink);">
-            <i class="fas fa-book-open" style="font-size: 4rem; color: var(--gold);"></i>
-          </div>
-          <div class="card-body">
-            <h3 class="card-title">Magazines</h3>
-            <p class="card-text">Editorial virtual magazine designs with rich layouts and typography.</p>
-            <a href="magazines.html" style="display: inline-block; margin-top: 1rem; padding: 0.6rem 1.5rem; background: var(--deep-blue); color: var(--white); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease;">View Collection</a>
-          </div>
-        </div>
-
+        <div class="card"><div style="background:linear-gradient(135deg,var(--baby-pink-pale),var(--white));height:260px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--baby-pink);"><i class="fas fa-address-card" style="font-size:3.5rem;color:var(--gold);"></i></div><div class="card-body"><h3 class="card-title">Visiting Cards</h3><p class="card-text">Professional virtual business card designs for various clients.</p><a href="visiting-cards.html" style="display:inline-block;margin-top:1rem;padding:0.5rem 1.4rem;background:var(--deep-blue);color:var(--white);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;">View Collection</a></div></div>
+        <div class="card"><div style="background:linear-gradient(135deg,var(--baby-pink-pale),var(--white));height:260px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--baby-pink);"><i class="fas fa-utensils" style="font-size:3.5rem;color:var(--gold);"></i></div><div class="card-body"><h3 class="card-title">Restaurant Menus</h3><p class="card-text">Interactive digital menu designs for restaurants and cafes.</p><a href="menus.html" style="display:inline-block;margin-top:1rem;padding:0.5rem 1.4rem;background:var(--deep-blue);color:var(--white);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;">View Collection</a></div></div>
+        <div class="card"><div style="background:linear-gradient(135deg,var(--baby-pink-pale),var(--white));height:260px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--baby-pink);"><i class="fas fa-book-open" style="font-size:3.5rem;color:var(--gold);"></i></div><div class="card-body"><h3 class="card-title">Magazines</h3><p class="card-text">Editorial virtual magazine designs with rich layouts and typography.</p><a href="magazines.html" style="display:inline-block;margin-top:1rem;padding:0.5rem 1.4rem;background:var(--deep-blue);color:var(--white);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;">View Collection</a></div></div>
       </div>
     </section>
 
-    <!-- WEBSITES SECTION -->
     <section class="content-category">
       <h2 class="category-title">Websites</h2>
       <div class="grid-view">
-
-        <!-- Kizal Properties LLP -->
-        <a href="https://kizalpropertiesllp.com" target="_blank" rel="noopener noreferrer" class="website-card">
-          <div class="website-icon">
-            <i class="fas fa-building"></i>
-          </div>
-          <h3 class="website-name">Kizal Properties LLP</h3>
-          <p class="website-desc">Property Management in London, UK</p>
-          <span class="website-btn">Visit Website</span>
-        </a>
-
-        <!-- Nilo Beauty Products -->
-        <a href="https://nilobeauty.com" target="_blank" rel="noopener noreferrer" class="website-card">
-          <div class="website-icon">
-            <i class="fas fa-spa"></i>
-          </div>
-          <h3 class="website-name">Nilo Beauty Products</h3>
-          <p class="website-desc">Premium beauty products from Uganda</p>
-          <span class="website-btn">Visit Website</span>
-        </a>
-
-        <!-- Black Haven -->
-        <a href="index.html" class="website-card">
-          <div class="website-icon">
-            <i class="fas fa-palette"></i>
-          </div>
-          <h3 class="website-name">Black Haven</h3>
-          <p class="website-desc">Design Studio & Modest Fashion</p>
-          <span class="website-btn">Visit Website</span>
-        </a>
-
+        <a href="https://kizalpropertiesllp.com" target="_blank" rel="noopener noreferrer" class="website-card"><div class="website-icon"><i class="fas fa-building"></i></div><h3 class="website-name">Kizal Properties LLP</h3><p class="website-desc">Property Management, London UK</p><span class="website-btn">Visit Website</span></a>
+        <a href="https://nilobeauty.com" target="_blank" rel="noopener noreferrer" class="website-card"><div class="website-icon"><i class="fas fa-spa"></i></div><h3 class="website-name">Nilo Beauty Products</h3><p class="website-desc">Premium beauty products, Uganda</p><span class="website-btn">Visit Website</span></a>
+        <a href="index.html" class="website-card"><div class="website-icon"><i class="fas fa-palette"></i></div><h3 class="website-name">Black Haven</h3><p class="website-desc">Design Studio &amp; Modest Fashion</p><span class="website-btn">Visit Website</span></a>
       </div>
     </section>
 
-    <!-- PDFs SECTION -->
     <section class="content-category">
       <h2 class="category-title">PDFs</h2>
       <div class="grid-view">
-
-        <div class="card">
-          <iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">PDF Work</h3>
-            <p class="card-text">This explains the impact of Influencer Marketing on Brand Perception.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">ADM Society Induction Brochure</h3>
-            <p class="card-text">This brochure was part of the Graphic Design Internship.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">Magazine Design</h3>
-            <p class="card-text">A sample magazine design.</p>
-          </div>
-        </div>
-
+        <div class="card"><iframe src="https://drive.google.com/file/d/1JYQ4Wi2fjYqq34TjnYjekftTuo_r4uqG/preview" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">Influencer Marketing Research</h3><p class="card-text">Impact of Influencer Marketing on Brand Perception.</p></div></div>
+        <div class="card"><iframe src="https://drive.google.com/file/d/1E1SlHwR1OIpslgSbD633MhIvkwjRMlOU/preview" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">ADM Society Induction Brochure</h3><p class="card-text">Part of the Graphic Design Internship.</p></div></div>
+        <div class="card"><iframe src="https://drive.google.com/file/d/1M15k5q9kzRVozkdMbxdrbYWyGOXgi0Q3/preview" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">Magazine Design</h3><p class="card-text">Sample magazine design.</p></div></div>
       </div>
     </section>
 
-    <!-- VIDEOS SECTION -->
     <section class="content-category">
       <h2 class="category-title">Videos</h2>
       <div class="grid-view">
-
-        <div class="card">
-          <iframe src="https://www.youtube.com/embed/BcHWrcX3GQ4" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">ABHA Group Advertisement</h3>
-            <p class="card-text">This video advertisement emphasizes the dedication and commitment of the company and gives an insight into their work environment.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <iframe src="https://www.youtube.com/embed/8LtbKt6-8vY" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">ABHA Group's Training Sessions</h3>
-            <p class="card-text">This video comprises the training sessions that ABHA Group has undertaken recently.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <iframe src="https://www.youtube.com/embed/ps1TkWwsTD0" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">InAmigos Foundation Reel</h3>
-            <p class="card-text">This is InAmigos foundation reel about their work, it was the part of the internship.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <iframe src="https://www.youtube.com/embed/QPvfCFFDeaE" allowfullscreen></iframe>
-          <div class="card-body">
-            <h3 class="card-title">SkillGenic Academy Reel</h3>
-            <p class="card-text">This is a short reel about the workspace of SkillGenic Academy.</p>
-          </div>
-        </div>
-
+        <div class="card"><iframe src="https://www.youtube.com/embed/BcHWrcX3GQ4" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">ABHA Group Advertisement</h3><p class="card-text">Advertisement emphasizing dedication and work environment.</p></div></div>
+        <div class="card"><iframe src="https://www.youtube.com/embed/8LtbKt6-8vY" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">ABHA Group Training Sessions</h3><p class="card-text">Highlights of recent training sessions.</p></div></div>
+        <div class="card"><iframe src="https://www.youtube.com/embed/ps1TkWwsTD0" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">InAmigos Foundation Reel</h3><p class="card-text">Foundation reel, created during internship.</p></div></div>
+        <div class="card"><iframe src="https://www.youtube.com/embed/QPvfCFFDeaE" allowfullscreen></iframe><div class="card-body"><h3 class="card-title">SkillGenic Academy Reel</h3><p class="card-text">Short reel about SkillGenic Academy workspace.</p></div></div>
       </div>
     </section>
 
-    <!-- Contact CTA -->
     <div class="contact-cta">
-      <a href="https://wa.me/+917011403207?text=Hi%2C%20I%20checked%20out%20your%20work%20and%20I%20want%20more%20information%20about%20your%20charges."
-         target="_blank"
-         rel="noopener noreferrer"
-         class="cta-button">
-        Let's Work Together
-      </a>
+      <a href="https://wa.me/+917011403207?text=Hi%2C%20I%20checked%20out%20your%20work%20and%20want%20more%20information" target="_blank" class="cta-button">Let's Work Together</a>
     </div>
   </main>
+  <div id="lightbox" class="lightbox" onclick="this.style.display='none'"><img id="lightbox-img" alt="Enlarged view"></div>
 
-  <!-- Footer -->
+
   <footer>
     <div class="footer-content">
       <div class="footer-logo">
-        <span class="footer-logo-text">BLACK <span>HAVEN</span> — Design Studio</span>
+        <span class="footer-logo-text">BLACK HAVEN — Design Studio</span>
       </div>
-
       <div class="social-links">
-        <a href="https://www.instagram.com/ablackhaven" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.behance.net/fareenkashmira" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Behance">
-          <i class="fab fa-behance"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://in.pinterest.com/ablackhaven" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Pinterest">
-          <i class="fab fa-pinterest-p"></i>
-        </a>
-        <a href="mailto:info@blackhaven.co.in" class="social-link magnify-target" title="Email">
-          <i class="far fa-envelope"></i>
-        </a>
-        <a href="https://wa.me/+917011403207" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
+        <a href="https://www.instagram.com/ablackhaven" class="social-link magnify-target" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.behance.net/fareenkashmira" class="social-link magnify-target" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link magnify-target" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://in.pinterest.com/ablackhaven" class="social-link magnify-target" target="_blank" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        <a href="/cdn-cgi/l/email-protection#94fdfaf2fbd4f6f8f5f7fffcf5e2f1fabaf7fbbafdfa" class="social-link magnify-target" title="Email"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/+917011403207" class="social-link magnify-target" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
-
       <div class="footer-links">
+        <a href="about.html" class="magnify-target">About</a>
+        <a href="termncondition.html" class="magnify-target">Terms &amp; Conditions</a>
         <a href="privacypolicy.html" class="magnify-target">Privacy Policy</a>
-        <a href="TnC.html" class="magnify-target">Terms & Conditions</a>
       </div>
-
-      <p class="copyright">&copy; 2022-2025 Black Haven Design Studio. All rights reserved.</p>
+      <p class="copyright">&copy; 2022&ndash;2025 Black Haven Design Studio. All rights reserved. | Designed by Fareen.</p>
     </div>
   </footer>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
-    <img id="lightbox-img" alt="Enlarged view">
-  </div>
-
-  <script>
-    // Tiny Golden Dot Cursor
-    const cursor = document.getElementById('cursor');
-    let mx = 0, my = 0;
-    let dx = 0, dy = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-      cursor.classList.add('active');
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const _cursor = document.getElementById('bh-cursor');
+    let _mx=0,_my=0,_dx=0,_dy=0;
+    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cursor.classList.add('active');});
+    document.addEventListener('mouseleave',()=>_cursor.classList.remove('active'));
+    (function _anim(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cursor.style.left=_dx+'px';_cursor.style.top=_dy+'px';requestAnimationFrame(_anim);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>_cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>_cursor.classList.remove('hovering'));
     });
-
-    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-
-    // Smooth follow animation
-    (function animateCursor() {
-      dx += (mx - dx) * 0.2;
-      dy += (my - dy) * 0.2;
-      cursor.style.left = dx + 'px';
-      cursor.style.top = dy + 'px';
-      requestAnimationFrame(animateCursor);
-    })();
-
-    // Hover state
-    document.querySelectorAll('a, button, .card, .website-card').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-    });
-
-    // Text magnify near cursor
-    const magnifyTargets = document.querySelectorAll('.magnify-target, nav a, .page-title');
-    document.addEventListener('mousemove', e => {
-      magnifyTargets.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-        const threshold = 120;
-        
-        if (dist < threshold) {
-          const scale = 1 + (1 - dist / threshold) * 0.08;
-          el.style.transform = `scale(${scale})`;
-          el.style.transformOrigin = 'center';
-        } else {
-          el.style.transform = 'scale(1)';
-        }
+    const _mts=document.querySelectorAll('.magnify-target,nav a,.page-title,.logo-text');
+    document.addEventListener('mousemove',e=>{
+      _mts.forEach(el=>{
+        const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+        const d=Math.hypot(e.clientX-cx,e.clientY-cy);
+        if(d<120){el.style.transform=`scale(${1+(1-d/120)*0.08})`;el.style.transformOrigin='center';}
+        else el.style.transform='scale(1)';
       });
     });
 
-    // Lightbox functionality
-    document.querySelectorAll('.card img').forEach(img => {
-      img.addEventListener('click', function () {
-        const lb = document.getElementById('lightbox');
-        document.getElementById('lightbox-img').src = this.src;
-        lb.style.display = 'flex';
-      });
-    });
-  </script>
-
-</body>
-</html>
+    document.querySelectorAll('.card img').forEach(img=>{img.addEventListener('click',f
