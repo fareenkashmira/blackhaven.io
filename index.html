@@ -3,688 +3,334 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, and explore world-class creative design services.">
+  <meta name="keywords" content="modest fashion india, abayas online india, luxury modest clothing, modest fashion brand, black haven fashion, islamic modest wear, brand identity design india, ux design studio india, graphic design services, abaya store india, designer abayas, elegant modest dresses, modest clothing delhi, fashion design studio india">
+  <meta name="author" content="Fareen Kashmira — Black Haven">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e3b54d">
+  <link rel="canonical" href="https://blackhaven.co.in/index.html">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Black Haven | Luxury Modest Fashion & Design Studio India">
+  <meta property="og:description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, and explore world-class creative design services.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blackhaven.co.in/index.html">
+  <meta property="og:image" content="https://blackhaven.co.in/images/BH.png">
+  <meta property="og:site_name" content="Black Haven">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Black Haven | Luxury Modest Fashion & Design Studio India">
+  <meta name="twitter:description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, and explore world-class creative design services.">
+  <meta name="twitter:image" content="https://blackhaven.co.in/images/BH.png">
   <meta name="description" content="Black Haven - Luxury modest fashion and design studio. Abayas, accessories, and bespoke creative design services." />
-  <title>Black Haven | Design Studio & Clothing & Accessories Store</title>
+  <title>Black Haven | Luxury Modest Fashion & Design Studio India</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Big+Shoulders+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
     :root {
       --white: #FFFFFF;
       --black: #000000;
-      --deep-blue: #1a2b4a;
       --maroon: #800020;
-      --maroon-light: #A0173A;
-      --gold: #e5bb61;
-      --gold-bright: #e3b54d;
-      --baby-pink: #ffd4e5;
+      --maroon-dark: #5c0015;
+      --gold: #e3b54d;
+      --baby-pink: #f4c6cf;
       --baby-pink-light: #ffe9f3;
+      --baby-pink-pale: #fdf0f2;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background-color: var(--white);
-      color: var(--deep-blue);
-      font-family: 'Outfit', sans-serif;
+      color: var(--black);
+      font-family: 'Cormorant Garamond', serif;
       overflow-x: hidden;
       cursor: none;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
     }
 
-    /* Subtle background gradient */
     body::before {
       content: '';
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background:
-        radial-gradient(circle at 20% 30%, rgba(255, 212, 229, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(26, 43, 74, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(244,198,207,0.18) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(128,0,32,0.04) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
-      animation: gradientShift 25s ease-in-out infinite;
     }
 
-    @keyframes gradientShift {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
+    /* ── Cursor ── */
+    .custom-cursor {
+      position: fixed; width: 8px; height: 8px;
+      background: var(--gold); border-radius: 50%;
+      pointer-events: none; z-index: 9999; opacity: 0;
+      transform: translate(-50%,-50%);
+      transition: opacity 0.3s, width 0.2s, height 0.2s, background-color 0.2s;
+      box-shadow: 0 0 10px rgba(227,181,77,0.6);
     }
+    .custom-cursor.active { opacity: 1; }
+    .custom-cursor.hovering { width: 16px; height: 16px; background: var(--baby-pink); }
 
+    @media (hover: none) and (pointer: coarse) { body { cursor: auto; } .custom-cursor { display: none; } }
 
-/* Custom Golden Dot Cursor */
-.custom-cursor {
-  position: fixed;
-  /* Adjust width/height here to change the dot size */
-  width: 8px; 
-  height: 8px;
-  background-color: #e3b54d;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  /* Centering the dot on the actual mouse coordinates */
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-  box-shadow: 0 0 10px rgba(227, 181, 77, 0.5);
-}
+    .magnify-text { transition: transform 0.2s ease; display: inline-block; }
 
-.custom-cursor.active {
-  opacity: 1;
-}
+    ::selection { background: var(--baby-pink); color: var(--maroon); }
 
-
-    /* Hide custom cursor on mobile */
-    @media (hover: none) and (pointer: coarse) {
-      body {
-        cursor: auto;
-      }
-      .custom-cursor {
-        display: none;
-      }
-    }
-
-    /* Text magnification effect */
-    .magnify-text {
-      transition: transform 0.2s ease, color 0.2s ease;
-    }
-
-    .magnify-text:hover {
-      transform: scale(1.05);
-    }
-
-    /* Navigation */
+    /* ── Nav ── */
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
+      position: fixed; top: 0; width: 100%;
       padding: 2rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       z-index: 1000;
-      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 100%);
+      background: rgba(255,255,255,0.97);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(26, 43, 74, 0.1);
+      border-bottom: 1px solid rgba(128,0,32,0.12);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.05);
       animation: navSlideDown 0.8s ease-out;
     }
-
-    @keyframes navSlideDown {
-      from { transform: translateY(-100%); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-decoration: none;
-    }
-
-    .logo-image {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      filter: brightness(1);
-      transition: all 0.4s ease;
-    }
-
-    .logo-image:hover {
-      filter: brightness(1.1) drop-shadow(0 0 10px rgba(229, 187, 97, 0.5));
-      transform: scale(1.05);
-    }
+    @keyframes navSlideDown { from { transform: translateY(-100%); opacity:0; } to { transform: translateY(0); opacity:1; } }
 
     .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-    }
-
-    nav a {
-      color: var(--deep-blue);
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem; font-weight: 700;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, var(--maroon) 0%, #b8001c 50%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
       text-decoration: none;
-      font-weight: 400;
-      font-size: 0.95rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      position: relative;
-      transition: all 0.3s ease;
     }
 
+    nav ul { display: flex; gap: 3rem; list-style: none; }
+    nav a {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--black); text-decoration: none;
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      position: relative; transition: all 0.3s;
+    }
     nav a::before {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 2px;
-      background: var(--maroon);
-      transition: width 0.3s ease;
+      content: ''; position: absolute; bottom: -5px; left: 50%;
+      transform: translateX(-50%); width: 0; height: 2px;
+      background: linear-gradient(90deg, var(--maroon), var(--gold));
+      transition: width 0.3s;
     }
+    nav a:hover { color: var(--maroon); transform: scale(1.05); }
+    nav a:hover::before { width: 100%; }
 
-    nav a:hover {
-      color: var(--maroon);
-      transform: scale(1.05);
-    }
-
-    nav a:hover::before {
-      width: 100%;
-    }
-
-    /* Hero Section */
+    /* ── Hero ── */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      padding-bottom: 10rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: visible;
-      z-index: 5;
+      position: relative; min-height: 100vh; padding-bottom: 10rem;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      overflow: visible; z-index: 5;
     }
 
     .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 10vw, 8rem);
-      font-weight: 900;
-      letter-spacing: 8px;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-title .word {
-      display: inline-block;
-      perspective: 1000px;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 8vw, 6.5rem);
+      font-weight: 900; letter-spacing: 6px; text-transform: uppercase;
+      margin-bottom: 1rem; position: relative; z-index: 2;
     }
 
     .hero-title .letter {
       display: inline-block;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      background: linear-gradient(135deg, var(--deep-blue) 0%, var(--maroon) 50%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      animation: gradientShift 6s ease-in-out infinite;
-      animation-delay: calc(var(--letter-index) * 0.15s);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      font-weight: 900;
+      background: linear-gradient(135deg, var(--maroon) 0%, #b8001c 40%, var(--black) 70%, var(--gold) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
     .hero-subtitle {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      font-weight: 400;
-      color: var(--deep-blue);
-      letter-spacing: 4px;
-      margin-bottom: 3rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 0.5s forwards;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0);    }
+      font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+      font-style: italic; color: var(--maroon);
+      letter-spacing: 4px; margin-bottom: 3rem;
+      opacity: 0; animation: fadeInUp 1s ease-out 0.5s forwards;
     }
 
     .hero-divider {
-      width: 200px;
-      height: 2px;
+      width: 200px; height: 2px;
       background: linear-gradient(90deg, transparent, var(--baby-pink), var(--maroon), var(--baby-pink), transparent);
-      margin: 2rem 0;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 1s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
+      margin: 1.5rem 0;
+      opacity: 0; animation: fadeIn 1s ease-out 1s forwards;
     }
 
     .hero-description {
-      font-size: 1.1rem;
-      font-weight: 400;
-      color: var(--deep-blue);
-      max-width: 600px;
-      line-height: 1.8;
-      letter-spacing: 0.5px;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 1.5s forwards;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--black);
+      max-width: 600px; line-height: 1.9;
+      opacity: 0; animation: fadeInUp 1s ease-out 1.5s forwards;
     }
 
     .cta-buttons {
-      display: flex;
-      gap: 2rem;
-      margin-top: 3rem;
-      margin-bottom: 8rem;
-      opacity: 0;
-      animation: fadeInUp 1s ease-out 2s forwards;
-      position: relative;
-      z-index: 10;
+      display: flex; gap: 2rem; margin-top: 3rem; margin-bottom: 8rem;
+      opacity: 0; animation: fadeInUp 1s ease-out 2s forwards;
+      position: relative; z-index: 10;
     }
 
     .btn {
-      padding: 1.2rem 3rem;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 2px solid;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      isolation: isolate;
-      z-index: 1;
+      padding: 1.1rem 2.8rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      text-decoration: none; border: 2px solid;
+      transition: all 0.4s; position: relative; overflow: hidden; isolation: isolate;
     }
-
     .btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-      z-index: -1;
+      content: ''; position: absolute; top: 50%; left: 50%;
+      width: 0; height: 0; border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width 0.6s, height 0.6s; z-index: -1;
     }
+    .btn:hover::before { width: 500px; height: 500px; }
+    .btn:hover { transform: scale(1.04); }
 
-    .btn:hover {
-      transform: scale(1.05);
-    }
+    .btn-primary { background: var(--maroon); color: var(--white); border-color: var(--maroon); }
+    .btn-primary::before { background: linear-gradient(135deg, var(--maroon-dark), #b8001c); }
+    .btn-primary:hover { background: var(--maroon-dark); }
 
-    .btn:hover::before {
-      width: 500px;
-      height: 500px;
-    }
+    .btn-secondary { background: transparent; color: var(--black); border-color: var(--gold); }
+    .btn-secondary::before { background: var(--baby-pink-light); }
+    .btn-secondary:hover { color: var(--maroon); }
 
-    .btn-primary {
-      background: var(--gold);
-      color: var(--black);
-      border-color: var(--gold);
-    }
-
-    .btn-primary::before {
-      background: var(--baby-pink);
-    }
-
-    .btn-primary:hover {
-      color: var(--maroon);
-      border-color: var(--gold-bright);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--deep-blue);
-      border-color: var(--maroon);
-    }
-
-    .btn-secondary::before {
-      background: var(--baby-pink-light);
-    }
-
-    .btn-secondary:hover {
-      color: var(--maroon);
-      border-color: var(--maroon-light);
-    }
-
-    /* Scroll Indicator */
     .scroll-indicator {
-      position: absolute;
-      bottom: 6rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 2.5s forwards;
-      z-index: 10;
+      position: absolute; bottom: 6rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+      opacity: 0; animation: fadeIn 1s ease-out 2.5s forwards; z-index: 10;
     }
-
     .scroll-text {
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--maroon);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--maroon);
     }
-
     .scroll-line {
-      width: 2px;
-      height: 60px;
+      width: 2px; height: 55px;
       background: linear-gradient(180deg, var(--gold), var(--baby-pink), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:translateY(0);} 50%{opacity:1;transform:translateY(8px);} }
 
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: translateY(0);    }
-      50%       { opacity: 1;   transform: translateY(10px); }
-    }
-
-    /* Dual Mission Section */
+    /* ── Dual Mission ── */
     .dual-mission {
       padding: 8rem 4rem;
-      margin-top: 8rem;
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(180deg, transparent 0%, var(--baby-pink-light) 50%, transparent 100%);
+      background: linear-gradient(180deg, transparent 0%, var(--baby-pink-pale) 50%, transparent 100%);
+      position: relative; z-index: 2;
     }
 
     .mission-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 4rem;
-      max-width: 1400px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 4rem; max-width: 1400px; margin: 0 auto;
     }
 
     .mission-card {
-      background: var(--white);
-      border: 2px solid var(--baby-pink);
-      padding: 4rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.5s ease;
-      opacity: 0;
-      transform: translateY(50px);
-      box-shadow: 0 4px 20px rgba(26, 43, 74, 0.08);
+      background: var(--white); border: 2px solid var(--baby-pink);
+      padding: 4rem; position: relative; overflow: hidden;
+      transition: all 0.5s; opacity: 0; transform: translateY(50px);
+      box-shadow: 0 4px 20px rgba(128,0,32,0.06);
     }
-
-    .mission-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    .mission-card.visible { opacity: 1; transform: translateY(0); }
     .mission-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 212, 229, 0.3), transparent);
-      transition: left 0.8s ease;
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(244,198,207,0.25), transparent);
+      transition: left 0.8s;
     }
+    .mission-card:hover::before { left: 100%; }
+    .mission-card:hover { border-color: var(--maroon); box-shadow: 0 8px 40px rgba(128,0,32,0.15); transform: translateY(-10px); }
 
-    .mission-card:hover::before {
-      left: 100%;
-    }
-
-    .mission-card:hover {
-      border-color: var(--maroon);
-      box-shadow: 0 8px 40px rgba(128, 0, 32, 0.15);
-      transform: translateY(-10px);
-    }
-
-    .mission-icon {
-      font-size: 3rem;
-      margin-bottom: 2rem;
-      display: inline-block;
-      color: var(--gold);
-      filter: drop-shadow(0 0 10px rgba(229, 187, 97, 0.4));
-    }
+    .mission-icon { font-size: 2.5rem; margin-bottom: 2rem; color: var(--gold); }
 
     .mission-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: var(--deep-blue);
-      margin-bottom: 1.5rem;
-      letter-spacing: 2px;
-      -webkit-font-smoothing: antialiased;
-      transition: transform 0.2s ease;
+      font-family: 'Big Shoulders Display', cursive;
+      font-size: 2rem; font-weight: 700; text-transform: uppercase;
+      color: var(--maroon); margin-bottom: 1.5rem; letter-spacing: 2px;
+      transition: transform 0.2s;
     }
-
-    .mission-title:hover {
-      transform: scale(1.02);
-    }
+    .mission-title:hover { transform: scale(1.02); }
 
     .mission-description {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: var(--deep-blue);
-      margin-bottom: 2rem;
-      font-weight: 400;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; line-height: 1.85; color: var(--black); margin-bottom: 2rem;
     }
 
     .mission-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--maroon);
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
+      font-family: 'DM Sans', sans-serif;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--maroon); text-decoration: none;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+      transition: all 0.3s;
     }
+    .mission-link:hover { color: var(--gold); gap: 1rem; }
 
-    .mission-link:hover {
-      color: var(--gold);
-      gap: 1rem;
-      transform: scale(1.05);
-    }
-
-    /* Footer */
+    /* ── Footer ── */
     footer {
-      padding: 4rem;
-      text-align: center;
+      padding: 4rem; text-align: center;
+      background: linear-gradient(160deg, var(--maroon) 0%, #3a0010 50%, var(--black) 100%);
       border-top: 2px solid var(--baby-pink);
-      background: linear-gradient(180deg, #800020, #2a0a12);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-logo-image {
-      width: 50px;
-      height: 50px;
-      object-fit: contain;
+      position: relative; z-index: 2;
     }
 
     .footer-logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--gold);
-      letter-spacing: 3px;
-      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 3px; text-transform: uppercase;
     }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
+    .footer-links { display: flex; justify-content: center; gap: 2rem; margin: 1.5rem 0; flex-wrap: wrap; }
     .footer-links a {
-      color: var(--deep-blue);
-      text-decoration: none;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--gold); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.3s;
     }
+    .footer-links a:hover { color: var(--gold); opacity: 0.75; transform: scale(1.05); }
 
-    .footer-links a:hover {
-      color: var(--maroon);
-      transform: scale(1.05);
-    }
-
-    .footer-social {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-
+    .footer-social { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
     .social-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--baby-pink);
-      border-radius: 50%;
-      color: var(--gold);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1.2rem;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border: 2px solid var(--gold); border-radius: 50%;
+      color: var(--gold); text-decoration: none;
+      transition: all 0.3s; font-size: 1.1rem;
     }
-
-    .social-icon:hover {
-      border-color: var(--maroon);
-      color: var(--maroon);
-      transform: translateY(-5px) scale(1.1);
-      box-shadow: 0 10px 20px rgba(128, 0, 32, 0.15);
-    }
+    .social-icon:hover { background: var(--gold); color: var(--black); transform: translateY(-5px); }
 
     .footer-copyright {
-      color: var(--deep-blue);
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      margin-top: 2rem;
-      opacity: 0.7;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--gold); font-size: 0.8rem; letter-spacing: 1px; margin-top: 2rem; opacity: 0.8;
     }
 
-    /* Mobile Responsive */
+    @keyframes fadeInUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeIn { to{opacity:1;} }
+
     @media (max-width: 768px) {
-      nav {
-        padding: 1.5rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .logo-image {
-        width: 50px;
-        height: 50px;
-      }
-
-      .logo-text {
-        font-size: 1.2rem;
-      }
-
-      nav ul {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .hero {
-        padding-bottom: 6rem;
-      }
-
-      .hero-title {
-        font-size: 3rem;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 4rem;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .dual-mission {
-        margin-top: 4rem;
-        padding: 4rem 2rem;
-      }
-
-      .mission-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .mission-card {
-        padding: 2rem;
-      }
-
-      .footer-logo-image {
-        width: 40px;
-        height: 40px;
-      }
-
-      .footer-logo-text {
-        font-size: 1.5rem;
-      }
-
-      footer {
-        padding: 2rem;
-      }
-
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-      }
-
-      .footer-social {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
+      nav { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; }
+      nav ul { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .hero { padding-bottom: 6rem; }
+      .cta-buttons { flex-direction: column; gap: 1rem; margin-bottom: 4rem; }
+      .btn { width: 100%; text-align: center; }
+      .dual-mission { padding: 4rem 2rem; }
+      .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .mission-card { padding: 2rem; }
+      footer { padding: 2rem; }
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMK04PPSV2');
+  </script>
 </head>
 
 <body>
-  <!-- Custom Golden Moon Cursor -->
   <div class="custom-cursor" id="custom-cursor"></div>
 
-  <!-- Navigation -->
   <nav>
-    <a href="index.html" class="logo">
-      <img src="/images/BH.png" alt="Black Haven Logo" class="logo-image">
-      <span class="logo-text magnify-text">Black Haven</span>
-    </a>
+    <a href="index.html" class="logo-text magnify-text">Black Haven</a>
     <ul>
       <li><a href="index.html" class="magnify-text">Home</a></li>
       <li><a href="studio.html" class="magnify-text">Studio</a></li>
@@ -694,18 +340,13 @@
     </ul>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <h1 class="hero-title">
-      <span class="word">
-        <span class="letter" style="--letter-index: 0;">B</span><span class="letter" style="--letter-index: 1;">L</span><span class="letter" style="--letter-index: 2;">A</span><span class="letter" style="--letter-index: 3;">C</span><span class="letter" style="--letter-index: 4;">K</span>
-      </span>
+      <span class="letter">B</span><span class="letter">L</span><span class="letter">A</span><span class="letter">C</span><span class="letter">K</span>
       <br>
-      <span class="word">
-        <span class="letter" style="--letter-index: 5;">H</span><span class="letter" style="--letter-index: 6;">A</span><span class="letter" style="--letter-index: 7;">V</span><span class="letter" style="--letter-index: 8;">E</span><span class="letter" style="--letter-index: 9;">N</span>
-      </span>
+      <span class="letter">H</span><span class="letter">A</span><span class="letter">V</span><span class="letter">E</span><span class="letter">N</span>
     </h1>
-    <p class="hero-subtitle magnify-text">Where Elegance Meets Design</p>
+    <p class="hero-subtitle">Where Elegance Meets Design</p>
     <div class="hero-divider"></div>
     <p class="hero-description magnify-text">
       A sanctuary of modest Premium Fashion and Bespoke Creative Design.
@@ -715,31 +356,24 @@
       <a href="store.html" class="btn btn-primary">Explore Store</a>
       <a href="#missions" class="btn btn-secondary">Design Studio</a>
     </div>
-
     <div class="scroll-indicator">
       <span class="scroll-text">Discover</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- Dual Mission Section -->
   <section class="dual-mission" id="missions">
     <div class="mission-grid">
-
-      <!-- Fashion Card -->
       <div class="mission-card" data-card="fashion">
         <div class="mission-icon">☾</div>
         <h2 class="mission-title magnify-text">Clothing & Accessories Store</h2>
         <p class="mission-description">
-          Timeless abayas, Clothings and accessories designed for the modern woman who values elegance and modesty.
+          Timeless abayas, clothings and accessories designed for the modern woman who values elegance and modesty.
           Each piece is thoughtfully crafted to celebrate grace, sophistication, and personal expression.
         </p>
-        <a href="store.html" class="mission-link magnify-text">
-          View Store <span>→</span>
-        </a>
+        <a href="store.html" class="mission-link magnify-text">View Store <span>→</span></a>
       </div>
 
-      <!-- Studio Card -->
       <div class="mission-card" data-card="studio">
         <div class="mission-icon">✦</div>
         <h2 class="mission-title magnify-text">Design Studio</h2>
@@ -747,133 +381,70 @@
           Strategic brand design and creative direction for visionaries.
           From UX research to visual identity, we build systems that align business goals with authentic human connection.
         </p>
-        <a href="studio.html" class="mission-link magnify-text">
-          Explore Services <span>→</span>
-        </a>
+        <a href="studio.html" class="mission-link magnify-text">Explore Services <span>→</span></a>
       </div>
-
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <div class="footer-content">
-      <div class="footer-logo">
-        <img src="/images/BH.png" alt="Black Haven Logo" class="footer-logo-image">
-        <span class="footer-logo-text magnify-text">BLACK HAVEN</span>
-      </div>
-
-      <div class="footer-links">
-        <a href="about.html" class="magnify-text">About</a>
-        <a href="TnC.html" class="magnify-text">Terms &amp; Conditions</a>
-        <a href="privacypolicy.html" class="magnify-text">Privacy Policy</a>
-        <a href="returnexchange.html" class="magnify-text">Returns &amp; Exchange</a>
-        <a href="shippingpolicy.html" class="magnify-text">Shipping Policy</a>
-      </div>
-
-      <div class="footer-social">
-        <a href="https://wa.me/917011403207" target="_blank" rel="noopener noreferrer" class="social-icon" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://www.instagram.com/ablackhaven" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://in.pinterest.com/ablackhaven" target="_blank" rel="noopener noreferrer" class="social-icon" title="Pinterest">
-          <i class="fab fa-pinterest"></i>
-        </a>
-        <a href="https://blackhaven.co.in" target="_blank" rel="noopener noreferrer" class="social-icon" title="Website">
-          <i class="fas fa-globe"></i>
-        </a>
-        <a href="mailto:info@blackhaven.co.in" class="social-icon" title="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
-      </div>
-
-      <p class="footer-copyright">
-        &copy; 2025 Black Haven. All rights reserved. | Designed by Fareen.
-      </p>
+    <div class="footer-logo-text magnify-text">BLACK HAVEN</div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="termncondition.html">Terms &amp; Conditions</a>
+      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="returnnexchange.html">Returns &amp; Exchange</a>
+      <a href="shippingpolicy.html">Shipping Policy</a>
     </div>
+    <div class="footer-social">
+      <a href="https://wa.me/917011403207" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/ablackhaven" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://in.pinterest.com/ablackhaven" target="_blank" class="social-icon" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+      <a href="https://www.behance.net/fareenkashmira" target="_blank" class="social-icon" title="Behance"><i class="fab fa-behance"></i></a>
+      <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="/cdn-cgi/l/email-protection#51383f373e11333d30323a393027343f7f323e7f383f" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p class="footer-copyright">&copy; 2025 Black Haven. All rights reserved. | Designed by Fareen.</p>
   </footer>
 
-  <script>
-    // ── Golden Moon Cursor ──
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const cursor = document.getElementById('custom-cursor');
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.classList.add('active');
-    });
-
-    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-
-    function animateCursor() {
-      cursorX += (mouseX - cursorX) * 0.15;
-      cursorY += (mouseY - cursorY) * 0.15;
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top  = cursorY + 'px';
-      requestAnimationFrame(animateCursor);
-    }
+    let mouseX=0,mouseY=0,cursorX=0,cursorY=0;
+    document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;cursor.classList.add('active');});
+    document.addEventListener('mouseleave',()=>cursor.classList.remove('active'));
+    function animateCursor(){cursorX+=(mouseX-cursorX)*0.15;cursorY+=(mouseY-cursorY)*0.15;cursor.style.left=cursorX+'px';cursor.style.top=cursorY+'px';requestAnimationFrame(animateCursor);}
     animateCursor();
+    document.querySelectorAll('a,button,.mission-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>cursor.classList.remove('hovering'));
+    });
 
-    // Cursor grows on interactive elements
-    document.querySelectorAll('a, button, .mission-card').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1.3)';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+    // Letter proximity effect
+    const letters=document.querySelectorAll('.letter');
+    document.addEventListener('mousemove',e=>{
+      letters.forEach(letter=>{
+        const rect=letter.getBoundingClientRect();
+        const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+        const dist=Math.sqrt((e.clientX-cx)**2+(e.clientY-cy)**2);
+        const max=150,inf=Math.max(0,1-dist/max);
+        if(inf>0){
+          const rx=(e.clientY-cy)/max*15*inf,ry=-(e.clientX-cx)/max*15*inf,sc=1+inf*0.1;
+          letter.style.transform=`perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale(${sc})`;
+        } else letter.style.transform='none';
       });
     });
 
-    // ── Letter floating effect on cursor proximity ──
-    const letters = document.querySelectorAll('.letter');
-
-    document.addEventListener('mousemove', (e) => {
-      letters.forEach((letter) => {
-        const rect = letter.getBoundingClientRect();
-        const letterCenterX = rect.left + rect.width / 2;
-        const letterCenterY = rect.top  + rect.height / 2;
-        const distanceX = e.clientX - letterCenterX;
-        const distanceY = e.clientY - letterCenterY;
-        const distance  = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-        const maxDistance = 150;
-        const influence  = Math.max(0, 1 - distance / maxDistance);
-
-        if (influence > 0) {
-          const rotateX = (distanceY / maxDistance) * 15 * influence;
-          const rotateY = -(distanceX / maxDistance) * 15 * influence;
-          const scale   = 1 + influence * 0.1;
-          letter.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
-        } else {
-          letter.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
-        }
+    // Text magnify near cursor
+    const magnifyTargets=document.querySelectorAll('.magnify-text,nav a,.page-title');
+    document.addEventListener('mousemove',e=>{
+      magnifyTargets.forEach(el=>{
+        const rect=el.getBoundingClientRect();
+        const cx=rect.left+rect.width/2,cy=rect.top+rect.height/2;
+        const dist=Math.hypot(e.clientX-cx,e.clientY-cy);
+        if(dist<120){el.style.transform=`scale(${1+(1-dist/120)*0.08})`;el.style.transformOrigin='center';}
+        else el.style.transform='scale(1)';
       });
     });
 
-    // ── Intersection Observer for mission cards ──
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), index * 200);
-        }
-      });
-    }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
-
-    document.querySelectorAll('.mission-card').forEach(card => observer.observe(card));
-
-    // ── Smooth scroll for anchor links ──
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+    // Mission cards intersection observer
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach((entry,i)=>{if(entry.isIntersecting)setTimeout(()=>entry.target.classList.add('v
