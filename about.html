@@ -1,540 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About — Black Haven Modest Fashion</title>
-
-  <!-- Google Fonts -->
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="About Black Haven — Our story, mission, and values. Where modest fashion meets bespoke creative design.">
+  <meta name="keywords" content="black haven about, modest fashion brand story, indian modest fashion designer, fareen kashmira, black haven brand, design studio about, woman owned brand india, modest fashion mission, brand values">
+  <meta name="author" content="Fareen Kashmira — Black Haven">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#e3b54d">
+  <link rel="canonical" href="https://blackhaven.co.in/about.html">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="About Black Haven | Modest Fashion & Design Studio Story">
+  <meta property="og:description" content="About Black Haven — Our story, mission, and values. Where modest fashion meets bespoke creative design.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://blackhaven.co.in/about.html">
+  <meta property="og:image" content="https://blackhaven.co.in/images/BH.png">
+  <meta property="og:site_name" content="Black Haven">
+  <meta property="og:locale" content="en_IN">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Black Haven | Modest Fashion & Design Studio Story">
+  <meta name="twitter:description" content="About Black Haven — Our story, mission, and values. Where modest fashion meets bespoke creative design.">
+  <meta name="twitter:image" content="https://blackhaven.co.in/images/BH.png">
+  <title>About Black Haven | Modest Fashion & Design Studio Story</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Big+Shoulders+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
-    :root {
-      --white: #ffffff;
-      --black: #000000;
-      --maroon: #800020;
-      --maroon-light: #A0173A;
-      --maroon-dark: #5c0017;
-      --gold: #e5bb61;
-      --gold-bright: #e3b54d;
-      --baby-pink: #f4c6cf;
-      --baby-pink-deep: #e8a4b0;
-      --baby-pink-pale: #fdf0f2;
-      --grey: #6a6a6a;
-    }
+    :root{--white:#ffffff;--black:#000000;--maroon:#800020;--maroon-dark:#5c0015;--gold:#e3b54d;--baby-pink:#f4c6cf;--baby-pink-deep:#e8a4b0;--baby-pink-pale:#fdf0f2;--grey:#6a6a6a;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Cormorant Garamond',serif;background:var(--white);color:var(--black);line-height:1.85;cursor:none;}
+    
+    .custom-cursor{position:fixed;width:8px;height:8px;background:#e3b54d;border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transform:translate(-50%,-50%);transition:opacity 0.3s,width 0.2s,height 0.2s,background-color 0.2s;box-shadow:0 0 12px rgba(227,181,77,0.6),0 0 24px rgba(227,181,77,0.3);}
+    .custom-cursor.active{opacity:1;}
+    .custom-cursor.hovering{width:16px;height:16px;background:#f4c6cf;}
+    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}
+    .magnify-target{transition:transform 0.2s ease;display:inline-block;}
+    ::selection{background:#f4c6cf;}
 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--white);
-      color: var(--black);
-      line-height: 1.8;
-      cursor: none;
-    }
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 4rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(255,255,255,0.97);border-bottom:1px solid rgba(128,0,32,0.12);box-shadow:0 2px 20px rgba(0,0,0,0.05);}
+    .logo-text{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;background:linear-gradient(135deg,#800020,#b8001c,#e3b54d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;letter-spacing:0.04em;}
+    .nav-links{display:flex;gap:2.8rem;list-style:none;align-items:center;}
+    .nav-links a{font-family:'DM Sans',sans-serif;color:var(--black);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;position:relative;transition:all 0.3s;}
+    .nav-links a::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--maroon),var(--gold));transition:width 0.4s;}
+    .nav-links a:hover{color:var(--maroon);transform:scale(1.05);}
+    .nav-links a:hover::after{width:100%;}
+    main{padding:10rem 4rem 8rem;max-width:1000px;margin:0 auto;}
+    .page-header{text-align:center;margin-bottom:4rem;}
+    .page-title{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:700;color:var(--maroon);margin-bottom:1rem;letter-spacing:0.04em;}
+    .last-updated,.page-subtitle-small{font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--grey);letter-spacing:0.1em;}
+    .content-section{margin-bottom:3rem;}
+    .section-title{font-family:'Big Shoulders Display',cursive;font-size:1.7rem;font-weight:700;text-transform:uppercase;color:var(--black);margin-bottom:1.2rem;padding-bottom:0.5rem;border-bottom:2px solid var(--baby-pink);letter-spacing:0.04em;}
+    .section-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--grey);line-height:1.85;margin-bottom:1rem;}
+    .highlight{color:var(--maroon);font-weight:600;}
+    ul{list-style:none;margin-left:1.5rem;margin-top:1rem;}
+    ul li{position:relative;padding-left:1.5rem;margin-bottom:0.8rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--grey);line-height:1.75;}
+    ul li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:0.8rem;top:0.25rem;}
+    .notice-box{background:var(--baby-pink-pale);border-left:4px solid var(--maroon);padding:1.5rem;margin:2rem 0;}
+    .notice-box p{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--black);margin-bottom:0.5rem;}
+    footer{padding:3rem 4rem 1.5rem;background:linear-gradient(160deg,var(--maroon) 0%,#3a0010 50%,var(--black) 100%);border-top:2px solid var(--baby-pink);}
+    .footer-content{max-width:1200px;margin:0 auto;}
+    .footer-logo{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:1.5rem;}
+    .footer-logo-text{font-family:'Cinzel',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.06em;}
+    .social-links{display:flex;gap:2.5rem;justify-content:center;align-items:center;margin-bottom:1.5rem;padding:1rem 0;border-top:1px solid rgba(227,181,77,0.2);border-bottom:1px solid rgba(227,181,77,0.2);flex-wrap:wrap;}
+    .social-link{color:var(--gold);text-decoration:none;font-size:1.2rem;transition:all 0.3s;}
+    .social-link:hover{color:var(--gold);opacity:0.7;transform:translateY(-4px) scale(1.1);}
+    .footer-links{display:flex;gap:2rem;justify-content:center;margin-bottom:1.5rem;flex-wrap:wrap;}
+    .footer-links a{font-family:'DM Sans',sans-serif;color:var(--gold);text-decoration:none;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.3s;}
+    .footer-links a:hover{color:var(--gold);opacity:0.7;transform:scale(1.05);}
+    .copyright{font-family:'DM Sans',sans-serif;text-align:center;font-size:0.75rem;color:var(--gold);letter-spacing:0.05em;margin-top:1.5rem;opacity:0.85;}
+    @media(max-width:768px){nav{padding:1.2rem 2rem;flex-direction:column;gap:1rem;}.nav-links{gap:1.2rem;flex-wrap:wrap;justify-content:center;}main{padding:12rem 2rem 6rem;}}
 
-    /* Tiny Golden Dot Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background-color: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s ease, width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
-      box-shadow: 0 0 12px rgba(229, 187, 97, 0.6), 0 0 24px rgba(229, 187, 97, 0.3);
-    }
 
-    .custom-cursor.active {
-      opacity: 1;
-    }
-
-    .custom-cursor.hovering {
-      width: 16px;
-      height: 16px;
-      background-color: var(--baby-pink-deep);
-      box-shadow: 0 0 18px rgba(232, 164, 176, 0.8);
-    }
-
-    @media (hover: none) and (pointer: coarse) {
-      body {
-        cursor: auto;
-      }
-      .custom-cursor {
-        display: none;
-      }
-    }
-
-    .magnify-target {
-      transition: transform 0.2s ease, color 0.2s ease;
-      display: inline-block;
-    }
-
-    ::selection {
-      background: var(--baby-pink);
-      color: var(--maroon);
-    }
-
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      padding: 1.5rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(16px);
-      background: rgba(255, 255, 255, 0.95);
-      border-bottom: 1px solid rgba(128, 0, 32, 0.1);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-    }
-
-    .logo {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--maroon);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .logo span {
-      color: var(--gold);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2.8rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--black);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--maroon), var(--gold));
-      transition: width 0.4s ease;
-    }
-
-    .nav-links a:hover {
-      color: var(--maroon);
-      transform: scale(1.05);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* Main content */
-    main {
-      padding: 10rem 4rem 8rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .page-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .page-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      color: var(--maroon);
-      margin-bottom: 1rem;
-    }
-
-    .page-subtitle {
-      font-size: 0.85rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    .content-section {
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 2px solid var(--baby-pink);
-    }
-
-    .section-text {
-      font-size: 1rem;
-      color: var(--grey);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-
-    .highlight {
-      color: var(--maroon);
-      font-weight: 600;
-    }
-
-    .values-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .value-card {
-      background: var(--baby-pink-pale);
-      padding: 2rem;
-      border-left: 4px solid var(--gold);
-      transition: all 0.3s ease;
-    }
-
-    .value-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(128, 0, 32, 0.15);
-    }
-
-    .value-icon {
-      font-size: 2.5rem;
-      color: var(--maroon);
-      margin-bottom: 1rem;
-    }
-
-    .value-title {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--black);
-      margin-bottom: 0.8rem;
-    }
-
-    .value-text {
-      font-size: 0.95rem;
-      color: var(--grey);
-      line-height: 1.6;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 2px solid var(--baby-pink);
-      padding: 3rem 4rem 1.5rem;
-      background: var(--maroon);
-      color: var(--white);
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-logo-text {
-      font-family: 'Bodoni Moda', serif;
-      font-size: 1rem;
-      color: var(--white);
-      letter-spacing: 0.05em;
-    }
-
-    .footer-logo-text span {
-      color: var(--gold);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 2.5rem;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding: 1rem 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      color: var(--gold);
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-
-    .social-link:hover {
-      color: var(--white);
-      transform: translateY(-4px) scale(1.1);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--gold);
-      transform: scale(1.05);
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.6);
-      letter-spacing: 0.05em;
-      margin-top: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 1.2rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .nav-links {
-        gap: 1.2rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      main {
-        padding: 12rem 2rem 6rem;
-      }
-
-      .values-grid {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XMK04PPSV2');
+  </script>
 </head>
-
 <body>
-  <div class="custom-cursor" id="cursor"></div>
-
+  <div class="custom-cursor" id="bh-cursor"></div>
   <nav>
-    <a href="index.html" class="logo">Black <span>Haven</span></a>
+    <a href="index.html" class="logo-text magnify-target">Black Haven</a>
     <ul class="nav-links">
+
       <li><a href="index.html" class="magnify-target">Home</a></li>
       <li><a href="studio.html" class="magnify-target">Studio</a></li>
       <li><a href="store.html" class="magnify-target">Store</a></li>
+      <li><a href="about.html" class="magnify-target">About</a></li>
       <li><a href="contact.html" class="magnify-target">Contact</a></li>
+
     </ul>
   </nav>
 
   <main>
     <div class="page-header">
       <h1 class="page-title magnify-target">About Black Haven</h1>
-      <p class="page-subtitle">Where Modesty Meets Elegance</p>
+      <p class="page-subtitle-small">Where Modesty Meets Elegance</p>
     </div>
 
     <section class="content-section">
       <h2 class="section-title">Our Story</h2>
-      <p class="section-text">
-        Black Haven was founded with a singular vision: to create <span class="highlight">timeless, elegant modest fashion</span> that empowers women to express their identity with grace and confidence. We believe that modesty is not a limitation, but a beautiful expression of dignity, faith, and personal style.
-      </p>
-      <p class="section-text">
-        From our humble beginnings as a design studio, we've grown into a dual-brand platform that serves both <span class="highlight">creative professionals</span> seeking world-class design services and <span class="highlight">modern modest dressers</span> looking for refined, contemporary pieces.
-      </p>
+      <p class="section-text">Black Haven was founded with a singular vision: to create <span class="highlight">timeless, elegant modest fashion</span> that empowers women to express their identity with grace and confidence. We believe that modesty is not a limitation, but a beautiful expression of dignity, faith, and personal style.</p>
+      <p class="section-text">From our humble beginnings as a design studio, we've grown into a dual-brand platform serving both <span class="highlight">creative professionals</span> seeking world-class design services and <span class="highlight">modern modest dressers</span> looking for refined, contemporary pieces.</p>
     </section>
 
     <section class="content-section">
       <h2 class="section-title">Our Mission</h2>
-      <p class="section-text">
-        To bridge the gap between contemporary fashion and modest values, creating garments and accessories that honor tradition while embracing modern aesthetics. Every piece we design is thoughtfully crafted to provide <span class="highlight">comfort, coverage, and confidence</span> without compromising on style.
-      </p>
+      <p class="section-text">To bridge the gap between contemporary fashion and modest values, creating garments and accessories that honor tradition while embracing modern aesthetics. Every piece we design is thoughtfully crafted to provide <span class="highlight">comfort, coverage, and confidence</span> without compromising on style.</p>
     </section>
 
     <section class="content-section">
       <h2 class="section-title">Our Values</h2>
-      <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon">
-            <i class="fas fa-heart"></i>
-          </div>
-          <h3 class="value-title">Integrity</h3>
-          <p class="value-text">We design with honesty and respect for our customers, delivering quality that speaks for itself.</p>
-        </div>
-
-        <div class="value-card">
-          <div class="value-icon">
-            <i class="fas fa-star"></i>
-          </div>
-          <h3 class="value-title">Excellence</h3>
-          <p class="value-text">Every garment is crafted with meticulous attention to detail and refined tailoring.</p>
-        </div>
-
-        <div class="value-card">
-          <div class="value-icon">
-            <i class="fas fa-hands-helping"></i>
-          </div>
-          <h3 class="value-title">Inclusivity</h3>
-          <p class="value-text">We celebrate diversity and create fashion that embraces women of all backgrounds.</p>
-        </div>
-
-        <div class="value-card">
-          <div class="value-icon">
-            <i class="fas fa-leaf"></i>
-          </div>
-          <h3 class="value-title">Sustainability</h3>
-          <p class="value-text">We're committed to ethical practices and mindful production that respects our planet.</p>
-        </div>
-      </div>
+      <p class="section-text">✦ <span class="highlight">Integrity</span> — We design with honesty and respect for our customers, delivering quality that speaks for itself.<br>
+      ✦ <span class="highlight">Excellence</span> — Every garment is crafted with meticulous attention to detail and refined tailoring.<br>
+      ✦ <span class="highlight">Inclusivity</span> — We celebrate diversity and create fashion that embraces women of all backgrounds.<br>
+      ✦ <span class="highlight">Sustainability</span> — We're committed to ethical practices and mindful production that respects our planet.</p>
     </section>
 
     <section class="content-section">
       <h2 class="section-title">Why Choose Black Haven</h2>
-      <p class="section-text">
-        ✦ <span class="highlight">Premium Quality:</span> We use only the finest fabrics and materials that feel luxurious and last for years.<br>
-        ✦ <span class="highlight">Thoughtful Design:</span> Every piece is designed with the modern modest woman in mind—functional, elegant, and versatile.<br>
-        ✦ <span class="highlight">Global Perspective:</span> Our design studio works with clients across 4 countries, bringing international aesthetics to modest fashion.<br>
-        ✦ <span class="highlight">Personal Touch:</span> We treat every customer like family, offering personalized service and genuine care.
-      </p>
+      <p class="section-text">✦ <span class="highlight">Premium Quality:</span> We use only the finest fabrics and materials that feel luxurious and last for years.<br>
+      ✦ <span class="highlight">Thoughtful Design:</span> Every piece is designed with the modern modest woman in mind — functional, elegant, and versatile.<br>
+      ✦ <span class="highlight">Global Perspective:</span> Our design studio works with clients across 4 countries, bringing international aesthetics to modest fashion.<br>
+      ✦ <span class="highlight">Personal Touch:</span> We treat every customer like family, offering personalized service and genuine care.</p>
     </section>
 
     <section class="content-section">
       <h2 class="section-title">Connect With Us</h2>
-      <p class="section-text">
-        We'd love to hear from you. Whether you have questions about our products, need styling advice, or want to collaborate, reach out to us at <span class="highlight">info@blackhaven.co.in</span> or connect via WhatsApp at <span class="highlight">+91 70114 03207</span>.
-      </p>
-      <p class="section-text">
-        Follow our journey on social media and be the first to know about new collections, exclusive offers, and behind-the-scenes stories.
-      </p>
+      <p class="section-text">We'd love to hear from you. Reach out at <span class="highlight"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcb5b2bab39cbeb0bdbfb7b4bdaab9b2f2bfb3f2b5b2">[email&#160;protected]</a></span> or via WhatsApp at <span class="highlight">+91 70114 03207</span>. Follow our journey on social media to be the first to know about new collections and exclusive offers.</p>
     </section>
   </main>
+
 
   <footer>
     <div class="footer-content">
       <div class="footer-logo">
-        <span class="footer-logo-text">BLACK <span>HAVEN</span> — Modest Fashion</span>
+        <span class="footer-logo-text">BLACK HAVEN — Modest Fashion</span>
       </div>
-
       <div class="social-links">
-        <a href="https://www.instagram.com/ablackhaven" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://www.behance.net/fareenkashmira" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Behance">
-          <i class="fab fa-behance"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="https://in.pinterest.com/ablackhaven" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="Pinterest">
-          <i class="fab fa-pinterest-p"></i>
-        </a>
-        <a href="mailto:info@blackhaven.co.in" class="social-link magnify-target" title="Email">
-          <i class="far fa-envelope"></i>
-        </a>
-        <a href="https://wa.me/+917011403207" class="social-link magnify-target" target="_blank" rel="noopener noreferrer" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
+        <a href="https://www.instagram.com/ablackhaven" class="social-link magnify-target" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.behance.net/fareenkashmira" class="social-link magnify-target" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
+        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link magnify-target" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://in.pinterest.com/ablackhaven" class="social-link magnify-target" target="_blank" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+        <a href="/cdn-cgi/l/email-protection#3e575058517e5c525f5d55565f485b50105d51105750" class="social-link magnify-target" title="Email"><i class="far fa-envelope"></i></a>
+        <a href="https://wa.me/+917011403207" class="social-link magnify-target" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       </div>
-
       <div class="footer-links">
         <a href="about.html" class="magnify-target">About</a>
-        <a href="TnC.html" class="magnify-target">Terms & Conditions</a>
+        <a href="termncondition.html" class="magnify-target">Terms &amp; Conditions</a>
         <a href="privacypolicy.html" class="magnify-target">Privacy Policy</a>
-        <a href="returnexchange.html" class="magnify-target">Returns & Exchange</a>
+        <a href="returnnexchange.html" class="magnify-target">Returns &amp; Exchange</a>
         <a href="shippingpolicy.html" class="magnify-target">Shipping Policy</a>
       </div>
-
-      <p class="copyright">
-        &copy; 2025 Black Haven. All rights reserved. | Designed by Fareen.
-      </p>
+      <p class="copyright">&copy; 2025 Black Haven. All rights reserved. | Designed by Fareen.</p>
     </div>
   </footer>
 
-  <script>
-    const cursor = document.getElementById('cursor');
-    let mx = 0, my = 0, dx = 0, dy = 0;
-
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX;
-      my = e.clientY;
-      cursor.classList.add('active');
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const _cursor = document.getElementById('bh-cursor');
+    let _mx=0,_my=0,_dx=0,_dy=0;
+    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cursor.classList.add('active');});
+    document.addEventListener('mouseleave',()=>_cursor.classList.remove('active'));
+    (function _anim(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cursor.style.left=_dx+'px';_cursor.style.top=_dy+'px';requestAnimationFrame(_anim);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>_cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>_cursor.classList.remove('hovering'));
     });
-
-    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-
-    (function animateCursor() {
-      dx += (mx - dx) * 0.2;
-      dy += (my - dy) * 0.2;
-      cursor.style.left = dx + 'px';
-      cursor.style.top = dy + 'px';
-      requestAnimationFrame(animateCursor);
-    })();
-
-    document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
-    });
-
-    const magnifyTargets = document.querySelectorAll('.magnify-target, nav a, .page-title');
-    document.addEventListener('mousemove', e => {
-      magnifyTargets.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-        const threshold = 120;
-        
-        if (dist < threshold) {
-          const scale = 1 + (1 - dist / threshold) * 0.08;
-          el.style.transform = `scale(${scale})`;
-          el.style.transformOrigin = 'center';
-        } else {
-          el.style.transform = 'scale(1)';
-        }
-      });
-    });
-  </script>
-
-</body>
-</html>
+    const _mts=document.querySelectorAll('.magnify-target,nav a,.page-title,.logo-text');
+    document.addEventListener('mousemove',e=>{
+      _mts.forEach(el=>{
+        const r=el.getBoundingClientRect(),cx=r.left
