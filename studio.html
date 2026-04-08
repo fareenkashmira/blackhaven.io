@@ -274,4 +274,10 @@
       mts.forEach(el=>{
         const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
         const d=Math.hypot(e.clientX-cx,e.clientY-cy);
-        if(d<120){el.style.transform=`sc
+        if(d<120){el.style.transform=`scale(${1+(1-d/120)*0.08})`;el.style.transformOrigin='center';}
+        else el.style.transform='scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
