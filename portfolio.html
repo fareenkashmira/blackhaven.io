@@ -238,4 +238,7 @@
       });
     });
 
-    document.querySelectorAll('.card img').forEach(img=>{img.addEventListener('click',f
+    document.querySelectorAll('.card img').forEach(img=>{img.addEventListener('click',function(){document.getElementById('lightbox-img').src=this.src;document.getElementById('lightbox').style.display='flex';});});
+  </script>
+</body>
+</html>
