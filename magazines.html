@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Digital Magazines — Black Haven</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--navy:#0f1e3d;--maroon:#8b0022;--gold:#c9a84c;--gold-light:#e5c97a;--white:#ffffff;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:linear-gradient(160deg,#0a1428 0%,#0f1e3d 45%,#1a0a12 100%);min-height:100vh;color:#fff;}
+    nav{position:fixed;top:0;left:0;right:0;padding:1.2rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,20,40,0.85);backdrop-filter:blur(16px);border-bottom:0.5px solid rgba(201,168,76,0.2);z-index:100;}
+    .nav-logo{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;color:#fff;text-decoration:none;letter-spacing:0.08em;}
+    .nav-logo span{color:#c9a84c;}
+    .nav-back{font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(201,168,76,0.6);text-decoration:none;transition:color 0.3s;}
+    .nav-back:hover{color:#c9a84c;}
+    .hero{padding:9rem 2rem 3rem;text-align:center;}
+    .hero-ornament{font-size:11px;letter-spacing:0.35em;color:rgba(201,168,76,0.5);text-transform:uppercase;margin-bottom:0.8rem;}
+    .hero h1{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;color:#fff;letter-spacing:0.06em;margin-bottom:0.5rem;line-height:1.2;}
+    .hero h1 span{color:#c9a84c;}
+    .hero p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,0.4);letter-spacing:0.02em;}
+    .divider{display:flex;align-items:center;gap:12px;max-width:300px;margin:1.5rem auto 2.5rem;}
+    .divider::before,.divider::after{content:'';flex:1;height:0.5px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4),transparent);}
+    .gem{width:6px;height:6px;background:#c9a84c;transform:rotate(45deg);flex-shrink:0;}
+    .buttons{max-width:460px;margin:0 auto 5rem;padding:0 1.5rem;display:flex;flex-direction:column;gap:10px;}
+    .btn{text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border:0.5px solid rgba(201,168,76,0.2);background:rgba(255,255,255,0.03);color:rgba(255,255,255,0.75);font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;border-radius:2px;transition:all 0.3s ease;position:relative;overflow:hidden;}
+    .btn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#c9a84c,#8b0022);transform:scaleY(0);transition:transform 0.3s ease;transform-origin:bottom;}
+    .btn:hover{background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.5);color:#c9a84c;padding-left:24px;}
+    .btn:hover::before{transform:scaleY(1);}
+    .btn-arrow{font-size:10px;letter-spacing:0;opacity:0.4;transition:opacity 0.3s,transform 0.3s;}
+    .btn:hover .btn-arrow{opacity:1;transform:translateX(3px);}
+    .btn.primary{background:linear-gradient(135deg,#0f1e3d 0%,#1a0a12 100%);border:0.5px solid rgba(201,168,76,0.5);color:#c9a84c;}
+    .btn.primary:hover{background:linear-gradient(135deg,#c9a84c 0%,#e5c97a 100%);border-color:#c9a84c;color:#0f1e3d;padding-left:24px;}
+    footer{text-align:center;padding:2rem;font-size:0.65rem;letter-spacing:0.2em;color:rgba(201,168,76,0.2);text-transform:uppercase;border-top:0.5px solid rgba(201,168,76,0.1);}
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-logo">Black<span>Haven</span></a>
+    <a href="index.html" class="nav-back">&#8592; Back</a>
+  </nav>
+  <section class="hero">
+    <p class="hero-ornament">Black Haven</p>
+    <h1>Digital <span>Magazines</span></h1>
+    <p>Select a template to get started</p>
+    <div class="divider"><div class="gem"></div></div>
+  </section>
+  <div class="buttons">
+    <a href="fashion-magazine.html" class="btn primary"><span>Haute Fashion</span><span class="btn-arrow">&#8594;</span></a>
+    <a href="business-magazine.html" class="btn"><span>Business Quarterly</span><span class="btn-arrow">&#8594;</span></a>
+    <a href="lifestyle-magazine.html" class="btn"><span>Lifestyle Bloom</span><span class="btn-arrow">&#8594;</span></a>
+    <a href="travel-magazine.html" class="btn"><span>Travel Atlas</span><span class="btn-arrow">&#8594;</span></a>
+    <a href="art-magazine.html" class="btn"><span>Art Folio</span><span class="btn-arrow">&#8594;</span></a>
+    <a href="wellness-magazine.html" class="btn"><span>Wellness Journal</span><span class="btn-arrow">&#8594;</span></a>
+  </div>
+  <footer>&#9670; &nbsp; Design Studio &nbsp; &#9670;</footer>
+</body>
+</html>
