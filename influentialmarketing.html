@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Haven — Influential Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--maroon:#5c0a14;--maroon-mid:#8a1020;--gold:#c9a84c;--cream:#f0e8d8;--cream-pale:#f8f4ee;--stone:#8a8070;--navy:#0f1e3d;}
+html{scroll-behavior:smooth}
+body{background:var(--cream-pale);color:#1a1a1a;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(248,244,238,.96);border-bottom:.5px solid rgba(92,10,20,.12);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Cinzel',serif;font-size:12px;color:var(--maroon);letter-spacing:4px;text-decoration:none}
+.nav-back{font-size:10px;color:var(--stone);text-decoration:none;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
+.nav-back:hover{color:var(--maroon)}
+
+.cover{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:56px}
+.cover-left{background:var(--cream-pale);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.cl-circle{position:absolute;top:-10%;right:-8%;width:70%;aspect-ratio:1;border-radius:50%;background:linear-gradient(160deg,#2a0208 0%,#1a1a1a 100%)}
+.cl-logo-area{position:absolute;top:28px;left:24px;z-index:2;display:flex;align-items:center;gap:10px}
+.cl-li{width:46px;height:46px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;border:.5px solid rgba(92,10,20,.15)}
+.cl-li-text{font-family:'Cinzel',serif;font-size:12px;color:#1a1a1a;letter-spacing:1px;font-weight:600}
+.cl-brand{font-size:8px;font-weight:600;color:#1a1a1a;font-family:'DM Sans',sans-serif}
+.cl-handle{font-size:7px;color:rgba(92,10,20,.45);font-family:'DM Sans',sans-serif;letter-spacing:1px}
+.cl-title-block{position:absolute;top:35%;left:10%;right:28%;z-index:2}
+.cl-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:700;color:#1a1a1a;line-height:1.1}
+.cl-title em{font-style:italic;color:var(--maroon)}
+.cl-sub{font-size:9px;color:#3a2a1a;line-height:1.8;margin-top:10px;font-family:'DM Sans',sans-serif}
+.cl-bottom{padding:14px 18px;background:var(--cream);display:flex;justify-content:space-between;align-items:center;border-top:.5px solid rgba(201,168,76,.3);margin-top:auto}
+.cl-ft-logo{font-family:'Cinzel',serif;font-size:10px;color:var(--maroon);letter-spacing:3px}
+.cl-ft-social{font-size:7px;color:rgba(92,10,20,.5);letter-spacing:1px}
+
+.cover-right{background:var(--cream-pale);padding:28px 26px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.cr-brush{position:absolute;top:50%;right:-20px;width:60%;height:80%;transform:translateY(-50%) rotate(-5deg);background:rgba(201,168,76,.07);border-radius:50%}
+.cr-label{font-size:7px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.cr-label::before,.cr-label::after{content:'';width:20px;height:.5px;background:var(--gold)}
+.cr-heading{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#1a1a1a;line-height:1.2;margin-bottom:16px;position:relative;z-index:1}
+.cr-body{font-size:11px;color:#3a2a1a;line-height:1.9;position:relative;z-index:1;flex:1}
+.cr-footer{display:flex;justify-content:space-between;padding:10px 0 0;border-top:.5px solid rgba(201,168,76,.3);font-size:7px;color:rgba(92,10,20,.45);letter-spacing:2px;text-transform:uppercase;margin-top:auto}
+
+.spread{display:grid;grid-template-columns:1fr 1fr;min-height:60vh}
+.page-light{background:var(--cream-pale);padding:28px 26px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.pg-brush-a{position:absolute;bottom:-30px;right:-10px;width:50%;height:55%;background:rgba(201,168,76,.07);transform:rotate(10deg);border-radius:50%}
+.pg-brush-b{position:absolute;bottom:-20px;left:-10px;width:40%;height:50%;background:rgba(201,168,76,.06);transform:rotate(-8deg);border-radius:50%}
+.pg-brush-c{position:absolute;inset:0;background:radial-gradient(circle at 70% 60%,rgba(201,168,76,.08) 0%,transparent 60%)}
+.pg-heading{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#1a1a1a;line-height:1.1;margin-bottom:14px;position:relative;z-index:1}
+.pg-body{font-size:11px;color:#1a1a1a;line-height:1.9;position:relative;z-index:1;flex:1}
+.pg-footer{display:flex;justify-content:space-between;padding:10px 0 0;border-top:.5px solid rgba(201,168,76,.3);font-size:7px;color:rgba(92,10,20,.45);letter-spacing:2px;text-transform:uppercase;margin-top:auto;position:relative;z-index:1}
+.highlights-list{display:flex;flex-direction:column;gap:10px;position:relative;z-index:1}
+.hl-item{display:flex;align-items:flex-start;gap:10px;font-size:11px;color:#1a1a1a;line-height:1.5}
+.hl-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:4px;flex-shrink:0}
+
+.back-cover{background:var(--cream);padding:3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:50vh;border-top:.5px solid rgba(201,168,76,.3);position:relative;overflow:hidden}
+.bc-logo{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--maroon);letter-spacing:6px;margin-bottom:8px}
+.bc-tag{font-size:8px;color:rgba(92,10,20,.5);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px}
+.bc-rule{width:32px;height:1px;background:rgba(201,168,76,.5);margin:0 auto 20px}
+.bc-quote{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(92,10,20,.65);font-style:italic;line-height:1.7;max-width:420px;padding:0 1rem}
+.bc-social{font-size:8px;color:rgba(92,10,20,.4);letter-spacing:2px;margin-top:24px}
+
+.page-divider{text-align:center;padding:10px;font-size:7px;color:rgba(201,168,76,.3);letter-spacing:3px;font-family:'Cinzel',serif;border-top:.5px solid rgba(201,168,76,.1);border-bottom:.5px solid rgba(201,168,76,.1);background:var(--cream)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){.cover,.spread{grid-template-columns:1fr}nav{padding:14px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="magazines.html" class="nav-logo">Black Haven</a>
+  <a href="magazines.html" class="nav-back">&#8592; Back</a>
+</nav>
+
+<div class="cover reveal">
+  <div class="cover-left">
+    <div class="cl-circle"></div>
+    <div class="cl-logo-area">
+      <div class="cl-li"><div class="cl-li-text">BH</div></div>
+      <div><div class="cl-brand">Black Haven</div><div class="cl-handle">@blackhaven.official</div></div>
+    </div>
+    <div class="cl-title-block">
+      <div class="cl-title">The Art of Marketing That <em>Actually Moves</em> People</div>
+      <div class="cl-sub">Influence · Strategy · Storytelling · Est. 2024</div>
+    </div>
+    <div class="cl-bottom">
+      <div class="cl-ft-logo">BLACK HAVEN</div>
+      <div class="cl-ft-social">blackhaven.in</div>
+    </div>
+  </div>
+  <div class="cover-right">
+    <div class="cr-brush"></div>
+    <div class="cr-label">Introduction</div>
+    <div class="cr-heading">Marketing that influences does not shout — it resonates</div>
+    <div class="cr-body">Most marketing talks at people. Influential marketing talks to them — and then stays with them long after the screen is off.<br><br>In a world saturated with content, the brands that break through are not the loudest. They are the ones with something real to say, said in a way that feels like it was written for exactly one person.<br><br>This issue is about that — the mechanics and mindset behind marketing that actually shifts something in the people who encounter it.</div>
+    <div class="cr-footer"><span>Black Haven · Influential Marketing · Issue 02</span><span>blackhaven.in</span></div>
+  </div>
+</div>
+
+<div class="page-divider reveal">Issue 02 &nbsp;·&nbsp; Influential Marketing &nbsp;·&nbsp; 2025</div>
+
+<div class="spread reveal">
+  <div class="page-light">
+    <div class="pg-brush-a"></div>
+    <div class="pg-heading">Highlights :</div>
+    <div class="highlights-list">
+      <div class="hl-item"><div class="hl-dot"></div>What makes marketing truly influential</div>
+      <div class="hl-item"><div class="hl-dot"></div>The psychology of resonance over reach</div>
+      <div class="hl-item"><div class="hl-dot"></div>Storytelling as the foundation of influence</div>
+      <div class="hl-item"><div class="hl-dot"></div>Why consistency builds more than campaigns</div>
+      <div class="hl-item"><div class="hl-dot"></div>How Black Haven approaches its own voice</div>
+    </div>
+    <div class="pg-footer"><span>Black Haven · Issue 02</span><span>@blackhaven.official</span></div>
+  </div>
+  <div class="page-light">
+    <div class="pg-brush-b"></div>
+    <div class="pg-heading">What makes marketing truly influential?</div>
+    <div class="pg-body">Influence is not a number. It is not a follower count or an impression metric. It is the moment someone encounters your brand and thinks — this understands me.<br><br>Truly influential marketing begins with a clear point of view. Not a target audience spreadsheet. A perspective. An opinion about the world that only your brand holds in exactly that way.<br><br>Black Haven's marketing is not built around selling abayas. It is built around a belief: that a woman who dresses with intention deserves a brand with equal intention. Everything else follows from that.</div>
+    <div class="pg-footer"><span>Black Haven · Issue 02</span><span>blackhaven.in</span></div>
+  </div>
+</div>
+
+<div class="spread reveal">
+  <div class="page-light">
+    <div class="pg-brush-b"></div>
+    <div class="pg-heading">Resonance Over Reach</div>
+    <div class="pg-body">Reach is how many people see you. Resonance is how many people feel you. One is a vanity metric. The other is the beginning of loyalty.<br><br>A post that reaches ten thousand people and shifts nothing is noise. A post that reaches three hundred people and makes each of them feel genuinely seen — that is influence. That is the kind that spreads without a budget behind it.<br><br>The brands that last are not the ones that went viral once. They are the ones that compounded quietly, conversation by conversation, until their presence felt inevitable.</div>
+    <div class="pg-footer"><span>Black Haven · Issue 02</span><span>blackhaven.in</span></div>
+  </div>
+  <div class="page-light">
+    <div class="pg-brush-c"></div>
+    <div class="pg-heading">Storytelling Is the Strategy</div>
+    <div class="pg-body">Data tells people what to think. Stories make them feel something — and feeling is what drives decisions.<br><br>Every piece of Black Haven content is built around a narrative before it is built around a product. The garment is the punctuation. The story is the sentence.<br><br>When a brand leads with story, it invites the audience into something larger than a transaction. It offers them membership. And people will go to remarkable lengths to belong to something they believe in.<br><br>That is not manipulation. That is the oldest form of human connection — and marketing at its most honest.</div>
+    <div class="pg-footer"><span>Black Haven · Issue 02</span><span>@blackhaven.official</span></div>
+  </div>
+</div>
+
+<div class="back-cover reveal">
+  <div class="bc-logo">BLACK HAVEN</div>
+  <div class="bc-tag">Influence · Story · Intention</div>
+  <div class="bc-rule"></div>
+  <div class="bc-quote">"The most influential thing a brand can do is make someone feel understood before they have spent a single rupee."</div>
+  <div class="bc-social">@blackhaven.official &nbsp;·&nbsp; blackhaven.in</div>
+</div>
+
+<script>
+document.querySelectorAll('.reveal').forEach(el=>{
+  new IntersectionObserver(([e])=>{if(e.isIntersecting){e.target.classList.add('visible')}},{threshold:.06}).observe(el);
+});
+</script>
+</body>
+</html>
