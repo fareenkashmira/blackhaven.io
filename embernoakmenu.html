@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember & Oak — Menu Card</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=IM+Fell+English:ital@0;1&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--char:#0c0906;--ember:#c94a0a;--glow:#ff7c2a;--amber:#e8a040;--ash:#d4c4b0;--cream:#f5ede0;--muted:#8a7060;}
+body{background:radial-gradient(ellipse at 50% 30%,#1a0e08 0%,#080503 100%);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;padding:2.5rem 1.5rem;gap:1.2rem;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
+.label{font-size:8px;letter-spacing:5px;color:rgba(232,160,64,.4);text-transform:uppercase;display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.label::before,.label::after{content:'';width:24px;height:.5px;background:var(--amber);opacity:.3}
+.hint{font-size:8px;color:rgba(232,160,64,.3);letter-spacing:3px;text-transform:uppercase;display:flex;align-items:center;gap:8px;position:relative;z-index:1}
+.hint-icon{animation:wobble 3s ease-in-out infinite;display:inline-block}
+@keyframes wobble{0%,100%{transform:rotateY(0)}50%{transform:rotateY(35deg)}}
+.scene{width:400px;height:600px;perspective:1400px;cursor:pointer;position:relative;z-index:1}
+.card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.35,.1,.15,1)}
+.scene.flipped .card-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden;border-radius:2px}
+.face-back{transform:rotateY(180deg)}
+.front,.back{width:100%;height:100%;position:relative;background:radial-gradient(ellipse 90% 35% at 50% 100%,rgba(201,74,10,.22) 0%,rgba(201,74,10,.06) 55%,transparent 75%),radial-gradient(ellipse 50% 20% at 50% 100%,rgba(255,124,42,.14) 0%,transparent 55%),linear-gradient(180deg,#110a05 0%,#0c0906 60%,#150d07 100%);border:.5px solid rgba(232,160,64,.13);display:flex;flex-direction:column;}
+.line-top{position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--ember),var(--amber),var(--ember),transparent);opacity:.5}
+.line-bot{position:absolute;bottom:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--ember),var(--amber),var(--ember),transparent);opacity:.35}
+.cnr{position:absolute;width:14px;height:14px;border-color:rgba(232,160,64,.22);border-style:solid}
+.cnr.tl{top:14px;left:14px;border-width:1px 0 0 1px}
+.cnr.tr{top:14px;right:14px;border-width:1px 1px 0 0}
+.cnr.bl{bottom:14px;left:14px;border-width:0 0 1px 1px}
+.cnr.br{bottom:14px;right:14px;border-width:0 1px 1px 0}
+.leaf-svg{position:absolute;bottom:0;left:0;right:0;width:100%;height:62%;pointer-events:none}
+.ember-pool{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:320px;height:55px;background:radial-gradient(ellipse 100% 100%,rgba(201,74,10,.4) 0%,rgba(255,124,42,.15) 40%,transparent 70%);border-radius:50%;animation:breathe 3.5s ease-in-out infinite;}
+.ember-pool-inner{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:28px;background:radial-gradient(ellipse 100% 100%,rgba(255,150,50,.5) 0%,transparent 70%);border-radius:50%;animation:breathe 3.5s ease-in-out .6s infinite;}
+@keyframes breathe{0%,100%{opacity:.7}50%{opacity:1}}
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.p{position:absolute;width:2px;height:2px;background:var(--glow);border-radius:50%;opacity:0;animation:rise var(--d) ease-out var(--dl) infinite}
+@keyframes rise{0%{opacity:0;transform:translateX(0) translateY(0) scale(1)}20%{opacity:.7}80%{opacity:.2}100%{opacity:0;transform:translateX(var(--x)) translateY(-180px) scale(.2)}}
+.front-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;padding:38px 32px 0;flex:1;}
+.eo-est{font-size:7px;color:rgba(232,160,64,.38);letter-spacing:5px;text-transform:uppercase;margin-bottom:20px}
+.eo-name{font-family:'Fraunces',serif;font-weight:300;font-size:3.2rem;color:var(--cream);letter-spacing:3px;line-height:1;text-align:center;text-shadow:0 0 50px rgba(201,74,10,.35);}
+.eo-amp{color:var(--amber);font-style:italic}
+.eo-rule{width:52px;height:.5px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:22px auto}
+.eo-tagline{font-family:'IM Fell English',serif;font-style:italic;font-size:11.5px;color:rgba(212,196,176,.48);letter-spacing:1px;line-height:1.9;text-align:center;}
+.front-foot{position:relative;z-index:2;text-align:center;padding:0 32px 28px;margin-top:auto;}
+.front-foot-line{font-size:7.5px;color:rgba(232,160,64,.28);letter-spacing:4px;text-transform:uppercase;line-height:2.2}
+.back-inner{position:relative;z-index:2;display:flex;flex-direction:column;padding:34px 34px 26px;flex:1;}
+.back-brand{text-align:center;margin-bottom:18px;padding-bottom:15px;border-bottom:.5px solid rgba(232,160,64,.1)}
+.back-brand-name{font-family:'Fraunces',serif;font-weight:300;font-size:1.15rem;color:var(--cream);letter-spacing:3px}
+.back-brand-amp{color:var(--amber);font-style:italic}
+.back-brand-sub{font-size:7px;color:rgba(232,160,64,.33);letter-spacing:5px;text-transform:uppercase;margin-top:5px}
+.menu-section{margin-bottom:13px}
+.section-head{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.section-title{font-family:'IM Fell English',serif;font-style:italic;font-size:9.5px;color:var(--amber);letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
+.section-line{flex:1;height:.5px;background:linear-gradient(90deg,rgba(232,160,64,.25),transparent)}
+.menu-item{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:6px}
+.item-left{flex:1;min-width:0}
+.item-name{font-family:'Fraunces',serif;font-weight:400;font-size:10px;color:var(--ash);line-height:1.3;display:block}
+.item-desc{font-size:7.5px;color:rgba(212,196,176,.3);display:block;margin-top:1px;font-family:'DM Sans',sans-serif;font-weight:300}
+.item-dots{flex:0 0 auto;width:20px;border-bottom:.5px dotted rgba(138,112,96,.2);margin:0 4px 3px}
+.item-price{font-family:'Fraunces',serif;font-weight:300;font-style:italic;font-size:10px;color:var(--amber);white-space:nowrap;flex-shrink:0}
+.menu-div{height:.5px;background:linear-gradient(90deg,transparent,rgba(232,160,64,.1),transparent);margin:11px 0}
+.back-foot{margin-top:auto;padding-top:12px;border-top:.5px solid rgba(232,160,64,.09);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
+.back-foot-note{font-size:7px;color:rgba(212,196,176,.22);letter-spacing:.5px;font-style:italic;font-family:'IM Fell English',serif}
+.back-foot-web{font-size:7px;color:rgba(232,160,64,.28);letter-spacing:2px}
+</style>
+</head>
+<body>
+<div class="label">Ember &amp; Oak</div>
+<div class="scene" onclick="this.classList.toggle('flipped')">
+  <div class="card-inner">
+
+    <!-- FRONT -->
+    <div class="face">
+      <div class="front">
+        <div class="line-top"></div><div class="line-bot"></div>
+        <div class="cnr tl"></div><div class="cnr tr"></div><div class="cnr bl"></div><div class="cnr br"></div>
+        <div class="ember-pool"></div><div class="ember-pool-inner"></div>
+        <div class="particles">
+          <div class="p" style="--d:4.2s;--dl:0s;--x:-10px;left:46%;bottom:100px"></div>
+          <div class="p" style="--d:3.8s;--dl:.7s;--x:14px;left:51%;bottom:110px"></div>
+          <div class="p" style="--d:5.1s;--dl:1.4s;--x:-16px;left:43%;bottom:95px"></div>
+          <div class="p" style="--d:4.5s;--dl:2s;--x:8px;left:54%;bottom:105px"></div>
+          <div class="p" style="--d:3.5s;--dl:.3s;--x:-5px;left:49%;bottom:115px;background:#ff9f45"></div>
+          <div class="p" style="--d:6s;--dl:2.6s;--x:-12px;left:57%;bottom:88px;width:3px;height:3px"></div>
+        </div>
+        <!-- fine leafy silhouette -->
+        <svg class="leaf-svg" viewBox="0 0 400 390" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+          <defs>
+            <radialGradient id="eg1" cx="50%" cy="100%" r="55%">
+              <stop offset="0%" stop-color="#c94a0a" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="#0c0906" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="200" cy="385" rx="170" ry="22" fill="url(#eg1)"/>
+          <!-- stems -->
+          <path d="M200 390 Q200 340 198 295 Q196 265 200 235 Q202 205 198 175" fill="none" stroke="#2a1508" stroke-width="1.3" stroke-linecap="round" opacity=".65"/>
+          <path d="M200 372 Q186 348 170 316 Q156 288 142 256 Q130 228 114 198 Q100 172 86 148" fill="none" stroke="#241206" stroke-width="1" stroke-linecap="round" opacity=".55"/>
+          <path d="M200 372 Q214 348 230 316 Q244 288 258 256 Q270 228 286 198 Q300 172 314 148" fill="none" stroke="#241206" stroke-width="1" stroke-linecap="round" opacity=".55"/>
+          <path d="M190 355 Q170 332 148 304 Q128 278 106 248 Q86 222 68 194" fill="none" stroke="#1e0f06" stroke-width=".8" stroke-linecap="round" opacity=".42"/>
+          <path d="M210 355 Q230 332 252 304 Q272 278 294 248 Q314 222 332 194" fill="none" stroke="#1e0f06" stroke-width=".8" stroke-linecap="round" opacity=".42"/>
+          <!-- centre leaves -->
+          <path d="M197 285 Q176 272 170 254 Q180 249 194 259 Q202 269 197 285Z" fill="#1d0d05" opacity=".72"/>
+          <path d="M197 285 Q190 264 194 259" fill="none" stroke="#2a1508" stroke-width=".6" opacity=".45"/>
+          <path d="M203 285 Q224 272 230 254 Q220 249 206 259 Q198 269 203 285Z" fill="#1d0d05" opacity=".72"/>
+          <path d="M198 252 Q176 238 168 218 Q180 212 195 224 Q203 236 198 252Z" fill="#1b0c05" opacity=".66"/>
+          <path d="M202 252 Q224 238 232 218 Q220 212 205 224 Q197 236 202 252Z" fill="#1b0c05" opacity=".66"/>
+          <path d="M198 218 Q175 202 170 182 Q183 177 197 190 Q204 202 198 218Z" fill="#1d0d05" opacity=".6"/>
+          <path d="M202 218 Q225 202 230 182 Q217 177 203 190 Q196 202 202 218Z" fill="#1d0d05" opacity=".6"/>
+          <path d="M198 182 Q182 165 183 146 Q192 143 200 154 Q204 165 198 182Z" fill="#1b0c05" opacity=".55"/>
+          <path d="M202 182 Q218 165 217 146 Q208 143 200 154 Q196 165 202 182Z" fill="#1b0c05" opacity=".55"/>
+          <!-- left branch leaves -->
+          <path d="M168 308 Q148 300 140 284 Q151 278 166 288 Q174 298 168 308Z" fill="#1d0d05" opacity=".65"/>
+          <path d="M152 274 Q130 262 124 244 Q137 238 153 250 Q160 262 152 274Z" fill="#1b0c05" opacity=".6"/>
+          <path d="M136 238 Q114 224 110 204 Q124 199 139 211 Q146 224 136 238Z" fill="#1d0d05" opacity=".55"/>
+          <path d="M120 200 Q98 184 96 164 Q110 161 124 173 Q130 186 120 200Z" fill="#1b0c05" opacity=".5"/>
+          <path d="M104 162 Q84 144 86 124 Q98 122 110 134 Q114 148 104 162Z" fill="#190b04" opacity=".45"/>
+          <!-- left opp -->
+          <path d="M164 306 Q153 290 160 274 Q168 279 170 295 Q170 304 164 306Z" fill="#1b0c05" opacity=".52"/>
+          <path d="M148 270 Q138 252 147 236 Q155 241 156 258 Q156 267 148 270Z" fill="#1b0c05" opacity=".48"/>
+          <!-- right branch leaves -->
+          <path d="M232 308 Q252 300 260 284 Q249 278 234 288 Q226 298 232 308Z" fill="#1d0d05" opacity=".65"/>
+          <path d="M248 274 Q270 262 276 244 Q263 238 247 250 Q240 262 248 274Z" fill="#1b0c05" opacity=".6"/>
+          <path d="M264 238 Q286 224 290 204 Q276 199 261 211 Q254 224 264 238Z" fill="#1d0d05" opacity=".55"/>
+          <path d="M280 200 Q302 184 304 164 Q290 161 276 173 Q270 186 280 200Z" fill="#1b0c05" opacity=".5"/>
+          <path d="M296 162 Q316 144 314 124 Q302 122 290 134 Q286 148 296 162Z" fill="#190b04" opacity=".45"/>
+          <!-- right opp -->
+          <path d="M236 306 Q247 290 240 274 Q232 279 230 295 Q230 304 236 306Z" fill="#1b0c05" opacity=".52"/>
+          <path d="M252 270 Q262 252 253 236 Q245 241 244 258 Q244 267 252 270Z" fill="#1b0c05" opacity=".48"/>
+          <!-- far outer -->
+          <path d="M100 236 Q78 222 76 202 Q90 198 104 210 Q110 223 100 236Z" fill="#190b04" opacity=".42"/>
+          <path d="M300 236 Q322 222 324 202 Q310 198 296 210 Q290 223 300 236Z" fill="#190b04" opacity=".42"/>
+          <path d="M80 196 Q60 178 62 158 Q76 156 88 168 Q92 182 80 196Z" fill="#170a04" opacity=".38"/>
+          <path d="M320 196 Q340 178 338 158 Q324 156 312 168 Q308 182 320 196Z" fill="#170a04" opacity=".38"/>
+          <!-- tiny sprigs top -->
+          <path d="M175 186 Q160 170 162 152 Q171 151 178 163 Q180 174 175 186Z" fill="#190b04" opacity=".48"/>
+          <path d="M225 186 Q240 170 238 152 Q229 151 222 163 Q220 174 225 186Z" fill="#190b04" opacity=".48"/>
+          <path d="M144 152 Q128 134 132 114 Q142 114 148 126 Q150 140 144 152Z" fill="#170a04" opacity=".42"/>
+          <path d="M256 152 Q272 134 268 114 Q258 114 252 126 Q250 140 256 152Z" fill="#170a04" opacity=".42"/>
+          <!-- ember leaf underlighting -->
+          <ellipse cx="200" cy="382" rx="120" ry="15" fill="rgba(201,74,10,.12)"/>
+        </svg>
+        <div class="front-inner">
+          <div class="eo-est">Established · 2019</div>
+          <div class="eo-name">Ember<br><span class="eo-amp">&amp;</span><br>Oak</div>
+          <div class="eo-rule"></div>
+          <div class="eo-tagline">Wood-fired. Deeply rooted.<br>Slow craft. Honest smoke.</div>
+        </div>
+        <div class="front-foot">
+          <div class="front-foot-line">Fine Dining · New York</div>
+          <div class="front-foot-line">emberandoak.com</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="face face-back">
+      <div class="back">
+        <div class="line-top"></div><div class="line-bot"></div>
+        <div class="cnr tl"></div><div class="cnr tr"></div><div class="cnr bl"></div><div class="cnr br"></div>
+        <div class="ember-pool"></div><div class="ember-pool-inner"></div>
+        <!-- same silhouette, slightly more transparent -->
+        <svg class="leaf-svg" viewBox="0 0 400 390" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" style="opacity:.55">
+          <defs>
+            <radialGradient id="eg2" cx="50%" cy="100%" r="55%">
+              <stop offset="0%" stop-color="#c94a0a" stop-opacity=".2"/>
+              <stop offset="100%" stop-color="#0c0906" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="200" cy="385" rx="170" ry="22" fill="url(#eg2)"/>
+          <path d="M200 390 Q200 340 198 295 Q196 265 200 235 Q202 205 198 175" fill="none" stroke="#2a1508" stroke-width="1.3" stroke-linecap="round" opacity=".55"/>
+          <path d="M200 372 Q186 348 170 316 Q156 288 142 256 Q130 228 114 198 Q100 172 86 148" fill="none" stroke="#241206" stroke-width="1" stroke-linecap="round" opacity=".45"/>
+          <path d="M200 372 Q214 348 230 316 Q244 288 258 256 Q270 228 286 198 Q300 172 314 148" fill="none" stroke="#241206" stroke-width="1" stroke-linecap="round" opacity=".45"/>
+          <path d="M190 355 Q170 332 148 304 Q128 278 106 248 Q86 222 68 194" fill="none" stroke="#1e0f06" stroke-width=".8" stroke-linecap="round" opacity=".35"/>
+          <path d="M210 355 Q230 332 252 304 Q272 278 294 248 Q314 222 332 194" fill="none" stroke="#1e0f06" stroke-width=".8" stroke-linecap="round" opacity=".35"/>
+          <path d="M197 285 Q176 272 170 254 Q180 249 194 259 Q202 269 197 285Z" fill="#1d0d05" opacity=".6"/>
+          <path d="M203 285 Q224 272 230 254 Q220 249 206 259 Q198 269 203 285Z" fill="#1d0d05" opacity=".6"/>
+          <path d="M198 252 Q176 238 168 218 Q180 212 195 224 Q203 236 198 252Z" fill="#1b0c05" opacity=".55"/>
+          <path d="M202 252 Q224 238 232 218 Q220 212 205 224 Q197 236 202 252Z" fill="#1b0c05" opacity=".55"/>
+          <path d="M168 308 Q148 300 140 284 Q151 278 166 288 Q174 298 168 308Z" fill="#1d0d05" opacity=".55"/>
+          <path d="M152 274 Q130 262 124 244 Q137 238 153 250 Q160 262 152 274Z" fill="#1b0c05" opacity=".5"/>
+          <path d="M232 308 Q252 300 260 284 Q249 278 234 288 Q226 298 232 308Z" fill="#1d0d05" opacity=".55"/>
+          <path d="M248 274 Q270 262 276 244 Q263 238 247 250 Q240 262 248 274Z" fill="#1b0c05" opacity=".5"/>
+          <path d="M136 238 Q114 224 110 204 Q124 199 139 211 Q146 224 136 238Z" fill="#1d0d05" opacity=".45"/>
+          <path d="M264 238 Q286 224 290 204 Q276 199 261 211 Q254 224 264 238Z" fill="#1d0d05" opacity=".45"/>
+        </svg>
+        <div class="back-inner">
+          <div class="back-brand">
+            <div class="back-brand-name">Ember <span class="back-brand-amp">&amp;</span> Oak</div>
+            <div class="back-brand-sub">Our Menu</div>
+          </div>
+          <div class="menu-section">
+            <div class="section-head"><div class="section-title">Starters</div><div class="section-line"></div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Smoked Bone Marrow</span><span class="item-desc">sourdough · pickled shallot · herb oil</span></div><div class="item-dots"></div><div class="item-price">$18</div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Oak Ember Burrata</span><span class="item-desc">heirloom tomato · basil ash · toasted pine</span></div><div class="item-dots"></div><div class="item-price">$16</div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Charred Leek Bisque</span><span class="item-desc">crème fraîche · smoked paprika oil</span></div><div class="item-dots"></div><div class="item-price">$14</div></div>
+          </div>
+          <div class="menu-div"></div>
+          <div class="menu-section">
+            <div class="section-head"><div class="section-title">From the Fire</div><div class="section-line"></div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Wood-fired Ribeye</span><span class="item-desc">oak charcoal · bone jus · ember butter</span></div><div class="item-dots"></div><div class="item-price">$58</div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Slow Lamb Shoulder</span><span class="item-desc">six-hour braise · roasted root · chimichurri</span></div><div class="item-dots"></div><div class="item-price">$46</div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Charcoal Sea Bass</span><span class="item-desc">fennel confit · saffron broth · sea herbs</span></div><div class="item-dots"></div><div class="item-price">$42</div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Forest Mushroom Risotto</span><span class="item-desc">truffle · aged parmesan · crisp sage</span></div><div class="item-dots"></div><div class="item-price">$32</div></div>
+          </div>
+          <div class="menu-div"></div>
+          <div class="menu-section">
+            <div class="section-head"><div class="section-title">Endings</div><div class="section-line"></div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Burnt Caramel Tart</span><span class="item-desc">salted oak honey · vanilla bean</span></div><div class="item-dots"></div><div class="item-price">$14</div></div>
+            <div class="menu-item"><div class="item-left"><span class="item-name">Smoked Chocolate Pot</span><span class="item-desc">hickory cream · candied walnut</span></div><div class="item-dots"></div><div class="item-price">$12</div></div>
+          </div>
+          <div class="back-foot">
+            <div class="back-foot-note">Seasonal · Prices excl. tax</div>
+            <div class="back-foot-web">emberandoak.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="hint"><span class="hint-icon">↺</span>&nbsp; Tap to reveal the menu</div>
+</body>
+</html>
