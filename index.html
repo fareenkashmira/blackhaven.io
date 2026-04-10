@@ -600,7 +600,7 @@
 </head>
 
 <body>
-  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor" id="bh-cursor"></div>
 
   <nav>
     <a href="index.html" class="logo-text magnify-text">Black Haven</a>
@@ -681,31 +681,14 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Tiny Golden Dot Cursor
-    const cursor = document.getElementById('custom-cursor');
-    let mouseX = 0, mouseY = 0;
-    let cursorX = 0, cursorY = 0;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.classList.add('active');
-    });
-
-    document.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-
-    function animateCursor() {
-      cursorX += (mouseX - cursorX) * 0.15;
-      cursorY += (mouseY - cursorY) * 0.15;
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top = cursorY + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    // Hover state for cursor
-    document.querySelectorAll('a, button, .mission-card').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+        const _cur=document.getElementById('bh-cursor');
+    let _mx=0,_my=0,_dx=0,_dy=0;
+    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cur.classList.add('active');});
+    document.addEventListener('mouseleave',()=>_cur.classList.remove('active'));
+    (function _ca(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cur.style.left=_dx+'px';_cur.style.top=_dy+'px';requestAnimationFrame(_ca);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>_cur.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>_cur.classList.remove('hovering'));
     });
 
     // Letter proximity 3D effect
