@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Haven — The Library</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0a0806;
+  --wall:#1a1208;
+  --wood-dark:#2c1a0a;
+  --wood-mid:#3d2410;
+  --wood-light:#5c3a1a;
+  --wood-edge:#7a5030;
+  --gold:#c9a84c;
+  --gold-bright:#e8c96a;
+  --gold-dim:rgba(201,168,76,0.4);
+  --maroon:#6b0f1a;
+  --maroon-bright:#8b1525;
+  --cream:#f5efe6;
+  --parchment:#e8dcc8;
+  --dust:rgba(201,168,76,0.06);
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--black);cursor:none}
+
+/* ── CUSTOM CURSOR ── */
+.cur{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .18s,height .18s,opacity .2s;box-shadow:0 0 8px rgba(201,168,76,.6)}
+.cur.big{width:22px;height:22px;background:transparent;border:1.5px solid var(--gold);box-shadow:none}
+
+/* ── ROOM ── */
+.room{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%,rgba(201,168,76,0.07) 0%,transparent 70%),
+    linear-gradient(180deg,#0d0a06 0%,#12100a 40%,#1a1208 100%);
+}
+
+/* wall texture */
+.wall{
+  position:absolute;inset:0 0 32% 0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 79px,rgba(0,0,0,.12) 80px),
+    repeating-linear-gradient(90deg,transparent,transparent 119px,rgba(0,0,0,.08) 120px),
+    linear-gradient(180deg,#0d0a06,#1a1208);
+  overflow:hidden;
+}
+.wall::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 50% 60% at 50% 20%,rgba(201,168,76,0.05) 0%,transparent 70%);
+}
+
+/* candle sconces */
+.sconce{position:absolute;top:18%;display:flex;flex-direction:column;align-items:center;gap:4px}
+.sconce-l{left:8%}.sconce-r{right:8%}
+.sconce-arm{width:2px;height:28px;background:linear-gradient(180deg,var(--wood-edge),var(--gold-dim));border-radius:1px}
+.sconce-base{width:18px;height:8px;background:linear-gradient(180deg,var(--gold),#8b6a2a);border-radius:2px 2px 0 0}
+.candle-wrap{position:relative;display:flex;flex-direction:column;align-items:center}
+.candle{width:8px;height:32px;background:linear-gradient(90deg,#e8dcc8,#fff8ee,#d4c8a8);border-radius:1px 1px 0 0;position:relative}
+.wick{width:1.5px;height:6px;background:#333;position:absolute;top:-6px;left:50%;transform:translateX(-50%);border-radius:1px}
+.flame{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:10px;height:18px}
+.flame-inner{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:6px;height:14px;
+  background:radial-gradient(ellipse at 50% 80%,#fff9c4,#ffd700,#ff8c00,transparent);
+  border-radius:50% 50% 30% 30%;
+  animation:flicker 1.4s ease-in-out infinite alternate;
+  filter:blur(.3px);
+}
+.flame-outer{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:10px;height:18px;
+  background:radial-gradient(ellipse at 50% 80%,rgba(255,200,0,.3),rgba(255,120,0,.15),transparent);
+  border-radius:50% 50% 30% 30%;
+  animation:flicker 1.8s ease-in-out infinite alternate-reverse;
+  filter:blur(1px);
+}
+.glow{
+  position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);
+  width:40px;height:40px;
+  background:radial-gradient(circle,rgba(255,200,50,.18),transparent 70%);
+  border-radius:50%;
+  animation:glowpulse 2s ease-in-out infinite alternate;
+}
+@keyframes flicker{0%{transform:translateX(-50%) scaleX(1) scaleY(1)}100%{transform:translateX(-50%) scaleX(.88) scaleY(.94) rotate(2deg)}}
+@keyframes glowpulse{0%{opacity:.6;transform:translateX(-50%) scale(1)}100%{opacity:1;transform:translateX(-50%) scale(1.3)}}
+
+/* light cast from candles onto wall */
+.candle-light{
+  position:absolute;top:0;width:260px;height:380px;
+  background:radial-gradient(ellipse at 50% 5%,rgba(255,200,80,.055) 0%,transparent 70%);
+  pointer-events:none;
+}
+.candle-light-l{left:4%}.candle-light-r{right:4%}
+
+/* room title */
+.room-title{
+  position:absolute;top:6%;left:50%;transform:translateX(-50%);
+  font-family:'Cinzel',serif;font-size:clamp(11px,1.4vw,18px);color:rgba(201,168,76,.5);
+  letter-spacing:8px;text-transform:uppercase;white-space:nowrap;
+  text-shadow:0 0 20px rgba(201,168,76,.2);
+}
+.room-sub{
+  position:absolute;top:10.5%;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;font-size:clamp(9px,1vw,13px);
+  color:rgba(245,239,230,.18);font-style:italic;white-space:nowrap;letter-spacing:3px;
+}
+
+/* ── SHELF UNIT ── */
+.shelf-unit{
+  position:relative;width:100%;
+  display:flex;flex-direction:column;
+  align-items:stretch;
+  height:68%;
+}
+
+/* shelf plank */
+.shelf{
+  position:relative;width:92%;margin:0 auto;
+  display:flex;align-items:flex-end;
+  padding:0 24px;gap:0;
+  overflow:hidden;
+}
+.shelf-top{height:54%;padding-top:14px}
+.shelf-bottom{height:46%;padding-top:14px}
+
+/* shelf surface */
+.shelf-surface{
+  position:absolute;bottom:0;left:0;right:0;height:16px;
+  background:linear-gradient(180deg,var(--wood-light) 0%,var(--wood-mid) 40%,var(--wood-dark) 100%);
+  box-shadow:0 4px 18px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.08);
+  z-index:5;
+}
+.shelf-surface::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(0,0,0,.06) 61px);
+}
+.shelf-surface::after{
+  content:'';position:absolute;bottom:-6px;left:0;right:0;height:6px;
+  background:linear-gradient(180deg,var(--wood-dark),rgba(0,0,0,.8));
+  box-shadow:0 3px 12px rgba(0,0,0,.9);
+}
+
+/* side panels */
+.shelf-side{
+  position:absolute;top:0;bottom:16px;width:18px;
+  background:linear-gradient(90deg,var(--wood-dark),var(--wood-mid));
+  box-shadow:inset -2px 0 6px rgba(0,0,0,.4);
+  z-index:4;
+}
+.shelf-side-l{left:0;border-radius:2px 0 0 0}
+.shelf-side-r{right:0;border-radius:0 2px 0 0}
+
+/* shelf back panel */
+.shelf-back{
+  position:absolute;top:0;bottom:16px;left:18px;right:18px;
+  background:
+    repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(0,0,0,.08) 30px),
+    linear-gradient(180deg,#100c07,#1a1208);
+  z-index:0;
+}
+
+/* dust / ambient */
+.shelf-dust{
+  position:absolute;bottom:16px;left:18px;right:18px;height:2px;
+  background:linear-gradient(90deg,transparent 5%,rgba(201,168,76,.06) 50%,transparent 95%);
+  z-index:6;
+  pointer-events:none;
+}
+
+/* ── BOOKS ── */
+.book{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;
+  align-items:stretch;
+  cursor:none;
+  transform-origin:bottom center;
+  transition:transform .22s cubic-bezier(.4,0,.2,1),filter .22s,z-index 0s;
+  flex-shrink:0;
+  margin-bottom:16px; /* sit on shelf surface */
+}
+.book:hover{
+  transform:translateY(-10px);
+  filter:drop-shadow(0 8px 24px rgba(201,168,76,.22));
+  z-index:20;
+}
+.book.picking{
+  animation:pickBook .55s cubic-bezier(.4,0,.2,1) forwards;
+  z-index:50;
+}
+@keyframes pickBook{
+  0%{transform:translateY(-14px) scale(1)}
+  35%{transform:translateY(-38px) scale(1.04) rotate(-1.5deg)}
+  65%{transform:translateY(-52px) scale(1.08) rotate(1deg) translateX(8px)}
+  100%{transform:translateY(-200px) scale(.9) rotate(0deg) translateX(0);opacity:0}
+}
+
+/* book spine */
+.spine{
+  width:100%;height:100%;
+  position:relative;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 4px;
+  overflow:hidden;
+  border-radius:1px 3px 3px 1px;
+}
+.spine::before{ /* binding groove */
+  content:'';position:absolute;left:3px;top:0;bottom:0;width:1.5px;
+  background:rgba(0,0,0,.3);
+}
+.spine::after{ /* right edge highlight */
+  content:'';position:absolute;right:0;top:0;bottom:0;width:1.5px;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04),rgba(255,255,255,.08));
+}
+.spine-title{
+  font-family:'Cinzel',serif;
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  transform:rotate(180deg);
+  font-size:clamp(7px,0.9vw,11px);
+  font-weight:600;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  flex:1;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+  padding:4px 0;
+}
+.spine-author{
+  font-family:'Outfit',sans-serif;
+  writing-mode:vertical-rl;
+  text-orientation:mixed;
+  transform:rotate(180deg);
+  font-size:clamp(6px,0.7vw,8px);
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  opacity:.6;
+  position:relative;z-index:1;
+}
+.spine-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  flex-shrink:0;
+  position:relative;z-index:1;
+}
+/* top of book */
+.book-top{
+  position:absolute;top:-5px;left:1px;right:1px;height:5px;
+  background:linear-gradient(90deg,#e8e0d0,#f5f0e8,#d8d0c0);
+  border-radius:0 0 0 0;
+  box-shadow:0 -1px 3px rgba(0,0,0,.3);
+}
+.book-top::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.04) 1.5px);
+}
+
+/* decorative line on some spines */
+.spine-line{
+  position:absolute;left:6px;right:6px;height:.5px;
+  background:rgba(255,255,255,.2);
+}
+.spine-line-t{top:22%}
+.spine-line-b{bottom:22%}
+
+/* ── BOOK DEFINITIONS ── */
+/* row 1 */
+.b1{width:28px;height:195px}.b2{width:36px;height:210px}.b3{width:22px;height:188px}
+.b4{width:44px;height:220px}.b5{width:30px;height:200px}.b6{width:26px;height:185px}
+.b7{width:38px;height:215px}.b8{width:24px;height:192px}
+/* row 2 */
+.b9{width:34px;height:172px}.b10{width:42px;height:185px}.b11{width:26px;height:168px}
+.b12{width:30px;height:178px}.b13{width:48px;height:190px}.b14{width:22px;height:162px}
+.b15{width:36px;height:180px}.b16{width:28px;height:175px}
+
+/* spine color schemes */
+.s-black{background:linear-gradient(90deg,#0d0d0d,#1a1a1a,#111)}
+.s-maroon{background:linear-gradient(90deg,#3a0810,#6b0f1a,#4a0c14)}
+.s-maroon .spine-title,.s-maroon .spine-author{color:#e8c978}
+.s-gold{background:linear-gradient(90deg,#6b4c10,#c9a84c,#8b6420)}
+.s-gold .spine-title{color:#0d0a06}.s-gold .spine-author{color:rgba(13,10,6,.6)}
+.s-ink{background:linear-gradient(90deg,#0f1520,#1a2535,#0d1218)}
+.s-ink .spine-title,.s-ink .spine-author{color:#c9a84c}
+.s-rose{background:linear-gradient(90deg,#3d1420,#6b2038,#4a1828)}
+.s-rose .spine-title,.s-rose .spine-author{color:#f4c6cf}
+.s-ivory{background:linear-gradient(90deg,#c8bca8,#e8dcc8,#d4c8a8)}
+.s-ivory .spine-title{color:#2c1a0a}.s-ivory .spine-author{color:rgba(44,26,10,.5)}
+.s-forest{background:linear-gradient(90deg,#0c1f0e,#183d1e,#0e2510)}
+.s-forest .spine-title,.s-forest .spine-author{color:#c9a84c}
+.s-midnight{background:linear-gradient(90deg,#08060f,#140e20,#0c0a18)}
+.s-midnight .spine-title{color:#a878d8}.s-midnight .spine-author{color:rgba(168,120,216,.5)}
+.s-slate{background:linear-gradient(90deg,#1a1e26,#2c3240,#1e2430)}
+.s-slate .spine-title,.s-slate .spine-author{color:#c9a84c}
+.s-black .spine-title{color:#c9a84c}.s-black .spine-author{color:rgba(201,168,76,.5)}
+.s-black .spine-dot{background:rgba(201,168,76,.4)}
+
+/* ── OPEN BOOK OVERLAY ── */
+.overlay{
+  position:fixed;inset:0;z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,3,2,0);
+  backdrop-filter:blur(0px);
+  transition:background .5s,backdrop-filter .5s;
+  pointer-events:none;
+}
+.overlay.open{
+  background:rgba(5,3,2,.88);
+  backdrop-filter:blur(8px);
+  pointer-events:all;
+}
+
+/* book spread container */
+.book-spread{
+  position:relative;
+  display:flex;
+  perspective:1200px;
+  opacity:0;
+  transform:translateY(60px) scale(.88);
+  transition:opacity .45s cubic-bezier(.4,0,.2,1) .15s,transform .45s cubic-bezier(.4,0,.2,1) .15s;
+}
+.overlay.open .book-spread{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* spine center */
+.book-spine-center{
+  width:18px;
+  background:linear-gradient(90deg,#1a0e06,#2c1a0a,#1a0e06);
+  box-shadow:
+    -6px 0 20px rgba(0,0,0,.6),
+    6px 0 20px rgba(0,0,0,.6),
+    0 0 0 .5px rgba(201,168,76,.15);
+  z-index:2;
+  flex-shrink:0;
+  position:relative;
+}
+.book-spine-center::before{
+  content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;
+  background:rgba(201,168,76,.1);
+}
+
+/* pages */
+.page-left,.page-right{
+  width:clamp(220px,28vw,360px);
+  height:clamp(280px,48vh,520px);
+  background:var(--cream);
+  padding:32px 28px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.5);
+}
+.page-left{
+  border-radius:4px 0 0 4px;
+  transform-origin:right center;
+  transform:rotateY(-90deg);
+  transition:transform .55s cubic-bezier(.4,0,.2,1) .3s;
+  background:linear-gradient(100deg,#ede4d5,#f5efe6);
+}
+.page-right{
+  border-radius:0 4px 4px 0;
+  transform-origin:left center;
+  transform:rotateY(90deg);
+  transition:transform .55s cubic-bezier(.4,0,.2,1) .3s;
+  background:linear-gradient(80deg,#f5efe6,#ede4d5);
+}
+.overlay.open .page-left{transform:rotateY(0deg)}
+.overlay.open .page-right{transform:rotateY(0deg)}
+
+/* page inner shadow/texture */
+.page-left::before{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:24px;
+  background:linear-gradient(90deg,transparent,rgba(0,0,0,.06));
+  pointer-events:none;
+}
+.page-right::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:24px;
+  background:linear-gradient(270deg,transparent,rgba(0,0,0,.06));
+  pointer-events:none;
+}
+/* page lines */
+.page-left::after,.page-right::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 21px,rgba(0,0,0,.05) 22px);
+  pointer-events:none;
+}
+/* page number */
+.pg-num-l-bc{position:absolute;bottom:14px;left:24px;font-family:'Cormorant Garamond',serif;font-size:10px;color:rgba(107,15,26,.35);letter-spacing:2px}
+.pg-num-r-bc{position:absolute;bottom:14px;right:24px;font-family:'Cormorant Garamond',serif;font-size:10px;color:rgba(107,15,26,.35);letter-spacing:2px}
+
+/* page content */
+.page-inner{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;gap:10px}
+.pg-label{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:8px;border-bottom:.5px solid rgba(201,168,76,.25)}
+.pg-h{font-family:'Cinzel',serif;font-size:clamp(13px,1.6vw,18px);color:#1a0e06;line-height:1.25;font-weight:600}
+.pg-rule-sm{width:24px;height:.5px;background:var(--maroon);margin:2px 0}
+.pg-it{font-family:'Cormorant Garamond',serif;font-size:clamp(11px,1.2vw,13.5px);color:#6b0f1a;font-style:italic;line-height:1.6}
+.pg-p{font-family:'Outfit',sans-serif;font-size:clamp(8px,.9vw,10px);color:#3a2e26;line-height:1.95;flex:1}
+.pg-pull-sm{
+  border-left:2px solid var(--maroon);padding:6px 10px;
+  background:rgba(107,15,26,.04);
+  font-family:'Cormorant Garamond',serif;font-size:clamp(10px,1.1vw,12.5px);
+  color:#6b0f1a;font-style:italic;line-height:1.5;
+}
+.pg-img-placeholder{
+  width:100%;flex:1;min-height:60px;
+  background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(107,15,26,.08));
+  border:.5px solid rgba(201,168,76,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-size:clamp(18px,2.5vw,32px);
+  color:rgba(107,15,26,.1);font-weight:700;letter-spacing:4px;
+}
+
+/* close btn */
+.close-btn{
+  position:absolute;top:-44px;right:0;
+  font-family:'Outfit',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(201,168,76,.6);
+  background:transparent;border:none;cursor:none;
+  padding:6px 12px;
+  border:.5px solid rgba(201,168,76,.2);
+  transition:color .2s,border-color .2s;
+}
+.close-btn:hover{color:var(--gold);border-color:var(--gold)}
+
+/* book read label */
+.book-title-label{
+  position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);
+  font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,.45);
+  letter-spacing:4px;text-transform:uppercase;white-space:nowrap;
+}
+
+/* ── FLOOR ── */
+.floor{
+  position:fixed;bottom:0;left:0;right:0;height:4%;
+  background:linear-gradient(180deg,var(--wood-dark),#0d0806);
+  border-top:1px solid rgba(201,168,76,.08);
+}
+
+/* ── AMBIENT DUST PARTICLES ── */
+.dust-particle{
+  position:fixed;border-radius:50%;
+  background:rgba(201,168,76,.5);
+  pointer-events:none;z-index:0;
+  animation:float-dust linear infinite;
+}
+@keyframes float-dust{
+  0%{transform:translateY(0) translateX(0);opacity:0}
+  10%{opacity:1}
+  90%{opacity:.4}
+  100%{transform:translateY(-120px) translateX(20px);opacity:0}
+}
+
+/* hover hint */
+.hint{
+  position:fixed;bottom:4.5%;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;
+  color:rgba(201,168,76,.3);letter-spacing:2px;
+  transition:opacity .4s;pointer-events:none;
+}
+.hint.hide{opacity:0}
+
+/* ── MAGAZINE IFRAME OVERLAY ── */
+.mag-overlay{
+  position:fixed;inset:0;z-index:2000;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(5,3,2,0);
+  transition:background .4s;
+  pointer-events:none;
+}
+.mag-overlay.open{
+  background:rgba(5,3,2,.96);
+  pointer-events:all;
+}
+.mag-frame-wrap{
+  position:relative;
+  width:94vw;height:92vh;
+  opacity:0;
+  transform:scale(.92) translateY(30px);
+  transition:opacity .45s cubic-bezier(.4,0,.2,1) .12s,transform .45s cubic-bezier(.4,0,.2,1) .12s;
+}
+.mag-overlay.open .mag-frame-wrap{
+  opacity:1;
+  transform:scale(1) translateY(0);
+}
+.mag-frame-wrap iframe{
+  width:100%;height:100%;
+  border:none;
+  background:#0a0806;
+  box-shadow:0 20px 80px rgba(0,0,0,.8);
+}
+.mag-bar{
+  position:absolute;top:-38px;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.mag-label{
+  font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;
+  color:rgba(201,168,76,.4);text-transform:uppercase;
+}
+.mag-close{
+  font-family:'Outfit',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(201,168,76,.5);background:transparent;
+  border:.5px solid rgba(201,168,76,.2);padding:5px 14px;
+  cursor:none;transition:color .2s,border-color .2s;
+}
+.mag-close:hover{color:var(--gold);border-color:var(--gold)}
+/* coming-soon panel */
+.coming-soon-wrap{
+  width:clamp(260px,38vw,480px);
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  text-align:center;
+  opacity:0;
+  transform:translateY(30px) scale(.95);
+  transition:opacity .4s .15s,transform .4s .15s;
+}
+.mag-overlay.open .coming-soon-wrap{opacity:1;transform:translateY(0) scale(1)}
+.cs-rule{width:40px;height:.5px;background:var(--gold-dim)}
+.cs-title{font-family:'Cinzel',serif;font-size:clamp(18px,2.4vw,28px);color:var(--gold);letter-spacing:4px}
+.cs-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(12px,1.4vw,16px);color:rgba(245,239,230,.4);font-style:italic;line-height:1.7}
+.cs-tag{font-family:'Outfit',sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(201,168,76,.3)}
+
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+
+<!-- ROOM -->
+<div class="room">
+  <div class="wall">
+    <div class="candle-light candle-light-l"></div>
+    <div class="candle-light candle-light-r"></div>
+    <div class="room-title">The Black Haven Library</div>
+    <div class="room-sub">"Every book a room. Every page a world."</div>
+
+    <!-- LEFT SCONCE -->
+    <div class="sconce sconce-l">
+      <div class="sconce-arm"></div>
+      <div class="sconce-base"></div>
+      <div class="candle-wrap">
+        <div class="candle-wrap">
+          <div class="flame">
+            <div class="flame-outer"></div>
+            <div class="flame-inner"></div>
+          </div>
+          <div class="glow"></div>
+        </div>
+        <div class="wick"></div>
+        <div class="candle"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT SCONCE -->
+    <div class="sconce sconce-r">
+      <div class="sconce-arm"></div>
+      <div class="sconce-base"></div>
+      <div class="candle-wrap">
+        <div class="candle-wrap">
+          <div class="flame">
+            <div class="flame-outer"></div>
+            <div class="flame-inner"></div>
+          </div>
+          <div class="glow"></div>
+        </div>
+        <div class="wick"></div>
+        <div class="candle"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHELF UNIT -->
+  <div class="shelf-unit">
+
+    <!-- TOP SHELF -->
+    <div class="shelf shelf-top" id="shelf1">
+      <div class="shelf-back"></div>
+      <div class="shelf-side shelf-side-l"></div>
+      <div class="shelf-side shelf-side-r"></div>
+
+      <div class="book b1 s-black" data-id="0" data-magazine="bhmagazine.html" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-dot"></div>
+          <div class="spine-title">BH. Journal</div>
+          <div class="spine-author">Issue 01</div>
+        </div>
+      </div>
+
+      <div class="book b2 s-maroon" data-id="1" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-dot"></div>
+          <div class="spine-title">Brand Story</div>
+          <div class="spine-author">Black Haven</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b3 s-forest" data-id="2" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Design Notes</div>
+          <div class="spine-author">FK Studio</div>
+        </div>
+      </div>
+
+      <div class="book b4 s-ivory" data-id="3" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-title">The Abaya Edit</div>
+          <div class="spine-author">Spring 2025</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b5 s-midnight" data-id="4" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Beyond</div>
+          <div class="spine-author">Concept</div>
+        </div>
+      </div>
+
+      <div class="book b6 s-slate" data-id="5" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">UX Notes</div>
+          <div class="spine-author">2024</div>
+        </div>
+      </div>
+
+      <div class="book b7 s-rose" data-id="6" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-dot"></div>
+          <div class="spine-title">Kooky Kafe</div>
+          <div class="spine-author">Studio Vol.1</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b8 s-gold" data-id="7" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Gold &amp; Cloth</div>
+          <div class="spine-author">Essays</div>
+        </div>
+      </div>
+
+      <div class="shelf-surface"></div>
+      <div class="shelf-dust"></div>
+    </div>
+
+    <!-- BOTTOM SHELF -->
+    <div class="shelf shelf-bottom" id="shelf2">
+      <div class="shelf-back"></div>
+      <div class="shelf-side shelf-side-l"></div>
+      <div class="shelf-side shelf-side-r"></div>
+
+      <div class="book b9 s-ink" data-id="8" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Typography</div>
+          <div class="spine-author">Reference</div>
+        </div>
+      </div>
+
+      <div class="book b10 s-maroon" data-id="9" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-dot"></div>
+          <div class="spine-title">Modest &amp; Loud</div>
+          <div class="spine-author">Identity</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b11 s-black" data-id="10" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Portfolio</div>
+          <div class="spine-author">FK 2025</div>
+        </div>
+      </div>
+
+      <div class="book b12 s-forest" data-id="11" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-title">Colour Theory</div>
+          <div class="spine-author">Notes</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b13 s-ivory" data-id="12" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-dot"></div>
+          <div class="spine-title">The Journal</div>
+          <div class="spine-author">Black Haven</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b14 s-midnight" data-id="13" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Silence</div>
+          <div class="spine-author">& Style</div>
+        </div>
+      </div>
+
+      <div class="book b15 s-rose" data-id="14" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-line spine-line-t"></div>
+          <div class="spine-title">Editorial</div>
+          <div class="spine-author">Vol. II</div>
+          <div class="spine-line spine-line-b"></div>
+        </div>
+      </div>
+
+      <div class="book b16 s-gold" data-id="15" onclick="openBook(this)">
+        <div class="book-top"></div>
+        <div class="spine">
+          <div class="spine-title">Craft</div>
+          <div class="spine-author">2024</div>
+        </div>
+      </div>
+
+      <div class="shelf-surface"></div>
+      <div class="shelf-dust"></div>
+    </div>
+
+  </div><!-- /shelf-unit -->
+</div><!-- /room -->
+
+
+<!-- MAGAZINE IFRAME OVERLAY -->
+<div class="mag-overlay" id="magOverlay">
+  <div class="mag-frame-wrap" id="magFrameWrap" style="display:none">
+    <div class="mag-bar">
+      <span class="mag-label" id="magLabel">Black Haven — The Journal</span>
+      <button class="mag-close" onclick="closeMag()">✕ &nbsp; Close</button>
+    </div>
+    <iframe id="magIframe" src="about:blank" title="Magazine"></iframe>
+  </div>
+  <div class="coming-soon-wrap" id="comingSoon" style="display:none">
+    <div class="cs-tag">Black Haven Library</div>
+    <div class="cs-rule"></div>
+    <div class="cs-title" id="csTitle">Coming Soon</div>
+    <div class="cs-rule"></div>
+    <div class="cs-sub" id="csSub">"This volume is being bound.<br>Check back soon."</div>
+    <div class="cs-tag">Issue in progress</div>
+    <button class="mag-close" onclick="closeMag()" style="margin-top:8px">← Back to Library</button>
+  </div>
+</div>
+
+<div class="floor"></div>
+
+<!-- HINT -->
+<div class="hint" id="hint">Hover to browse · Click to open</div>
+
+<!-- OPEN BOOK OVERLAY -->
+<div class="overlay" id="overlay" onclick="closeOverlay(event)">
+  <div style="position:relative">
+    <button class="close-btn" onclick="closeBook()">✕ &nbsp; Close</button>
+    <div class="book-spread" id="spread">
+      <div class="page-left" id="pageLeft">
+        <div class="page-inner" id="pageLeftInner"></div>
+        <div class="pg-num-l-bc" id="pgNumL">—</div>
+      </div>
+      <div class="book-spine-center"></div>
+      <div class="page-right" id="pageRight">
+        <div class="page-inner" id="pageRightInner"></div>
+        <div class="pg-num-r-bc" id="pgNumR">—</div>
+      </div>
+    </div>
+    <div class="book-title-label" id="openTitle"></div>
+  </div>
+</div>
+
+<script>
+// ── CURSOR ──
+var cur = document.getElementById('cur');
+var mx=0,my=0,dx=0,dy=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.opacity='1';});
+document.addEventListener('mouseleave',function(){cur.style.opacity='0';});
+(function ca(){dx+=(mx-dx)*.22;dy+=(my-dy)*.22;cur.style.left=dx+'px';cur.style.top=dy+'px';requestAnimationFrame(ca);})();
+document.querySelectorAll('.book,.close-btn,.flip-btn,.mag-close').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.classList.add('big');});
+  el.addEventListener('mouseleave',function(){cur.classList.remove('big');});
+});
+
+// ── SHELF OVERFLOW: visible on hover so lift animation isn't clipped ──
+document.querySelectorAll('.book').forEach(function(book){
+  var shelf = book.closest('.shelf');
+  book.addEventListener('mouseenter',function(){ shelf.style.overflow='visible'; });
+  book.addEventListener('mouseleave',function(){
+    if(!book.classList.contains('picking')) shelf.style.overflow='hidden';
+  });
+});
+
+// ── BOOK CONTENT DATA ──
+var books = [
+  {
+    title:'BH. Journal — Issue 01',
+    left:{
+      label:'Editor\'s Letter',
+      heading:'Where Cloth Becomes Conviction',
+      rule:true,
+      italic:'"Every issue is a love letter to the women who dress with purpose."',
+      body:'Black Haven was born from a gap — not in the market, but in the conversation. For too long, modest fashion was treated as an afterthought: functional but not beautiful, religious but not refined.\n\nThis journal exists to correct that. We are a platform for women who choose intentional dressing.',
+      img:'BH.'
+    },
+    right:{
+      label:'Contents · Issue 01',
+      heading:'Inside This Issue',
+      rule:true,
+      body:'01 — Why Black Haven Exists\n02 — Five Highlights This Season\n03 — Modesty Is Not a Limit — It Is a Lens\n04 — Spring 2025 Collection\n05 — The Woman Behind the Abaya\n06 — In Conversation With Our Founder\n07 — Authors & Credits',
+      pull:'"Dressed with intention. Present with purpose."',
+      img:null
+    },
+    numL:'01',numR:'02'
+  },
+  {
+    title:'Brand Story — Black Haven',
+    left:{label:'Origins',heading:'A Name Forged in Contrast',rule:true,italic:'"Black — for depth. Haven — for belonging."',body:'The name came first. Before the fabrics, before the patterns, before the first stitch was placed. Black Haven: a place where the colour of conviction meets the warmth of refuge.\n\nFounded in Delhi, designed for the world.',img:'BH'},
+    right:{label:'Vision',heading:'What We Stand For',rule:true,body:'We believe modest fashion is not a niche.\nIt is a culture.\n\nOne that has always existed, always been beautiful — and rarely been celebrated at the level it deserves.\n\nBlack Haven is here to change that.',pull:'"Modesty is not a limit. It is a lens."',img:null},
+    numL:'03',numR:'04'
+  },
+  {
+    title:'Design Notes — FK Studio',
+    left:{label:'Process Notes',heading:'On Designing With Restraint',rule:true,italic:'"The best design says nothing it does not mean."',body:'Every pixel is a decision. Every whitespace is intentional. The discipline is not in what you add — it is in what you choose to leave out.\n\nThese notes are a record of that practice.',img:'✦'},
+    right:{label:'Principles',heading:'The FK Design Code',rule:true,body:'01 — Black first.\n02 — Gold sparingly.\n03 — Type is voice — choose it like one.\n04 — Motion should mean something.\n05 — Luxury is restraint made visible.',pull:'"Design is the silence between the words."',img:null},
+    numL:'05',numR:'06'
+  },
+  {
+    title:'The Abaya Edit — Spring 2025',
+    left:{label:'Spring Collection',heading:'Four Silhouettes',rule:true,italic:'"Each one a sentence. Each one a self."',body:'The Rania. The Safa. The Malak. The Huda.\n\nFour abayas that carry four philosophies of dressing. Midnight crepe meets ivory drape. Structure meets softness. This season is a conversation.',img:'✿'},
+    right:{label:'Design Notes',heading:'What Makes This Season',rule:true,body:'We worked backwards from feeling.\n\nWhat does it feel like to be entirely yourself? To enter a room and require nothing from it?\n\nThe answer was in the fabric. In the fall. In the way a collar holds the light.',pull:'"Wear it like you mean it."',img:null},
+    numL:'06',numR:'07'
+  },
+  {
+    title:'Beyond — Concept Document',
+    left:{label:'Product Concept',heading:'A Platform for Real Connection',rule:true,italic:'"Conversation first. Everything else, second."',body:'Beyond is a platform for intentional human connection — without follower counts, without vanity metrics, without the noise.\n\nA space designed around what people actually want: to be heard, and to hear.',img:'B.'},
+    right:{label:'Core Framework',heading:'Four Layers',rule:true,body:'01 — Content as Conversation Trigger\n02 — Stranger Connection, by Design\n03 — Private Space, No Audience\n04 — Structured Group Rooms\n\nNo algorithm. No feed. No performance.',pull:'"The antidote to social media is not silence. It is depth."',img:null},
+    numL:'01',numR:'02'
+  },
+  {
+    title:'UX Notes — 2024',
+    left:{label:'UX Thinking',heading:'Designing for Humans, Not Users',rule:true,italic:'"A confused user is not a user. They are a person you failed."',body:'UX is not wireframes. It is empathy made systematic. These are field notes from a year of designing things that had to actually work — for real people, in real moments.',img:'UX'},
+    right:{label:'Principles',heading:'What I Learned',rule:true,body:'01 — Friction has a cost. Always.\n02 — Labels are never neutral.\n03 — The fold is a myth.\n04 — Dark patterns are violence.\n05 — Accessibility is not an extra.\n06 — Test earlier than you think.',pull:'"Design is how it works."',img:null},
+    numL:'08',numR:'09'
+  },
+  {
+    title:'Kooky Kafe — Studio Vol.1',
+    left:{label:'Studio Work',heading:'Where Weird Meets Wonderful',rule:true,italic:'"Serious craft. Unserious everything else."',body:'Kooky Kafe is the creative studio where the rules bend. Every project is an experiment. Every client brief is a conversation waiting to happen.\n\nThis volume documents the first year of work.',img:'KK'},
+    right:{label:'Projects',heading:'Vol. 1 Highlights',rule:true,body:'· Qutub Darbar Digital Menu\n· Gumbad Café Interactive Menu\n· Visiting Card Series\n· BH Magazine Editorial Design\n· Summer Tune Magazine\n· Portfolio System 2024',pull:'"Make it strange. Make it right."',img:null},
+    numL:'01',numR:'02'
+  },
+  {
+    title:'Gold & Cloth — Essays',
+    left:{label:'Essay Collection',heading:'On Faith, Fashion & Form',rule:true,italic:'"There is philosophy in a hem."',body:'A collection of short essays on what it means to dress intentionally, to choose coverage in a world that rewards exposure, and to find beauty in the considered choice.',img:'✦'},
+    right:{label:'Essay Titles',heading:'Contents',rule:true,body:'I — The Language of Black\nII — On Wearing Faith Outward\nIII — The Seam as Sentence\nIV — Modest Does Not Mean Invisible\nV — When the Garment Is the Prayer',pull:'"What you wear is what you say before you speak."',img:null},
+    numL:'01',numR:'02'
+  },
+  {
+    title:'Typography — Reference',
+    left:{label:'Type Reference',heading:'Fonts That Mean Something',rule:true,italic:'"A typeface is a voice. Choose it accordingly."',body:'Cinzel for authority. Cormorant Garamond for intimacy. Outfit for clarity. Big Shoulders for muscle.\n\nEvery typographic choice in this reference is a documented argument.',img:'Aa'},
+    right:{label:'Hierarchy',heading:'The FK Type System',rule:true,body:'Display — Cinzel 700\nHeadline — Big Shoulders Display 700\nSubhead — Cormorant Garamond Italic\nBody — Outfit 400\nCaption — Outfit 300\nLabel — Outfit 500, all-caps, tracked',pull:'"Type is the clothes that words wear."',img:null},
+    numL:'14',numR:'15'
+  },
+  {
+    title:'Modest & Loud — Identity',
+    left:{label:'Identity Study',heading:'The Quiet That Speaks',rule:true,italic:'"She did not need to be loud to be heard."',body:'A design study on how identity works in modest fashion — how restraint becomes expression, how silence becomes statement, and how choosing to cover can be the loudest thing in the room.',img:'ML'},
+    right:{label:'Observations',heading:'What We Found',rule:true,body:'Modest women are not invisible.\nThey are edited.\n\nEditing is power. The choice of what to show and what to keep — is the most deliberate act of self-presentation there is.\n\nBlack Haven exists in that deliberateness.',pull:'"To choose coverage is to choose sovereignty."',img:null},
+    numL:'06',numR:'07'
+  },
+  {
+    title:'Portfolio — FK 2025',
+    left:{label:'Selected Work',heading:'Fareen Kashmira · Portfolio',rule:true,italic:'"Graphic design, UX, editorial, and the spaces between."',body:'Three years of independent practice. Clients across India and the Middle East. Work that spans branding, editorial design, interactive menus, UX systems, and luxury fashion.\n\nThis is the record.',img:'FK'},
+    right:{label:'Work Areas',heading:'What I Do',rule:true,body:'· Brand Identity & Logo Design\n· UX Design & Wireframing\n· Editorial & Magazine Design\n· Interactive HTML Experiences\n· Luxury Fashion Branding\n· Content Strategy & Writing',pull:'"I design for the detail that only you will notice."',img:null},
+    numL:'01',numR:'02'
+  },
+  {
+    title:'Colour Theory — Notes',
+    left:{label:'Colour Notes',heading:'Black, Gold & Everything Between',rule:true,italic:'"Colour is not decoration. It is argument."',body:'Personal notes on building a colour system for a luxury modest fashion brand — and why the answer was almost always the same two colours, in different proportions.',img:'◆'},
+    right:{label:'The BH Palette',heading:'A Study in Restraint',rule:true,body:'Black — #0a0806 — Foundation\nMaroon — #6b0f1a — Emotion\nGold — #c9a84c — Elevation\nPink — #f4c6cf — Softness\nCream — #f5efe6 — Light\n\nFive colours. One world.',pull:'"Black is not the absence of colour. It is the presence of gravity."',img:null},
+    numL:'10',numR:'11'
+  },
+  {
+    title:'The Journal — Black Haven',
+    left:{label:'Mission',heading:'Why We Publish',rule:true,italic:'"A space for the woman who was never the target audience — until now."',body:'The Black Haven Journal exists because modest fashion has always had its own culture, its own aesthetics, its own conversation. It just lacked a publication worthy of it.\n\nWe are building that.',img:'J.'},
+    right:{label:'What to Expect',heading:'Every Issue',rule:true,body:'· A cover essay on identity\n· Seasonal fashion editorial\n· One feature interview\n· A short story or poem\n· Design and craft notes\n· Q&A with the founders',pull:'"A journal worth keeping on your shelf."',img:null},
+    numL:'01',numR:'02'
+  },
+  {
+    title:'Silence & Style',
+    left:{label:'Essay',heading:'The Aesthetics of Quiet',rule:true,italic:'"In a loud world, choosing quiet is radical."',body:'What does it mean to have an aesthetic rooted in stillness? To choose dark fabrics, minimal embellishment, and considered silhouettes — not from limitation, but from conviction?\n\nThis essay explores that question.',img:'∞'},
+    right:{label:'Continued',heading:'The Practice',rule:true,body:'Silence in design is whitespace.\nSilence in fashion is the intentional drape.\nSilence in identity is knowing who you are without needing confirmation.\n\nAll three require discipline. All three require trust in the self.',pull:'"The most elegant rooms have nothing you do not need."',img:null},
+    numL:'04',numR:'05'
+  },
+  {
+    title:'Editorial — Vol. II',
+    left:{label:'Editorial',heading:'Spring Voices',rule:true,italic:'"This season, we let the fabric do the talking."',body:'Volume II of the Black Haven editorial series. Six looks. Six women. Six different ways of saying the same thing: I am here, I am certain, I am dressed accordingly.\n\nPhotographed across Delhi, 2025.',img:'II'},
+    right:{label:'In This Volume',heading:'Six Looks',rule:true,body:'Look 01 — The Rania, Early Light\nLook 02 — The Safa, Study Hour\nLook 03 — The Malak, In Motion\nLook 04 — The Huda, Market Day\nLook 05 — Untitled, Rooftop\nLook 06 — Archive, The First Piece',pull:'"A garment is not a costume. It is a decision."',img:null},
+    numL:'08',numR:'09'
+  },
+  {
+    title:'Craft — 2024',
+    left:{label:'Craft Notes',heading:'The Art of Making',rule:true,italic:'"Behind every seam, a decision. Behind every decision, a belief."',body:'2024 was the year of the detail. Of understanding that luxury is not price — it is the attention paid to the things nobody asked for but everyone feels.\n\nThese are the craft notes from that year.',img:'✦'},
+    right:{label:'Lessons',heading:'What 2024 Taught',rule:true,body:'01 — Slow down at the hardest part.\n02 — The client rarely knows what they need.\n03 — The first version is never finished.\n04 — Quality is invisible until it is missing.\n05 — Make things worth keeping.',pull:'"The detail is the whole point."',img:null},
+    numL:'12',numR:'13'
+  }
+];
+
+var currentBook = null;
+
+function openBook(el) {
+  var magazine = el.getAttribute('data-magazine');
+  var id = parseInt(el.getAttribute('data-id'));
+  var b = books[id];
+  currentBook = el;
+  document.getElementById('hint').classList.add('hide');
+
+  // temporarily allow overflow for pick animation
+  var shelf = el.closest('.shelf');
+  if(shelf) shelf.style.overflow = 'visible';
+
+  el.classList.add('picking');
+  el.addEventListener('animationend', function h() {
+    el.style.visibility = 'hidden';
+    if(shelf) shelf.style.overflow = 'hidden';
+    el.removeEventListener('animationend', h);
+  });
+
+  setTimeout(function() {
+    if (magazine) {
+      openMagazine(magazine, b ? b.title : 'Black Haven');
+    } else {
+      loadBook(id);
+      document.getElementById('overlay').classList.add('open');
+    }
+  }, 440);
+}
+
+function openMagazine(src, title) {
+  var mo = document.getElementById('magOverlay');
+  var fw = document.getElementById('magFrameWrap');
+  var cs = document.getElementById('comingSoon');
+
+  // Check if magazine file is likely to exist
+  // For bhmagazine.html and other real files — show iframe
+  // For placeholder books — show coming soon
+  var realMags = ['bhmagazine.html'];
+  var isReal = realMags.indexOf(src) !== -1;
+
+  fw.style.display = isReal ? 'block' : 'none';
+  cs.style.display = isReal ? 'none' : 'flex';
+
+  if (isReal) {
+    document.getElementById('magIframe').src = src;
+    document.getElementById('magLabel').textContent = title;
+  } else {
+    document.getElementById('csTitle').textContent = title;
+    document.getElementById('csSub').textContent =
+      '"' + title + ' is being bound.\nCheck back next issue."';
+  }
+
+  mo.classList.add('open');
+}
+
+function closeMag() {
+  var mo = document.getElementById('magOverlay');
+  mo.classList.remove('open');
+  setTimeout(function(){
+    document.getElementById('magIframe').src = 'about:blank';
+    document.getElementById('magFrameWrap').style.display = 'none';
+    document.getElementById('comingSoon').style.display = 'none';
+  }, 450);
+
+  if (currentBook) {
+    currentBook.style.visibility = '';
+    currentBook.classList.remove('picking');
+    currentBook = null;
+  }
+}
+
+function loadBook(id) {
+  var b = books[id];
+  if (!b) return;
+  document.getElementById('pageLeftInner').innerHTML = buildPage(b.left);
+  document.getElementById('pgNumL').textContent = b.numL;
+  document.getElementById('pageRightInner').innerHTML = buildPage(b.right);
+  document.getElementById('pgNumR').textContent = b.numR;
+  document.getElementById('openTitle').textContent = b.title;
+}
+
+function buildPage(p) {
+  var h = '';
+  h += '<div class="pg-label">' + p.label + '</div>';
+  h += '<div class="pg-h">' + p.heading + '</div>';
+  if (p.rule) h += '<div class="pg-rule-sm"></div>';
+  if (p.italic) h += '<div class="pg-it">' + p.italic + '</div>';
+  if (p.img) h += '<div class="pg-img-placeholder">' + p.img + '</div>';
+  h += '<div class="pg-p">' + (p.body||'').replace(/\n/g,'<br>') + '</div>';
+  if (p.pull) h += '<div class="pg-pull-sm">' + p.pull + '</div>';
+  return h;
+}
+
+function closeBook() {
+  document.getElementById('overlay').classList.remove('open');
+  setTimeout(function() {
+    if (currentBook) {
+      currentBook.style.visibility = '';
+      currentBook.classList.remove('picking');
+      currentBook = null;
+    }
+  }, 500);
+}
+
+function closeOverlay(e) {
+  if (e.target === document.getElementById('overlay')) closeBook();
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeBook(); closeMag(); }
+});
+
+// ── AMBIENT DUST PARTICLES ──
+for (var i = 0; i < 18; i++) {
+  (function(i) {
+    var d = document.createElement('div');
+    d.className = 'dust-particle';
+    var s = (Math.random() * 2 + .5).toFixed(1);
+    d.style.cssText = [
+      'width:' + s + 'px',
+      'height:' + s + 'px',
+      'left:' + (Math.random() * 100).toFixed(1) + '%',
+      'bottom:' + (15 + Math.random() * 35).toFixed(1) + '%',
+      'animation-duration:' + (6 + Math.random() * 10).toFixed(1) + 's',
+      'animation-delay:' + (-Math.random() * 12).toFixed(1) + 's',
+      'opacity:0'
+    ].join(';');
+    document.body.appendChild(d);
+  })(i);
+}
+</script>
+</body>
+</html>
