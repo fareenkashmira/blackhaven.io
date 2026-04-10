@@ -35,10 +35,10 @@
     body::before{content:'';position:fixed;top:-10%;right:-8%;width:520px;height:520px;background:radial-gradient(circle,rgba(244,198,207,0.4) 0%,transparent 70%);pointer-events:none;z-index:0;}
     body::after{content:'';position:fixed;bottom:10%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(13,27,62,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;}
 
-    .custom-cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transform:translate(-50%,-50%);transition:opacity 0.3s,width 0.2s,height 0.2s,background 0.2s;box-shadow:0 0 12px rgba(227,181,77,0.6);}
+    .custom-cursor{position:fixed;width:8px;height:8px;background:#e3b54d;border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transform:translate(-50%,-50%);transition:opacity 0.3s,width 0.2s,height 0.2s,background-color 0.2s;box-shadow:0 0 12px rgba(227,181,77,0.6),0 0 24px rgba(227,181,77,0.3);}
     .custom-cursor.active{opacity:1;}
-    .custom-cursor.hovering{width:16px;height:16px;background:var(--baby-pink-deep);}
-    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}
+    .custom-cursor.hovering{width:16px;height:16px;background:#f4c6cf;}
+    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}}
     ::selection{background:var(--baby-pink-deep);color:var(--deep-blue);}
     .magnify-target{transition:transform 0.2s ease;display:inline-block;}
 
@@ -283,14 +283,14 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    const _cursor=document.getElementById('bh-cursor');
+        const _cur=document.getElementById('bh-cursor');
     let _mx=0,_my=0,_dx=0,_dy=0;
-    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cursor.classList.add('active');});
-    document.addEventListener('mouseleave',()=>_cursor.classList.remove('active'));
-    (function _a(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cursor.style.left=_dx+'px';_cursor.style.top=_dy+'px';requestAnimationFrame(_a);})();
-    document.querySelectorAll('a,button,.service-card').forEach(el=>{
-      el.addEventListener('mouseenter',()=>_cursor.classList.add('hovering'));
-      el.addEventListener('mouseleave',()=>_cursor.classList.remove('hovering'));
+    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cur.classList.add('active');});
+    document.addEventListener('mouseleave',()=>_cur.classList.remove('active'));
+    (function _ca(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cur.style.left=_dx+'px';_cur.style.top=_dy+'px';requestAnimationFrame(_ca);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>_cur.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>_cur.classList.remove('hovering'));
     });
     const _mts=document.querySelectorAll('.magnify-target,nav a,.service-title');
     document.addEventListener('mousemove',e=>{
