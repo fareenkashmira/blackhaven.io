@@ -3,191 +3,615 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BH. Dark Editorial — Issue 01</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>BH. Magazine — Issue 01 · Black Haven Journal</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Big+Shoulders+Display:wght@300;400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--black:#060606;--maroon:#5c0a14;--maroon-mid:#8a1020;--gold:#c9a84c;--cream:#f0e8d8;--muted:#7a6a58;--dim:#3a3020;}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:.28}
-nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;background:rgba(6,6,6,.92);border-bottom:.5px solid rgba(201,168,76,.15);backdrop-filter:blur(12px)}
-.nav-logo{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);letter-spacing:4px;text-decoration:none}
-.nav-back{font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:3px;text-transform:uppercase;transition:color .3s}
-.nav-back:hover{color:var(--gold)}
+:root{
+  --white:#ffffff;--black:#111010;--maroon:#6b0f1a;
+  --gold:#c9a84c;--gold-muted:rgba(201,168,76,0.5);
+  --pink-mid:#f4a0b5;--pink-deep:#e8829a;--pink-bg:rgba(249,198,208,0.18);
+  --dim:#e0d8d0;--text-muted:#6b5e52;--text-soft:#3a2e26;
+}
+html,body{width:100%;height:100%;overflow:hidden;cursor:none}
+body{background:#f5f0eb;font-family:'Outfit',sans-serif}
+
+.custom-cursor{position:fixed;width:16px;height:16px;border:1.5px solid var(--maroon);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .18s,height .18s,background .18s}
+.custom-cursor.grow{width:30px;height:30px;background:rgba(107,15,26,0.08)}
+
+.magazine{position:fixed;inset:0;overflow:hidden}
+.page{position:absolute;inset:0;display:none;flex-direction:column;background:var(--white);overflow:hidden}
+.page.active{display:flex}
+
+@keyframes goLeft{0%{transform:perspective(1400px) rotateY(0);opacity:1}100%{transform:perspective(1400px) rotateY(-85deg);opacity:0}}
+@keyframes comeRight{0%{transform:perspective(1400px) rotateY(85deg);opacity:0}100%{transform:perspective(1400px) rotateY(0);opacity:1}}
+@keyframes goRight{0%{transform:perspective(1400px) rotateY(0);opacity:1}100%{transform:perspective(1400px) rotateY(85deg);opacity:0}}
+@keyframes comeLeft{0%{transform:perspective(1400px) rotateY(-85deg);opacity:0}100%{transform:perspective(1400px) rotateY(0);opacity:1}}
+.agl{animation:goLeft .42s cubic-bezier(.4,0,.2,1) forwards}
+.acr{animation:comeRight .42s cubic-bezier(.4,0,.2,1) forwards}
+.agr{animation:goRight .42s cubic-bezier(.4,0,.2,1) forwards}
+.acl{animation:comeLeft .42s cubic-bezier(.4,0,.2,1) forwards}
+
+.glitter-layer{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:hidden}
+.g{position:absolute;border-radius:50%;animation:gf linear infinite}
+@keyframes gf{0%,100%{transform:translateY(0) scale(1);opacity:.6}50%{transform:translateY(-9px) scale(1.4);opacity:1}}
+
+/* watermark logo on white pages */
+.wm{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-family:'Cinzel',serif;font-size:clamp(40px,7vw,80px);color:rgba(107,15,26,0.05);font-weight:700;letter-spacing:10px;pointer-events:none;white-space:nowrap;z-index:1;user-select:none}
+/* watermark on maroon pages */
+.pm-wm{position:absolute;bottom:-8px;right:-4px;font-family:'Cinzel',serif;font-size:88px;color:rgba(255,255,255,0.04);font-weight:700;pointer-events:none;z-index:0;line-height:1;user-select:none}
+
+.nav-bar{display:flex;justify-content:space-between;align-items:center;padding:13px 32px;border-bottom:.5px solid var(--dim);background:var(--white);flex-shrink:0;position:relative;z-index:10}
+.nav-logo{font-family:'Cinzel',serif;font-size:13px;color:var(--maroon);letter-spacing:4px}
+.nav-issue{font-family:'Outfit',sans-serif;font-size:9px;color:var(--text-muted);letter-spacing:3px;text-transform:uppercase}
+
+.page-content{flex:1;overflow:hidden;display:flex;position:relative}
+.two-col{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.full-col{height:100%}
+
+.flip-controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:99999;align-items:center}
+.flip-btn{font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 24px;border:.5px solid var(--maroon);background:var(--white);color:var(--maroon);cursor:none;transition:background .2s,color .2s}
+.flip-btn:hover{background:var(--maroon);color:var(--white)}
+.flip-btn:disabled{opacity:.28;pointer-events:none}
+.page-counter{font-family:'Cinzel',serif;font-size:9px;color:var(--text-muted);letter-spacing:3px;padding:0 14px}
 
 /* COVER */
-.cover{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;padding-top:56px}
-.cover-left{background:#050505;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:32px 22px;overflow:hidden}
-.cl-gold-top{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),var(--maroon),var(--gold),transparent)}
-.cl-big{font-family:'Cinzel';font-size:80px;color:rgba(201,168,76,.06);position:absolute;bottom:6px;right:-4px;line-height:1;letter-spacing:-2px;font-weight:700}
-.cl-issue{font-size:7px;color:rgba(201,168,76,.4);letter-spacing:4px;text-transform:uppercase}
-.cl-mid{flex:1;display:flex;flex-direction:column;justify-content:center}
-.cl-bh{font-family:'Cinzel';font-size:60px;letter-spacing:6px;color:var(--cream);line-height:.9}
-.cl-bh span{color:var(--gold)}
-.cl-rule{width:44px;height:.5px;background:var(--gold);margin:16px 0}
-.cl-hl{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(240,232,216,.7);font-style:italic;line-height:1.4;margin-bottom:10px}
-.cl-deck{font-size:9px;color:var(--muted);line-height:1.8}
-.cl-ft{font-size:7px;color:rgba(58,48,32,.7);letter-spacing:3px;text-transform:uppercase}
+.cover-left-panel{background:var(--white);padding:44px 36px;display:flex;flex-direction:column;justify-content:space-between;border-right:.5px solid var(--dim);position:relative;overflow:visible}
+.cover-top-bar{position:absolute;top:0;left:0;right:0;height:2.5px;background:linear-gradient(90deg,transparent,var(--gold),var(--maroon),var(--gold),transparent)}
+.cover-right-panel{background:var(--white);padding:44px 32px;display:flex;flex-direction:column}
+.cover-logo{font-family:'Cinzel',serif;font-size:clamp(52px,6vw,78px);color:var(--black);line-height:1;letter-spacing:4px;display:block}
+.cover-logo span{color:var(--gold)}
+.cover-tagline{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--maroon);font-style:italic;line-height:1.5;margin:14px 0 8px}
+.cover-rule{width:44px;height:.5px;background:var(--gold);margin:8px 0}
+.cover-deck{font-family:'Outfit',sans-serif;font-size:9px;color:var(--text-muted);line-height:1.9}
+.cover-issue-tag{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:4px;text-transform:uppercase}
+.cover-sub{font-family:'Big Shoulders Display',sans-serif;font-size:12px;color:var(--text-muted);letter-spacing:5px;text-transform:uppercase;padding-top:18px;border-top:.5px solid var(--dim)}
 
-.cover-right{background:#06060a;padding:32px 22px;display:flex;flex-direction:column}
-.cr-ol{font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:8px;border-bottom:.5px solid var(--dim);margin-bottom:16px}
-.cr-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:.5px solid rgba(58,48,32,.5)}
-.cr-cat{font-size:7px;color:var(--gold);letter-spacing:2px;margin-bottom:4px}
-.cr-title{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--cream)}
-.cr-pg{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(201,168,76,.3)}
-.cr-end{margin-top:auto;padding-top:14px;border-top:.5px solid var(--dim);font-size:8px;color:rgba(58,48,32,.5);text-align:center;letter-spacing:2px}
+.contents-label{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:10px;border-bottom:.5px solid var(--dim);margin-bottom:16px}
+.contents-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:.5px solid rgba(224,216,208,.5)}
+.cr-cat{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:2px;margin-bottom:3px;text-transform:uppercase}
+.cr-title{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--black)}
+.cr-pg{font-family:'Cormorant Garamond',serif;font-size:17px;color:rgba(201,168,76,.35)}
 
-/* INNER SPREADS */
-.spread{display:grid;grid-template-columns:1fr 1fr;min-height:70vh}
-.page-dark{background:#06060a;padding:32px 22px;display:flex;flex-direction:column;gap:12px;position:relative}
-.pg-num{position:absolute;bottom:12px;right:16px;font-size:7px;color:rgba(58,48,32,.65);letter-spacing:2px}
-.pg-num-l{position:absolute;bottom:12px;left:16px;font-size:7px;color:rgba(58,48,32,.65);letter-spacing:2px}
-.pg-cat{font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:8px;border-bottom:.5px solid var(--dim)}
-.pg-title-large{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--cream);font-weight:300;line-height:1.2}
-.pg-rule-sm{width:26px;height:.5px;background:var(--maroon);margin:4px 0}
-.pg-body-sm{font-size:9px;color:var(--muted);line-height:1.9;flex:1}
-.pg-pull{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold);font-style:italic;border-left:1.5px solid var(--maroon);padding-left:10px;line-height:1.5;margin:6px 0}
-.pg-blockquote{background:rgba(92,10,20,.2);border-left:2px solid var(--maroon);padding:8px 12px;margin:8px 0;font-size:9px;color:rgba(201,168,76,.65);font-style:italic;line-height:1.6}
+/* INNER PAGES */
+.page-pad{padding:34px 36px;display:flex;flex-direction:column;gap:12px;height:100%;position:relative}
+.pg-cat{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;padding-bottom:8px;border-bottom:.5px solid var(--dim)}
+.pg-heading{font-family:'Cinzel',serif;font-size:19px;color:var(--black);line-height:1.2;font-weight:600}
+/* subheadings use Big Shoulders, NOT Cinzel */
+.pg-sub{font-family:'Big Shoulders Display',sans-serif;font-size:13px;color:var(--maroon);letter-spacing:2px;text-transform:uppercase;margin-top:1px}
+.pg-tagline{font-family:'Cormorant Garamond',serif;font-size:13.5px;color:var(--text-muted);font-style:italic;line-height:1.6}
+.pg-rule{width:28px;height:.5px;background:var(--maroon);margin:2px 0}
+.pg-body{font-family:'Outfit',sans-serif;font-size:9.5px;color:var(--text-soft);line-height:1.95;flex:1}
+.pg-pull{font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--maroon);font-style:italic;border-left:2px solid var(--pink-deep);background:var(--pink-bg);padding:8px 12px;line-height:1.5;margin:8px 0}
+.pg-blockquote{background:rgba(107,15,26,0.06);border-left:2px solid var(--maroon);padding:8px 12px;margin:8px 0;font-family:'Outfit',sans-serif;font-size:9px;color:var(--maroon);font-style:italic;line-height:1.7}
+.pg-num{position:absolute;bottom:58px;right:18px;font-family:'Outfit',sans-serif;font-size:7px;color:rgba(107,15,26,.35);letter-spacing:2px}
+.pg-num-l{position:absolute;bottom:58px;left:18px;font-family:'Outfit',sans-serif;font-size:7px;color:rgba(107,15,26,.35);letter-spacing:2px}
 
-.page-maroon{background:var(--maroon);padding:32px 22px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.pm-big{font-family:'Cinzel';font-size:88px;color:rgba(0,0,0,.1);position:absolute;bottom:-8px;right:-3px;line-height:1;font-weight:700}
-.pm-cat{font-size:7px;color:rgba(201,168,76,.55);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
-.pm-quote{font-family:'Cormorant Garamond',serif;font-size:22px;color:#fff;font-weight:300;line-height:1.4;font-style:italic;margin-bottom:14px;position:relative;z-index:1}
-.pm-attr{font-size:8px;color:rgba(255,255,255,.3);letter-spacing:2px;position:relative;z-index:1}
+.page-maroon{background:var(--maroon);padding:44px 36px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.pm-cat{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold-muted);letter-spacing:4px;text-transform:uppercase;margin-bottom:18px}
+.pm-quote{font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff;font-weight:300;line-height:1.45;font-style:italic;margin-bottom:14px;position:relative;z-index:1}
+.pm-attr{font-family:'Outfit',sans-serif;font-size:8px;color:rgba(255,255,255,.35);letter-spacing:2px;position:relative;z-index:1}
 
-/* BACK COVER */
-.back-cover{background:#040404;display:flex;flex-direction:column;justify-content:space-between;padding:3rem;border:.5px solid rgba(201,168,76,.07)}
-.bc-mid{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center}
-.bc-logo{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold);letter-spacing:6px;margin-bottom:8px}
-.bc-tag{font-size:7px;color:rgba(122,106,88,.45);letter-spacing:3px;text-transform:uppercase}
-.bc-rule{width:32px;height:.5px;background:var(--gold);margin:18px auto}
-.bc-quote{font-family:'Cormorant Garamond',serif;font-size:12px;color:rgba(240,232,216,.28);font-style:italic;line-height:1.6;padding:0 16px}
-.bc-find{text-align:center;padding:14px 0;border-top:.5px solid var(--dim)}
-.bc-find-lbl{font-size:7px;color:rgba(201,168,76,.3);letter-spacing:3px;text-transform:uppercase;margin-bottom:5px}
-.bc-find-handle{font-size:9px;color:rgba(122,106,88,.5);letter-spacing:2px}
-.bc-copy{text-align:center;font-size:7px;color:rgba(58,48,32,.5);letter-spacing:2px}
+.ps{height:2px;background:linear-gradient(90deg,transparent,var(--pink-mid),var(--pink-deep),var(--pink-mid),transparent);margin:5px 0}
 
-.page-divider{text-align:center;padding:10px;font-size:7px;color:rgba(201,168,76,.25);letter-spacing:3px;font-family:'Cinzel',serif;border-top:.5px solid rgba(58,48,32,.5);border-bottom:.5px solid rgba(58,48,32,.5)}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+.product-card{border:.5px solid var(--dim);padding:12px;background:var(--white);position:relative}
+.product-accent{position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,var(--pink-mid),var(--gold),var(--maroon))}
+.product-img{width:100%;height:60px;background:linear-gradient(135deg,rgba(249,198,208,.3),rgba(201,168,76,.1));display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.product-img-lbl{font-family:'Cinzel',serif;font-size:22px;color:rgba(107,15,26,.14);font-weight:700}
+.product-tag{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.product-name{font-family:'Big Shoulders Display',sans-serif;font-size:13px;color:var(--black);margin-bottom:4px;letter-spacing:1px}
+.product-desc{font-family:'Outfit',sans-serif;font-size:8.5px;color:var(--text-muted);line-height:1.7}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--maroon);margin-top:5px;font-style:italic}
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:768px){.cover,.spread{grid-template-columns:1fr}nav{padding:14px 20px}}
+.qna-item{border-bottom:.5px solid var(--dim);padding:11px 0}
+.q-label{font-family:'Outfit',sans-serif;font-size:7px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:3px}
+.q-text{font-family:'Big Shoulders Display',sans-serif;font-size:11px;color:var(--black);margin-bottom:7px;letter-spacing:.5px}
+.a-text{font-family:'Outfit',sans-serif;font-size:9px;color:var(--text-soft);line-height:1.85}
+
+.author-card{border:.5px solid var(--dim);padding:14px;background:var(--white);display:flex;gap:12px;align-items:flex-start}
+.author-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--pink-mid),var(--maroon));display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:13px;color:#fff;flex-shrink:0}
+.author-name{font-family:'Big Shoulders Display',sans-serif;font-size:12px;color:var(--black);margin-bottom:2px;letter-spacing:1px}
+.author-role{font-family:'Outfit',sans-serif;font-size:7.5px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.author-bio{font-family:'Outfit',sans-serif;font-size:8.5px;color:var(--text-muted);line-height:1.7}
+
+.credits-table{width:100%;border-collapse:collapse;margin-top:6px}
+.credits-table td{font-family:'Outfit',sans-serif;font-size:8.5px;padding:6px 0;border-bottom:.5px solid var(--dim);color:var(--text-soft)}
+.credits-table td:first-child{color:var(--gold);letter-spacing:1px;font-size:7.5px;text-transform:uppercase;width:42%}
+
+.story-initial{font-family:'Cinzel',serif;font-size:36px;color:var(--maroon);float:left;line-height:.85;margin-right:5px;margin-top:4px}
+.story-body{font-family:'Outfit',sans-serif;font-size:9.5px;color:var(--text-soft);line-height:2;text-align:justify}
+
+.hi-item{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:.5px solid rgba(249,198,208,.5)}
+.hi-num{font-family:'Cinzel',serif;font-size:17px;color:rgba(201,168,76,.22);line-height:1;flex-shrink:0;width:22px}
+.hi-title{font-family:'Big Shoulders Display',sans-serif;font-size:11px;color:var(--black);margin-bottom:3px;letter-spacing:.5px}
+.hi-desc{font-family:'Outfit',sans-serif;font-size:8.5px;color:var(--text-muted);line-height:1.6}
+
+.back-cover-page{background:var(--black);display:flex;flex-direction:column;justify-content:space-between;padding:48px 40px;height:100%;position:relative;overflow:hidden}
+.bc-wm{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cinzel',serif;font-size:clamp(50px,10vw,110px);color:rgba(201,168,76,0.04);font-weight:700;letter-spacing:14px;white-space:nowrap;pointer-events:none;user-select:none}
+
+.mx{display:inline-block;transition:transform .15s ease}
+.mx:hover{transform:scale(1.055)}
+
+@media(max-width:700px){.two-col{grid-template-columns:1fr}.nav-bar{padding:11px 14px}.page-pad{padding:20px 16px}.cover-left-panel,.cover-right-panel{padding:24px 18px}.cover-logo{font-size:42px}}
 </style>
 </head>
 <body>
-<nav>
-  <a href="magazines.html" class="nav-logo">Black Haven</a>
-  <a href="magazines.html" class="nav-back">&#8592; Back</a>
-</nav>
+<div class="custom-cursor" id="cursor"></div>
+<div class="magazine" id="mag">
 
-<div class="cover reveal">
-  <div class="cover-left">
-    <div class="cl-gold-top"></div>
-    <div class="cl-issue">Issue 01 &nbsp;·&nbsp; Spring 2025</div>
-    <div class="cl-mid">
-      <div class="cl-bh">BH<span>.</span></div>
-      <div class="cl-rule"></div>
-      <div class="cl-hl">Why black is not absence — it is presence</div>
-      <div class="cl-deck">Modest fashion, identity, and the quiet power of intentional dressing.</div>
+<!-- PAGE 1 — COVER -->
+<div class="page active" id="p0">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Issue 01 · Spring 2025</span></div>
+  <div class="page-content two-col" style="position:relative">
+    <div class="glitter-layer" id="gl0"></div>
+    <div class="wm">BLACK HAVEN</div>
+    <div class="cover-left-panel">
+      <div class="cover-top-bar"></div>
+      <div><span class="cover-issue-tag mx">Issue 01 &nbsp;·&nbsp; Spring 2025</span></div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:20px 0">
+        <div class="cover-logo mx">BH<span>.</span></div>
+        <div class="cover-rule"></div>
+        <div class="cover-tagline mx">"Where cloth becomes conviction."</div>
+        <div class="cover-deck mx">Modest fashion, identity, and the quiet power of intentional dressing.</div>
+        <div class="ps" style="margin-top:16px"></div>
+      </div>
+      <div class="cover-sub mx">The Black Haven Journal</div>
     </div>
-    <div class="cl-big">BH.</div>
-    <div class="cl-ft">The Black Haven Journal</div>
-  </div>
-  <div class="cover-right">
-    <div class="cr-ol">Contents — Issue 01</div>
-    <div class="cr-row"><div><div class="cr-cat">COVER</div><div class="cr-title">On wearing black like a language</div></div><div class="cr-pg">03</div></div>
-    <div class="cr-row"><div><div class="cr-cat">ESSAY</div><div class="cr-title">Modesty is not a limit — it is a lens</div></div><div class="cr-pg">06</div></div>
-    <div class="cr-row"><div><div class="cr-cat">FEATURE</div><div class="cr-title">The woman behind the abaya</div></div><div class="cr-pg">10</div></div>
-    <div class="cr-row"><div><div class="cr-cat">EDITORIAL</div><div class="cr-title">Spring 2025 lookbook</div></div><div class="cr-pg">14</div></div>
-    <div class="cr-end">Black Haven &nbsp;·&nbsp; The Journal &nbsp;·&nbsp; 2025</div>
+    <div class="cover-right-panel">
+      <div class="contents-label">Contents — Issue 01</div>
+      <div class="contents-row"><div><div class="cr-cat">Objective</div><div class="cr-title mx">Why Black Haven exists</div></div><div class="cr-pg">02</div></div>
+      <div class="contents-row"><div><div class="cr-cat">Highlights</div><div class="cr-title mx">Five things this issue</div></div><div class="cr-pg">03</div></div>
+      <div class="contents-row"><div><div class="cr-cat">Essay</div><div class="cr-title mx">Modesty is not a limit — it is a lens</div></div><div class="cr-pg">04</div></div>
+      <div class="contents-row"><div><div class="cr-cat">Products</div><div class="cr-title mx">Spring 2025 collection</div></div><div class="cr-pg">06</div></div>
+      <div class="contents-row"><div><div class="cr-cat">Story</div><div class="cr-title mx">The woman behind the abaya</div></div><div class="cr-pg">08</div></div>
+      <div class="contents-row"><div><div class="cr-cat">Q&amp;A</div><div class="cr-title mx">In conversation with our founder</div></div><div class="cr-pg">10</div></div>
+      <div class="contents-row"><div><div class="cr-cat">Authors &amp; Credits</div><div class="cr-title mx">The people behind this issue</div></div><div class="cr-pg">12</div></div>
+      <div style="margin-top:auto;padding-top:12px;border-top:.5px solid var(--dim);font-family:'Outfit',sans-serif;font-size:7.5px;color:var(--text-muted);text-align:center;letter-spacing:2px">Black Haven · The Journal · 2025</div>
+    </div>
   </div>
 </div>
 
-<div class="page-divider reveal">Cover &nbsp;—&nbsp; 01</div>
-
-<div class="spread reveal">
-  <div class="page-maroon">
-    <div class="pm-big">BH</div>
-    <div class="pm-cat">Cover Story</div>
-    <div class="pm-quote">"She dressed not to be seen — but to be felt."</div>
-    <div class="pm-attr">— Black Haven Journal, Issue 01</div>
-  </div>
-  <div class="page-dark">
-    <div class="pg-cat">On wearing black like a language</div>
-    <div class="pg-title-large">Why black is not <em style="font-style:italic;color:var(--gold)">absence</em></div>
-    <div class="pg-rule-sm"></div>
-    <div class="pg-body-sm">
-      <p>There is a silence that speaks. In modest fashion, the choice of dark fabric is rarely about erasure. It is about drawing the eye inward.</p>
-      <div class="pg-pull">To wear black, deliberately, every day — is to choose a language that does not shout.</div>
-      <p>Black Haven exists where cloth becomes conviction. Where a garment is not decoration but declaration. Where the woman has decided, once and entirely, who she is.</p>
+<!-- PAGE 2 — OBJECTIVE -->
+<div class="page" id="p1">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Objective — Pg 02</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl1"></div>
+    <div class="page-maroon">
+      <div class="pm-wm">BH.</div>
+      <div class="pm-cat mx">Our Purpose</div>
+      <div class="pm-quote mx">"Black Haven exists for the woman who has always known who she is — and dresses accordingly."</div>
+      <div class="pm-attr mx">— Founding Statement, 2024</div>
+      <div style="margin-top:24px;width:30px;height:.5px;background:rgba(201,168,76,.4)"></div>
+      <div style="font-family:'Outfit',sans-serif;font-size:8.5px;color:rgba(255,255,255,.4);line-height:1.8;margin-top:12px" class="mx">A journal for the modest, the intentional, and the quietly powerful.</div>
     </div>
-    <div class="pg-num">03</div>
-  </div>
-</div>
-
-<div class="page-divider reveal">Essay &nbsp;—&nbsp; 06</div>
-
-<div class="spread reveal">
-  <div class="page-dark">
-    <div class="pg-cat">Essay · Identity</div>
-    <div class="pg-title-large">Modesty is not a limit —</div>
-    <div class="pg-rule-sm"></div>
-    <div class="pg-body-sm">
-      <p>We have inherited a strange idea: that covering is concealing. That the woman who chooses a longer hem is somehow less.</p>
-      <div class="pg-pull">What if the opposite were true?</div>
-      <p>Modest fashion, at its best, is proactive. It is a woman saying: this is my body, this is my faith, this is my aesthetic — and they are not in conflict.</p>
+    <div class="page-pad">
+      <div class="wm">BLACK HAVEN</div>
+      <div class="pg-cat mx">Objective</div>
+      <div class="pg-heading mx">Why Black Haven Exists</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"A space where fashion meets faith, identity, and intention."</div>
+      <div class="ps"></div>
+      <div class="pg-body mx">
+        <p>Black Haven was born from a gap — not in the market, but in the conversation. For too long, modest fashion was treated as an afterthought: functional but not beautiful, religious but not refined, covered but not confident.</p><br>
+        <p>This journal exists to correct that.</p><br>
+        <p>We are a platform for women who choose intentional dressing. Who see the abaya not as a restriction but as a canvas. Who find power in presence, not exposure. Black Haven is not a trend. It is a conviction.</p>
+        <div class="pg-pull mx">Every issue is a love letter to the women who dress with purpose.</div>
+        <p>Through essays, editorials, product features and real stories — we document a culture that has always existed, but rarely been celebrated.</p>
+      </div>
+      <div class="pg-num">02</div>
     </div>
-    <div class="pg-num-l">06</div>
-  </div>
-  <div class="page-dark" style="background:#060810">
-    <div style="border-bottom:.5px solid rgba(13,26,58,.8);padding-bottom:10px;margin-bottom:14px;display:flex;justify-content:space-between">
-      <div style="font-family:'Cinzel',serif;font-size:10px;color:rgba(201,168,76,.38);letter-spacing:3px">Black Haven</div>
-      <div style="font-size:7px;color:rgba(201,168,76,.22);letter-spacing:2px">Issue 01</div>
-    </div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(240,232,216,.85);margin-bottom:10px;font-weight:300">It is a lens.</div>
-    <div class="pg-body-sm">
-      <p>The woman who wears an abaya is not absent from the room. She is present in a way that most people never learn to be.</p>
-      <div class="pg-blockquote">"Modesty is about what you choose to carry — and what you leave behind."</div>
-      <p>This is what Black Haven is built around. Not a uniform. A vocabulary.</p>
-    </div>
-    <div class="pg-num">07</div>
   </div>
 </div>
 
-<div class="page-divider reveal">Feature &nbsp;—&nbsp; 10</div>
+<!-- PAGE 3 — HIGHLIGHTS -->
+<div class="page" id="p2">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Highlights — Pg 03</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl2"></div>
+    <div class="page-pad" style="background:rgba(249,198,208,.1);border-right:.5px solid rgba(249,198,208,.5)">
+      <div class="wm">BH.</div>
+      <div class="pg-cat mx">This Issue</div>
+      <div class="pg-heading mx">Five Highlights</div>
+      <div class="pg-rule"></div><div class="ps"></div>
+      <div style="flex:1">
+        <div class="hi-item"><div class="hi-num">01</div><div><div class="hi-title mx">The Language of Black</div><div class="hi-desc mx">Why wearing black intentionally is a radical act of self-definition in a world obsessed with visibility.</div></div></div>
+        <div class="hi-item"><div class="hi-num">02</div><div><div class="hi-title mx">Spring Silhouettes</div><div class="hi-desc mx">Four new abayas that balance structure with softness — each one a quiet statement.</div></div></div>
+        <div class="hi-item"><div class="hi-num">03</div><div><div class="hi-title mx">Noor's Story</div><div class="hi-desc mx">A seamstress who turned a childhood memory into a design language worn across three continents.</div></div></div>
+        <div class="hi-item"><div class="hi-num">04</div><div><div class="hi-title mx">Founder Speaks</div><div class="hi-desc mx">An unfiltered conversation about identity, business, and what modesty means in 2025.</div></div></div>
+        <div class="hi-item" style="border-bottom:none"><div class="hi-num">05</div><div><div class="hi-title mx">The Craft Behind the Cloth</div><div class="hi-desc mx">Meet the artisans stitching meaning into every seam of Black Haven's spring line.</div></div></div>
+      </div>
+      <div class="pg-num-l">03</div>
+    </div>
+    <div class="page-pad">
+      <div class="pg-cat mx">Editor's Note</div>
+      <div class="pg-heading mx" style="font-size:16px">A Letter from the Editor</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"This issue is for every woman who has ever been told she dresses too quietly."</div>
+      <div class="ps"></div>
+      <div class="pg-body mx">
+        <p>When we launched Black Haven, we were asked: who is this for? The answer was always simple. It is for the woman standing in her wardrobe at 7am, choosing with intention. For the girl who was told her covering was a problem. For the designer who embroidered prayers into hems.</p><br>
+        <p>This first issue is a beginning. We do not claim to have all the answers — but we ask the questions no one else seems to want to ask.</p>
+        <div class="pg-blockquote mx">"Quiet does not mean absent. Covered does not mean hidden. Black does not mean invisible."</div>
+        <p>Welcome to Black Haven. We are glad you are here.</p><br>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--maroon);font-style:italic" class="mx">— Layla Rahim, Editor-in-Chief</div>
+      </div>
+      <div class="pg-num">03</div>
+    </div>
+  </div>
+</div>
 
-<div class="spread reveal">
-  <div class="page-dark">
-    <div class="pg-cat">Feature · Spring Collection</div>
-    <div class="pg-title-large"><em style="font-style:italic;color:var(--gold)">The Garment</em> as gesture</div>
-    <div class="pg-rule-sm"></div>
-    <div class="pg-body-sm">
-      <p>Fabric carries memory. Every abaya is a quiet manifesto — a decision made before leaving the door.</p>
-      <div class="pg-pull">She is defined not by what she covers, but by what she chooses to say with it.</div>
-      <p>This spring, Black Haven introduces four silhouettes. Each one rooted in function, each elevated by detail.</p>
+<!-- PAGE 4 — ESSAY -->
+<div class="page" id="p3">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Essay — Pg 04</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl3"></div>
+    <div class="page-maroon">
+      <div class="pm-wm">ESSAY</div>
+      <div class="pm-cat mx">Cover Essay</div>
+      <div class="pm-quote mx">"She dressed not to be seen — but to be felt."</div>
+      <div class="pm-attr mx">— Black Haven Journal, Issue 01</div>
+      <div style="margin-top:20px"><div class="ps"></div><div style="font-family:'Outfit',sans-serif;font-size:8px;color:rgba(249,198,208,.5);line-height:1.8;margin-top:10px" class="mx">There is a silence that speaks. In modest fashion, the choice of dark fabric is rarely about erasure — it is about drawing the eye inward.</div></div>
     </div>
-    <div class="pg-num-l">10</div>
+    <div class="page-pad">
+      <div class="wm">BLACK HAVEN</div>
+      <div class="pg-cat mx">Essay · Identity</div>
+      <div class="pg-heading mx">Modesty Is Not a Limit —</div>
+      <div class="pg-sub mx">It Is a Lens</div>
+      <div class="pg-rule"></div>
+      <div class="pg-body mx">
+        <p>We have inherited a strange idea: that covering is concealing. That the woman who chooses a longer hem is somehow less. Less visible. Less ambitious. Less free.</p>
+        <div class="pg-pull mx">What if the opposite were true?</div>
+        <p>Modest fashion, at its best, is proactive. It is a woman saying: this is my body, this is my faith, this is my aesthetic — and they are not in conflict. The abaya is not a restriction. It is a declaration.</p><br>
+        <p>When we speak of modesty in fashion, we are not speaking of shame. We are speaking of sovereignty. The choice to be seen on your own terms — no more, no less.</p>
+        <div class="pg-blockquote mx">"Modesty is about what you choose to carry — and what you leave behind."</div>
+        <p>Black Haven is built around this idea. Not a uniform. A vocabulary.</p>
+      </div>
+      <div class="pg-num">04</div>
+    </div>
   </div>
-  <div class="back-cover">
-    <div class="bc-mid">
-      <div class="bc-logo">BLACK HAVEN</div>
-      <div class="bc-tag">Modest · Refined · Intentional</div>
-      <div class="bc-rule"></div>
-      <div class="bc-quote">"Designed for the woman who does not need to be loud to be heard."</div>
+</div>
+
+<!-- PAGE 5 — ESSAY CONT -->
+<div class="page" id="p4">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Essay — Pg 05</span></div>
+  <div class="page-content two-col">
+    <div class="page-pad" style="border-right:.5px solid var(--dim)">
+      <div class="wm">BH.</div>
+      <div class="pg-cat mx">Essay · Continued</div>
+      <div class="pg-heading mx" style="font-size:17px">On Wearing Black Like a Language</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"To wear black deliberately, every day, is to choose a language that does not shout."</div>
+      <div class="ps"></div>
+      <div class="pg-body mx">
+        <p>Black Haven exists at the intersection of cloth and conviction. Every fabric choice is a philosophy. Every silhouette is a sentence.</p>
+        <div class="pg-pull mx">The garment is not decoration. It is declaration.</div>
+        <p>This spring, we explored four new silhouettes — each rooted in function, each elevated by detail. The open-front Rania. The structured Safa. The draped Malak. The minimal Huda. Four garments. Four languages of self.</p><br>
+        <p>We asked each designer: what does your work say? None of them said 'covered'. They said: strong. Soft. Rooted. Present.</p>
+      </div>
+      <div class="pg-num-l">05</div>
     </div>
-    <div class="bc-find">
-      <div class="bc-find-lbl">Find us</div>
-      <div class="bc-find-handle">@blackhaven.official</div>
+    <div class="page-pad" style="background:rgba(249,198,208,.07)">
+      <div class="pg-cat mx">On Identity</div>
+      <div class="pg-heading mx" style="font-size:17px">The Politics of Presence</div>
+      <div class="pg-rule"></div>
+      <div class="pg-body mx">
+        <p>There is a growing movement — quiet, persistent — of women reclaiming modest dressing not as obligation, but as identity. They are designers, mothers, architects, writers. They dress in layers not because they must, but because it reflects a layered inner life.</p><br>
+        <p>The political act is not removing the veil. Sometimes, it is keeping it. In a world that rewards exposure, choosing coverage is its own form of protest.</p>
+        <div class="pg-blockquote mx">"I do not dress for the room. I dress for myself. The room just gets to witness it."<br><span style="font-style:normal;color:var(--text-muted)">— Noor Al-Rashidi, designer</span></div>
+        <p>Black Haven is not here to preach. We are here to document. To celebrate. To give language to what so many women already feel.</p>
+      </div>
+      <div class="pg-num">05</div>
     </div>
-    <div class="bc-copy">Black Haven &nbsp;·&nbsp; The Journal &nbsp;·&nbsp; Issue 01 &nbsp;·&nbsp; 2025</div>
   </div>
+</div>
+
+<!-- PAGE 6 — PRODUCTS -->
+<div class="page" id="p5">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Products — Pg 06</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl5"></div>
+    <div class="page-pad" style="border-right:.5px solid var(--dim)">
+      <div class="wm">BH.</div>
+      <div class="pg-cat mx">Spring Collection 2025</div>
+      <div class="pg-heading mx">Four Silhouettes</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"Each one rooted in function, each elevated by detail."</div>
+      <div class="ps"></div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-accent"></div><div class="product-img"><span class="product-img-lbl">R</span></div><div class="product-tag">Open Front</div><div class="product-name mx">The Rania</div><div class="product-desc mx">Flowing open-front silhouette in midnight crepe. Minimal embroidery at cuff.</div><div class="product-price mx">SAR 480</div></div>
+        <div class="product-card"><div class="product-accent"></div><div class="product-img"><span class="product-img-lbl">S</span></div><div class="product-tag">Structured</div><div class="product-name mx">The Safa</div><div class="product-desc mx">Tailored structure with a maroon inner lining. Power dressing, quietly.</div><div class="product-price mx">SAR 560</div></div>
+      </div>
+      <div class="pg-num-l">06</div>
+    </div>
+    <div class="page-pad">
+      <div class="pg-cat mx">Spring Collection 2025</div>
+      <div class="pg-heading mx">Continued</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"Where every seam is a sentence."</div>
+      <div class="ps"></div>
+      <div class="product-grid">
+        <div class="product-card"><div class="product-accent"></div><div class="product-img"><span class="product-img-lbl">M</span></div><div class="product-tag">Draped</div><div class="product-name mx">The Malak</div><div class="product-desc mx">Soft draped layers in ivory and blush. Embellished shoulder detail.</div><div class="product-price mx">SAR 620</div></div>
+        <div class="product-card"><div class="product-accent"></div><div class="product-img"><span class="product-img-lbl">H</span></div><div class="product-tag">Minimal</div><div class="product-name mx">The Huda</div><div class="product-desc mx">Clean lines in black wool-blend. The everyday abaya, perfected.</div><div class="product-price mx">SAR 390</div></div>
+      </div>
+      <div style="margin-top:auto;border-top:.5px solid var(--dim);padding-top:8px"><div style="font-family:'Outfit',sans-serif;font-size:8px;color:var(--text-muted)" class="mx">Available at blackhaven.store · Free shipping on orders above SAR 300</div></div>
+      <div class="pg-num">07</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 7 — STORY -->
+<div class="page" id="p6">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Story — Pg 08</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl6"></div>
+    <div class="page-maroon">
+      <div class="pm-wm">NOOR</div>
+      <div class="pm-cat mx">Feature Story</div>
+      <div class="pm-quote mx">"My grandmother's needle. My mother's patience. My hands. That is the whole story."</div>
+      <div class="pm-attr mx">— Noor Al-Rashidi</div>
+      <div style="margin-top:18px;font-family:'Outfit',sans-serif;font-size:8px;color:rgba(249,198,208,.5);line-height:1.8" class="mx">Born in Jeddah. Trained in Istanbul. Now dressing women across three continents — one abaya at a time.</div>
+      <div class="ps" style="margin-top:14px"></div>
+    </div>
+    <div class="page-pad">
+      <div class="wm">BLACK HAVEN</div>
+      <div class="pg-cat mx">Story · Craft</div>
+      <div class="pg-heading mx">The Woman Behind the Abaya</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"She is defined not by what she covers, but by what she chooses to say with it."</div>
+      <div class="ps"></div>
+      <div class="story-body mx">
+        <span class="story-initial">N</span>oor Al-Rashidi learned to sew by watching her grandmother repair abayas in a courtyard in Jeddah. There was no fashion school in the story then — just fabric, thread, and an old woman who treated every torn seam as a wound that needed care.<br><br>
+        "She never threw anything away," Noor says. "She believed every garment had already been worn by the woman who needed it most."
+        <div class="pg-pull mx">Fabric carries memory. Every abaya is a quiet manifesto.</div>
+        Today, Noor's studio in Istanbul produces forty pieces a month — each one hand-finished. She does not use the word "modest" to describe her work. "I make clothes for women who are at peace with themselves. The modesty is already there. I just follow it."
+      </div>
+      <div class="pg-num">08</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 8 — STORY CONT -->
+<div class="page" id="p7">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Story — Pg 09</span></div>
+  <div class="page-content two-col">
+    <div class="page-pad" style="background:rgba(249,198,208,.07);border-right:.5px solid rgba(249,198,208,.4)">
+      <div class="wm">BH.</div>
+      <div class="pg-cat mx">Story · Continued</div>
+      <div class="pg-heading mx" style="font-size:16px">The Studio at the Bosphorus</div>
+      <div class="pg-rule"></div>
+      <div class="story-body mx">
+        Noor opened her studio at 27, with three sewing machines and a single client — her own mother. By 30, she had a waitlist of six months. She does not advertise. "The women find me," she says simply.<br><br>
+        Each piece begins with a conversation. Noor asks: how do you want to feel when you walk into a room? Not how do you want to look. Feel.
+        <div class="pg-pull mx">"A garment that does not change how you carry yourself is just cloth. I do not make just cloth."</div>
+        The spring collection for Black Haven is her first editorial collaboration. She agreed on one condition: the photography would show the garments in motion — not pinned and posed, but worn and lived in.
+      </div>
+      <div class="pg-num-l">09</div>
+    </div>
+    <div class="page-pad">
+      <div class="pg-cat mx">Story · Reflections</div>
+      <div class="pg-heading mx" style="font-size:16px">On the Future of Modest Design</div>
+      <div class="pg-rule"></div>
+      <div class="story-body mx">
+        Noor is cautious about the word "trend". Modest fashion has been declared "trending" twice in her career. Both times, the big brands swooped in, released capsule collections, and disappeared when the spotlight moved on.<br><br>
+        "We were never a trend," she says firmly. "We are a culture. And cultures do not need a season to justify them."
+        <div class="pg-blockquote mx">"The women who wear what I make — they were always here. They will always be here. I just make sure they have something beautiful to wear while the world catches up."</div>
+        For Black Haven, Noor's story is not exceptional. It is representative. Behind every fold of fabric in this issue is a woman like her — patient, precise, and entirely unhurried.
+      </div>
+      <div class="pg-num">09</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 9 — Q&A -->
+<div class="page" id="p8">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Q&amp;A — Pg 10</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl8"></div>
+    <div class="page-maroon">
+      <div class="pm-wm">Q&amp;A</div>
+      <div class="pm-cat mx">In Conversation</div>
+      <div class="pm-quote mx">"I did not start a brand. I started a conversation that the fashion industry was refusing to have."</div>
+      <div class="pm-attr mx">— Sara Al-Muzaini, Founder</div>
+      <div style="margin-top:18px;font-family:'Outfit',sans-serif;font-size:8px;color:rgba(249,198,208,.45);line-height:1.8" class="mx">Sara Al-Muzaini, 34. Founder &amp; Creative Director. Former architect. Now building spaces between cloth and identity.</div>
+    </div>
+    <div class="page-pad">
+      <div class="wm">BLACK HAVEN</div>
+      <div class="pg-cat mx">Q&amp;A · Founder</div>
+      <div class="pg-heading mx">Sara Al-Muzaini</div>
+      <div class="pg-rule"></div>
+      <div class="pg-tagline mx">"Modesty, in 2025, is an act of resistance."</div>
+      <div class="ps"></div>
+      <div style="flex:1">
+        <div class="qna-item"><div class="q-label">Question 01</div><div class="q-text mx">Why did you feel the industry needed Black Haven?</div><div class="a-text mx">Because every modest fashion brand I found was either apologetic or invisible. It dressed women as if they were hiding, or tried so hard to be 'mainstream' that it lost what made it meaningful. I wanted neither.</div></div>
+        <div class="qna-item"><div class="q-label">Question 02</div><div class="q-text mx">What does modesty mean to you personally?</div><div class="a-text mx">It means self-authorship. The decision about who gets to see what, and when. That is not restriction — that is sovereignty. My body, my language, my terms.</div></div>
+        <div class="qna-item" style="border-bottom:none"><div class="q-label">Question 03</div><div class="q-text mx">What is next for Black Haven?</div><div class="a-text mx">More issues, more voices, more countries. And eventually, a physical journal worth keeping on your shelf — something worth returning to.</div></div>
+      </div>
+      <div class="pg-num">10</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 10 — Q&A CONT -->
+<div class="page" id="p9">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Q&amp;A — Pg 11</span></div>
+  <div class="page-content two-col">
+    <div class="page-pad" style="background:rgba(249,198,208,.08);border-right:.5px solid rgba(249,198,208,.4)">
+      <div class="wm">BH.</div>
+      <div class="pg-cat mx">Q&amp;A · Continued</div>
+      <div class="pg-heading mx" style="font-size:16px">More from Sara</div>
+      <div class="pg-rule"></div><div class="ps"></div>
+      <div style="flex:1">
+        <div class="qna-item"><div class="q-label">Question 04</div><div class="q-text mx">Who is the Black Haven woman?</div><div class="a-text mx">She is not a demographic. She is an orientation. She is the woman who has decided — about her values, her appearance, her presence. She may be 22 or 55, in Riyadh or London. What unites her is intentionality.</div></div>
+        <div class="qna-item"><div class="q-label">Question 05</div><div class="q-text mx">How do you respond to critics who say modest fashion limits women?</div><div class="a-text mx">I ask them who they think is doing the limiting. The woman choosing her garment, or the culture telling her she is wrong for choosing it? Freedom includes the freedom to cover.</div></div>
+        <div class="qna-item" style="border-bottom:none"><div class="q-label">Question 06</div><div class="q-text mx">What has surprised you most since launching?</div><div class="a-text mx">The letters. Women writing to say they finally feel seen. Not by the clothes — but by the fact that someone chose to write about them with the seriousness they deserved.</div></div>
+      </div>
+      <div class="pg-num-l">11</div>
+    </div>
+    <div class="page-pad">
+      <div class="pg-cat mx">Reader Voice</div>
+      <div class="pg-heading mx" style="font-size:16px">Letters to the Journal</div>
+      <div class="pg-rule"></div>
+      <div class="pg-body mx">
+        <div class="pg-blockquote mx">"For the first time, I picked up a fashion magazine and felt like it was written for me. Not just about me — for me."<br><span style="font-style:normal;color:var(--text-muted)">— Reader, Dubai</span></div><br>
+        <div class="pg-blockquote mx">"Black Haven gave my daughter language for what she already believed. She wore her abaya to school the next day with her head high."<br><span style="font-style:normal;color:var(--text-muted)">— Reader, Manchester</span></div><br>
+        <div class="pg-blockquote mx">"I have read every fashion journal there is. None of them made me feel seen. This one did."<br><span style="font-style:normal;color:var(--text-muted)">— Reader, Jakarta</span></div>
+      </div>
+      <div style="margin-top:auto;border-top:.5px solid var(--dim);padding-top:8px;font-family:'Outfit',sans-serif;font-size:8px;color:var(--text-muted)" class="mx">Submit your letter: journal@blackhaven.store</div>
+      <div class="pg-num">11</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 11 — AUTHORS & CREDITS -->
+<div class="page" id="p10">
+  <div class="nav-bar"><span class="nav-logo">BLACK HAVEN</span><span class="nav-issue">Authors &amp; Credits — Pg 12</span></div>
+  <div class="page-content two-col">
+    <div class="glitter-layer" id="gl10"></div>
+    <div class="page-pad" style="border-right:.5px solid var(--dim)">
+      <div class="wm">BH.</div>
+      <div class="pg-cat mx">Authors</div>
+      <div class="pg-heading mx">The People Behind This Issue</div>
+      <div class="pg-rule"></div><div class="ps"></div>
+      <div style="display:flex;flex-direction:column;gap:10px;flex:1">
+        <div class="author-card"><div class="author-avatar">LR</div><div><div class="author-name mx">Layla Rahim</div><div class="author-role mx">Editor-in-Chief</div><div class="author-bio mx">Cultural critic and essayist. Former contributor to Vogue Arabia and Grazia Middle East. Writes at the intersection of faith, fashion, and feminism.</div></div></div>
+        <div class="author-card"><div class="author-avatar" style="background:linear-gradient(135deg,#c9a84c,#6b0f1a)">NA</div><div><div class="author-name mx">Nadia Aziz</div><div class="author-role mx">Features Editor</div><div class="author-bio mx">Profiles and long-form fashion stories. Based between London and Cairo. She wrote the Noor Al-Rashidi profile in this issue.</div></div></div>
+        <div class="author-card"><div class="author-avatar" style="background:linear-gradient(135deg,#f4a0b5,#c9a84c)">FA</div><div><div class="author-name mx">Fatima Al-Kaabi</div><div class="author-role mx">Art Director</div><div class="author-bio mx">Visual identity and editorial design. Former lead designer at a luxury atelier in Paris. Brings the journal's aesthetic to life.</div></div></div>
+      </div>
+      <div class="pg-num-l">12</div>
+    </div>
+    <div class="page-pad">
+      <div class="pg-cat mx">Credits</div>
+      <div class="pg-heading mx">Issue 01 Credits</div>
+      <div class="pg-rule"></div><div class="ps"></div>
+      <table class="credits-table">
+        <tr><td>Publisher</td><td class="mx">Black Haven Studio</td></tr>
+        <tr><td>Editor-in-Chief</td><td class="mx">Layla Rahim</td></tr>
+        <tr><td>Creative Director</td><td class="mx">Sara Al-Muzaini</td></tr>
+        <tr><td>Art Direction</td><td class="mx">Fatima Al-Kaabi</td></tr>
+        <tr><td>Lead Writer</td><td class="mx">Nadia Aziz</td></tr>
+        <tr><td>Photography</td><td class="mx">Studio Narjis, Istanbul</td></tr>
+        <tr><td>Styling</td><td class="mx">Hana Qureshi</td></tr>
+        <tr><td>Translation</td><td class="mx">Reem Al-Thani</td></tr>
+        <tr><td>Print Partner</td><td class="mx">Maison Press, Dubai</td></tr>
+        <tr><td>Distribution</td><td class="mx">Gulf &amp; UK Regions</td></tr>
+        <tr><td>Published</td><td class="mx">Spring 2025</td></tr>
+      </table>
+      <div style="margin-top:auto;border-top:.5px solid var(--dim);padding-top:8px"><div style="font-family:'Outfit',sans-serif;font-size:7.5px;color:var(--text-muted);line-height:1.7" class="mx">© 2025 Black Haven Studio. All rights reserved. No part of this publication may be reproduced without written permission.</div></div>
+      <div class="pg-num">12</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 12 — BACK COVER -->
+<div class="page" id="p11">
+  <div class="page-content full-col">
+    <div class="glitter-layer" id="gl11"></div>
+    <div class="back-cover-page">
+      <div class="bc-wm">BLACK HAVEN</div>
+      <div style="text-align:center;padding-bottom:18px;border-bottom:.5px solid rgba(201,168,76,.1)">
+        <div style="font-family:'Outfit',sans-serif;font-size:7px;color:rgba(201,168,76,.3);letter-spacing:4px;text-transform:uppercase" class="mx">Issue 01 · Spring 2025</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;z-index:2">
+        <div style="font-family:'Cinzel',serif;font-size:22px;color:var(--gold);letter-spacing:8px;text-align:center;margin-bottom:8px" class="mx">BLACK HAVEN</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;color:rgba(201,168,76,.5);font-style:italic;text-align:center" class="mx">"Dressed with intention. Present with purpose."</div>
+        <div style="width:30px;height:.5px;background:var(--gold);margin:18px auto"></div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:11px;color:rgba(255,255,255,.2);font-style:italic;line-height:1.7;text-align:center;padding:0 20px" class="mx">"Designed for the woman who does not need to be loud to be heard. Who covers not to hide, but to hold — her values, her faith, her quiet certainty of self."</div>
+        <div style="margin:22px auto;display:flex;gap:6px;align-items:center;justify-content:center">
+          <div style="width:4px;height:4px;background:#f4a0b5;border-radius:50%"></div>
+          <div style="width:6px;height:6px;background:#c9a84c;border-radius:50%"></div>
+          <div style="width:4px;height:4px;background:#f4a0b5;border-radius:50%"></div>
+        </div>
+        <div style="font-family:'Big Shoulders Display',sans-serif;font-size:10px;color:rgba(201,168,76,.38);letter-spacing:6px;text-transform:uppercase" class="mx">Modest · Refined · Intentional</div>
+      </div>
+      <div style="text-align:center;padding-top:18px;border-top:.5px solid rgba(201,168,76,.1);font-family:'Outfit',sans-serif;font-size:9px;color:rgba(201,168,76,.3);letter-spacing:2px;position:relative;z-index:2" class="mx">@blackhaven.official &nbsp;·&nbsp; blackhaven.store</div>
+      <div style="text-align:center;font-family:'Outfit',sans-serif;font-size:7px;color:rgba(255,255,255,.12);letter-spacing:2px;margin-top:8px;position:relative;z-index:2">Black Haven · The Journal · Issue 01 · 2025</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /magazine -->
+
+<div class="flip-controls">
+  <button class="flip-btn" id="prevBtn" onclick="flip(-1)" disabled>← Prev</button>
+  <span class="page-counter" id="ctr">1 / 12</span>
+  <button class="flip-btn" id="nextBtn" onclick="flip(1)">Next →</button>
 </div>
 
 <script>
-document.querySelectorAll('.reveal').forEach(el=>{
-  new IntersectionObserver(([e])=>{if(e.isIntersecting){e.target.classList.add('visible')}},{threshold:.06}).observe(el);
+var cur=0,total=12,busy=false;
+var pages=[].slice.call(document.querySelectorAll('.page'));
+
+function flip(dir){
+  if(busy)return;
+  var nxt=cur+dir;
+  if(nxt<0||nxt>=total)return;
+  busy=true;
+  var outAnim=dir>0?'agl':'agr';
+  var inAnim=dir>0?'acr':'acl';
+  var oldPage=pages[cur];
+  var newPage=pages[nxt];
+  // show new page behind
+  newPage.style.display='flex';
+  // animate old page out
+  oldPage.classList.add(outAnim);
+  // animate new page in
+  newPage.classList.add(inAnim);
+  oldPage.addEventListener('animationend',function h1(){
+    oldPage.classList.remove('active',outAnim);
+    oldPage.style.display='';
+    oldPage.removeEventListener('animationend',h1);
+  });
+  newPage.addEventListener('animationend',function h2(){
+    newPage.classList.add('active');
+    newPage.classList.remove(inAnim);
+    newPage.removeEventListener('animationend',h2);
+    busy=false;
+  });
+  cur=nxt;
+  document.getElementById('ctr').textContent=(cur+1)+' / '+total;
+  document.getElementById('prevBtn').disabled=(cur===0);
+  document.getElementById('nextBtn').disabled=(cur===total-1);
+}
+
+// cursor
+var crs=document.getElementById('cursor');
+document.addEventListener('mousemove',function(e){
+  crs.style.left=e.clientX+'px';
+  crs.style.top=e.clientY+'px';
 });
+document.addEventListener('mouseover',function(e){
+  var t=e.target;
+  if(t.classList.contains('mx')||t.closest('.mx')){crs.classList.add('grow');}
+  else{crs.classList.remove('grow');}
+});
+
+// touch swipe
+var tx=0;
+document.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+document.addEventListener('touchend',function(e){
+  var d=tx-e.changedTouches[0].clientX;
+  if(Math.abs(d)>50)flip(d>0?1:-1);
+});
+
+// glitter
+function mkG(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var c=['#c9a84c','#f9c6d0','#e8829a','rgba(201,168,76,0.7)','#f4a0b5','#fffdf5'];
+  for(var i=0;i<16;i++){
+    var d=document.createElement('div');
+    d.className='g';
+    var s=(Math.random()*3+1.5).toFixed(1);
+    var dur=(2+Math.random()*3).toFixed(2);
+    var del=(-Math.random()*3).toFixed(2);
+    var op=(0.35+Math.random()*0.55).toFixed(2);
+    var col=c[Math.floor(Math.random()*c.length)];
+    d.style.cssText='width:'+s+'px;height:'+s+'px;background:'+col+';left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*100).toFixed(1)+'%;animation-duration:'+dur+'s;animation-delay:'+del+'s;opacity:'+op;
+    el.appendChild(d);
+  }
+}
+['gl0','gl1','gl2','gl3','gl5','gl6','gl8','gl10','gl11'].forEach(mkG);
 </script>
 </body>
 </html>
