@@ -41,9 +41,10 @@
     body::after{content:'';position:fixed;bottom:10%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(13,27,62,0.05) 0%,transparent 70%);pointer-events:none;z-index:0;}
     ::selection{background:var(--baby-pink-mid);color:var(--deep-blue);}
 
-    .custom-cursor{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,background 0.2s;box-shadow:0 0 12px rgba(227,181,77,0.6);}
-    .custom-cursor.hover{width:14px;height:14px;background:var(--baby-pink-deep);}
-    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}
+    .custom-cursor{position:fixed;width:8px;height:8px;background:#e3b54d;border-radius:50%;pointer-events:none;z-index:9999;opacity:0;transform:translate(-50%,-50%);transition:opacity 0.3s,width 0.2s,height 0.2s,background-color 0.2s;box-shadow:0 0 12px rgba(227,181,77,0.6),0 0 24px rgba(227,181,77,0.3);}
+    .custom-cursor.active{opacity:1;}
+    .custom-cursor.hovering{width:16px;height:16px;background:#f4c6cf;}
+    @media(hover:none)and(pointer:coarse){body{cursor:auto;}.custom-cursor{display:none;}}}
     .magnify{display:inline-block;transition:transform .25s cubic-bezier(.34,1.56,.64,1),color .25s;}
     .magnify:hover{transform:scale(1.07);color:var(--gold);}
 
@@ -257,17 +258,24 @@
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    const dot = document.getElementById('bh-cursor');
-    let mx = 0, my = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    (function loop() { dot.style.left = mx + 'px'; dot.style.top = my + 'px'; requestAnimationFrame(loop); })();
-    document.querySelectorAll('a, button, .topic-card, .research-card').forEach(el => {
-      el.addEventListener('mouseenter', () => dot.classList.add('hover'));
-      el.addEventListener('mouseleave', () => dot.classList.remove('hover'));
+        const _cur=document.getElementById('bh-cursor');
+    let _mx=0,_my=0,_dx=0,_dy=0;
+    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cur.classList.add('active');});
+    document.addEventListener('mouseleave',()=>_cur.classList.remove('active'));
+    (function _ca(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cur.style.left=_dx+'px';_cur.style.top=_dy+'px';requestAnimationFrame(_ca);})();
+    document.querySelectorAll('a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>_cur.classList.add('hovering'));
+      el.addEventListener('mouseleave',()=>_cur.classList.remove('hovering'));
     });
-    const mts = document.querySelectorAll('.magnify, nav a, .page-title, .logo-text');
-    document.addEventListener('mousemove', e => {
-      mts.forEach(el => {
-        const r = el.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-        const d = Math.hypot(e.clientX - cx, e.clientY - cy);
-        if (d < 120) { el.style.transform = `scale(${1 + (1 -
+        const _mts=document.querySelectorAll('.magnify-target,nav a,.page-title,.logo-text');
+    document.addEventListener('mousemove',e=>{
+      _mts.forEach(el=>{
+        const r=el.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+        const d=Math.hypot(e.clientX-cx,e.clientY-cy);
+        if(d<120){el.style.transform=`scale(${1+(1-d/120)*0.08})`;el.style.transformOrigin='center';}
+        else el.style.transform='scale(1)';
+      });
+    });
+  </script>
+</body>
+</html>
