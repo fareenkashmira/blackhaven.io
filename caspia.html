@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASPIA — Fine Persian Cuisine</title>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fffdf5;
+    --gold-light: #fef3c7;
+    --gold: #f5c842;
+    --gold-deep: #d4a017;
+    --gold-muted: #e8d48b;
+    --parchment: #fdf8e8;
+    --red: #c0392b;
+    --green: #2d6a4f;
+    --charcoal: #1a1a1a;
+    --warm-gray: #5a5445;
+    --border: rgba(212, 160, 23, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Playfair Display', Georgia, serif;
+    min-height: 100vh;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: linear-gradient(160deg, #fffdf5 60%, #fef3c7 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 24px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 180px;
+    background: radial-gradient(ellipse, rgba(245,200,66,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 6px;
+  }
+
+  .logo-img {
+    width: 72px;
+    height: 72px;
+    background: transparent;
+    border: 1.5px dashed var(--gold-deep);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: var(--gold-deep);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+  }
+
+  .brand-name {
+    font-family: 'Cinzel', 'Copperplate Gothic', 'Copperplate', fantasy;
+    font-size: clamp(38px, 8vw, 62px);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--charcoal);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .brand-tagline {
+    font-family: 'Allura', cursive;
+    font-size: clamp(20px, 4vw, 28px);
+    color: var(--gold-deep);
+    margin-bottom: 16px;
+    letter-spacing: 0.04em;
+  }
+
+  .header-contacts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .contact-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--warm-gray);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 30px;
+    background: rgba(255,253,245,0.8);
+    transition: all 0.2s ease;
+  }
+
+  .contact-pill:hover {
+    border-color: var(--gold-deep);
+    color: var(--charcoal);
+    background: var(--gold-light);
+  }
+
+  .contact-pill svg { flex-shrink: 0; }
+
+  /* ─── CATEGORY NAV ─── */
+  nav.cat-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255,253,245,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav.cat-nav::-webkit-scrollbar { display: none; }
+
+  .cat-list {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+    white-space: nowrap;
+    padding: 10px 0;
+    justify-content: center;
+  }
+
+  .cat-list li a {
+    display: block;
+    font-family: 'Cinzel', 'Copperplate Gothic', fantasy;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .cat-list li a:hover,
+  .cat-list li a.active {
+    color: var(--charcoal);
+    background: var(--gold-light);
+    border-color: var(--gold-muted);
+  }
+
+  /* ─── MAIN CONTENT ─── */
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 40px 20px 120px;
+  }
+
+  /* ─── SECTION ─── */
+  .menu-section {
+    margin-bottom: 52px;
+    scroll-margin-top: 68px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold-muted), transparent);
+  }
+  .section-line.right {
+    background: linear-gradient(to left, var(--gold-muted), transparent);
+  }
+
+  .section-title {
+    font-family: 'Cinzel', 'Copperplate Gothic', 'Copperplate', fantasy;
+    font-size: clamp(13px, 2.5vw, 16px);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    white-space: nowrap;
+  }
+
+  /* ─── ITEM GRID ─── */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .menu-item {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    overflow: hidden;
+  }
+
+  .menu-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold-deep);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .menu-item:hover {
+    border-color: var(--gold-muted);
+    box-shadow: 0 4px 20px rgba(212,160,23,0.12);
+    transform: translateY(-2px);
+  }
+
+  .menu-item:hover::before { opacity: 1; }
+
+  .item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+    line-height: 1.35;
+    padding-right: 52px;
+  }
+
+  .item-desc {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 11.5px;
+    color: var(--warm-gray);
+    line-height: 1.5;
+    padding-right: 52px;
+  }
+
+  .item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  .item-price {
+    font-family: 'Cinzel', 'Copperplate Gothic', fantasy;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gold-deep);
+    letter-spacing: 0.04em;
+  }
+
+  .add-btn {
+    width: 32px; height: 32px;
+    background: var(--gold-light);
+    border: 1.5px solid var(--gold-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--gold-deep);
+    font-weight: 300;
+    transition: all 0.2s;
+    line-height: 1;
+    position: absolute;
+    top: 16px; right: 16px;
+    flex-shrink: 0;
+  }
+
+  .add-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold-deep);
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  /* ─── CART BADGE ─── */
+  .cart-float {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    z-index: 100;
+  }
+
+  .cart-btn {
+    background: var(--charcoal);
+    color: var(--gold);
+    border: none;
+    border-radius: 50px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Cinzel', fantasy;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    box-shadow: 0 6px 28px rgba(0,0,0,0.22);
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .cart-btn:hover {
+    background: #2a2a2a;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(0,0,0,0.28);
+  }
+
+  .cart-count {
+    background: var(--gold);
+    color: var(--charcoal);
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* ─── CART DRAWER ─── */
+  .cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .cart-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .cart-drawer {
+    position: fixed;
+    bottom: 0; right: 0;
+    width: min(440px, 100vw);
+    max-height: 88vh;
+    background: var(--cream);
+    border-top: 3px solid var(--gold-deep);
+    border-left: 1px solid var(--border);
+    border-radius: 12px 0 0 0;
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%);
+    transition: transform 0.36s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .cart-drawer.open { transform: translateY(0); }
+
+  .cart-head {
+    padding: 20px 24px 14px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--parchment);
+  }
+
+  .cart-title {
+    font-family: 'Cinzel', fantasy;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+
+  .cart-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--warm-gray);
+    font-size: 22px;
+    line-height: 1;
+    padding: 2px;
+    transition: color 0.2s;
+  }
+  .cart-close:hover { color: var(--charcoal); }
+
+  .cart-items {
+    overflow-y: auto;
+    flex: 1;
+    padding: 16px 24px;
+  }
+
+  .cart-empty {
+    text-align: center;
+    padding: 40px 0;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--warm-gray);
+    font-size: 15px;
+  }
+
+  .cart-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cart-row:last-child { border-bottom: none; }
+
+  .cart-row-info { flex: 1; }
+
+  .cart-row-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 2px;
+  }
+
+  .cart-row-price {
+    font-family: 'Cinzel', fantasy;
+    font-size: 12px;
+    color: var(--gold-deep);
+    letter-spacing: 0.04em;
+  }
+
+  .cart-note-input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 5px 8px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--warm-gray);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: #fff;
+    resize: none;
+    outline: none;
+  }
+
+  .cart-note-input:focus { border-color: var(--gold-muted); }
+
+  .qty-ctrl {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .qty-btn {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: var(--gold-light);
+    color: var(--charcoal);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    line-height: 1;
+  }
+
+  .qty-btn:hover {
+    background: var(--gold);
+    border-color: var(--gold-deep);
+  }
+
+  .qty-num {
+    font-family: 'Cinzel', fantasy;
+    font-size: 14px;
+    font-weight: 700;
+    min-width: 20px;
+    text-align: center;
+    color: var(--charcoal);
+  }
+
+  .remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 18px;
+    line-height: 1;
+    padding: 2px;
+    margin-top: 2px;
+    transition: color 0.2s;
+  }
+  .remove-btn:hover { color: var(--red); }
+
+  .cart-footer {
+    padding: 16px 24px 24px;
+    background: var(--parchment);
+    border-top: 1px solid var(--border);
+  }
+
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .total-label {
+    font-family: 'Cinzel', fantasy;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+  }
+
+  .total-val {
+    font-family: 'Cinzel', fantasy;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--charcoal);
+    letter-spacing: 0.06em;
+  }
+
+  .wa-btn {
+    width: 100%;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'Cinzel', fantasy;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .wa-btn:hover {
+    background: #245a40;
+    box-shadow: 0 6px 20px rgba(45,106,79,0.3);
+  }
+
+  /* ─── ORNAMENT ─── */
+  .ornament {
+    text-align: center;
+    color: var(--gold-muted);
+    font-size: 18px;
+    letter-spacing: 8px;
+    margin-bottom: 48px;
+    user-select: none;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal);
+    text-align: center;
+    padding: 24px;
+    color: var(--gold-muted);
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+
+  footer .footer-brand {
+    font-family: 'Cinzel', fantasy;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--charcoal);
+    color: var(--gold);
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-style: italic;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    white-space: nowrap;
+    z-index: 300;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .items-grid { grid-template-columns: 1fr; }
+    .cart-drawer { width: 100vw; border-radius: 16px 16px 0 0; border-left: none; }
+    .cat-list { justify-content: flex-start; }
+  }
+
+  /* ─── FADE IN ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .menu-section {
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .menu-section:nth-child(1) { animation-delay: 0.05s; }
+  .menu-section:nth-child(2) { animation-delay: 0.12s; }
+  .menu-section:nth-child(3) { animation-delay: 0.18s; }
+  .menu-section:nth-child(4) { animation-delay: 0.22s; }
+  .menu-section:nth-child(5) { animation-delay: 0.26s; }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-img">logo</div>
+    <span class="brand-name">Caspia</span>
+  </div>
+  <div class="brand-tagline">Fine Persian Cuisine</div>
+  <div class="header-contacts">
+    <a class="contact-pill" href="https://www.instagram.com/caspia.kw" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @caspia.kw
+    </a>
+    <a class="contact-pill" href="https://wa.me/96522213888" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      +965 2221 3888
+    </a>
+  </div>
+</header>
+
+<!-- ─── CATEGORY NAV ─── -->
+<nav class="cat-nav">
+  <ul class="cat-list">
+    <li><a href="#trays" class="active">Trays</a></li>
+    <li><a href="#main">Main Course</a></li>
+    <li><a href="#sides">Sides</a></li>
+    <li><a href="#sandwich">Sandwich</a></li>
+    <li><a href="#appetizer">Appetizer</a></li>
+    <li><a href="#salads">Salads</a></li>
+    <li><a href="#extras">Extras</a></li>
+    <li><a href="#dessert">Dessert</a></li>
+    <li><a href="#drinks">Drinks</a></li>
+  </ul>
+</nav>
+
+<!-- ─── MAIN ─── -->
+<main id="menu-main">
+
+  <!-- TRAYS -->
+  <section class="menu-section" id="trays">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Trays</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-trays"></div>
+  </section>
+
+  <!-- MAIN COURSE -->
+  <section class="menu-section" id="main">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Main Course</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-main"></div>
+  </section>
+
+  <!-- SIDES -->
+  <section class="menu-section" id="sides">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Sides</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-sides"></div>
+  </section>
+
+  <!-- SANDWICH -->
+  <section class="menu-section" id="sandwich">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Sandwich</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-sandwich"></div>
+  </section>
+
+  <!-- APPETIZER -->
+  <section class="menu-section" id="appetizer">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Appetizer</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-appetizer"></div>
+  </section>
+
+  <!-- SALADS -->
+  <section class="menu-section" id="salads">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Salads</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-salads"></div>
+  </section>
+
+  <!-- EXTRAS -->
+  <section class="menu-section" id="extras">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Extras</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-extras"></div>
+  </section>
+
+  <!-- DESSERT -->
+  <section class="menu-section" id="dessert">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Dessert</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-dessert"></div>
+  </section>
+
+  <!-- DRINKS -->
+  <section class="menu-section" id="drinks">
+    <div class="section-header">
+      <div class="section-line"></div>
+      <h2 class="section-title">Cold Drinks</h2>
+      <div class="section-line right"></div>
+    </div>
+    <div class="items-grid" id="grid-drinks"></div>
+  </section>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+</main>
+
+<!-- ─── CART FLOAT ─── -->
+<div class="cart-float">
+  <button class="cart-btn" id="cart-open-btn">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+    Order
+    <span class="cart-count" id="cart-count">0</span>
+  </button>
+</div>
+
+<!-- ─── CART DRAWER ─── -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <span class="cart-title">Your Order</span>
+    <button class="cart-close" id="cart-close-btn">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <p class="cart-empty">Your cart is empty.<br><span style="font-size:11px;color:#999">Add items from the menu.</span></p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span class="total-label">Total</span>
+      <span class="total-val" id="cart-total">KWD 0.000</span>
+    </div>
+    <a class="wa-btn" id="wa-order-btn" href="#" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Order via WhatsApp
+    </a>
+  </div>
+</div>
+
+<!-- ─── TOAST ─── -->
+<div class="toast" id="toast"></div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-brand">CASPIA</div>
+  Fine Persian Cuisine · Kuwait
+</footer>
+
+<script>
+// ─── MENU DATA ───
+const menu = {
+  trays: [
+    { name: "Caspia Tray", price: 31.5, desc: "2 sikh jujeh lari · 2 sikh tikka · 2 sikh jujeh · 4 sikh koubideh with 4 rice" },
+    { name: "Mix Grill Tray", price: 19, desc: "2 sikh koubideh · 2 sikh jujeh · 2 sikh jujeh lari · 2 sikh kabab negini · 1 sikh..." },
+    { name: "Mix Kabab Tray (no rice)", price: 20, desc: "2 sikh kabab koubideh · 4 sikh jujeh kabab · 2 sikh kabab negini" },
+    { name: "4 Persons Tray", price: 23, desc: "4 sikh kabab koubideh · 4 sikh jujeh kabab" },
+    { name: "5 Persons Special Tray", price: 33, desc: "4 sikh kabab koubideh · 4 sikh jujeh kabab · premium selection" },
+    { name: "Tahchin Koobideh Kabab Tray", price: 5.55, desc: "Koobideh kabab served on saffron tahchin rice" },
+  ],
+  main: [
+    { name: "Tahchin Gheymeh", price: 5.25, desc: "" },
+    { name: "Polo Mahi", price: 6.5, desc: "Sibas fish fried with hakukah rice" },
+    { name: "Tahchin Spaghetti", price: 5.25, desc: "" },
+    { name: "Tahchin Ghormeh Sabzi", price: 5.25, desc: "" },
+    { name: "Tahchin Chicken with Zereshk", price: 5.25, desc: "" },
+    { name: "Tahchin Chicken", price: 5.25, desc: "" },
+    { name: "Tahchin Jujeh Lari", price: 5.55, desc: "" },
+    { name: "Tahchin Kabab Vaziri", price: 5.55, desc: "1 sikh jujeh + 1 sikh koubideh" },
+    { name: "Tahchin Koobideh Kabab", price: 5.55, desc: "" },
+    { name: "Tahchin Jujeh Kabab (Shish Tawook)", price: 5.55, desc: "" },
+    { name: "Tahchin Negini Kabab", price: 5.55, desc: "" },
+    { name: "Tahchin Kabab Barg", price: 5.95, desc: "" },
+    { name: "Tahchin Sultani Kabab", price: 6.25, desc: "" },
+    { name: "Tahchin Shishlik", price: 6.5, desc: "" },
+    { name: "Tahchin Kenjeh Kabab (Tikka)", price: 6.75, desc: "" },
+    { name: "Tahchin with Neck Meat", price: 7.5, desc: "" },
+    { name: "Tahchin Mixed Kabab", price: 8, desc: "" },
+    { name: "Tahchin Shank (Mahiche)", price: 8.1, desc: "" },
+  ],
+  sides: [
+    { name: "Green Salad", price: 0.5, desc: "" },
+    { name: "Ghayme Sauce (without meat)", price: 0.95, desc: "" },
+    { name: "Shabzi Sauce (without meat)", price: 0.95, desc: "" },
+    { name: "Bamya Sauce (without meat)", price: 0.95, desc: "" },
+    { name: "Yogurt", price: 0.95, desc: "" },
+    { name: "Cucumber Yogurt", price: 0.95, desc: "" },
+    { name: "Fries", price: 0.95, desc: "" },
+    { name: "Garlic Yogurt", price: 1.25, desc: "" },
+    { name: "Ghayme Broth (Maraq)", price: 2.5, desc: "" },
+    { name: "Shabzi Broth (Maraq)", price: 2.5, desc: "" },
+    { name: "Bamya Broth (Maraq)", price: 2.5, desc: "" },
+  ],
+  sandwich: [
+    { name: "Kabab Sandwich", price: 1.95, desc: "" },
+    { name: "Jujeh Sandwich", price: 1.95, desc: "" },
+  ],
+  appetizer: [
+    { name: "Oat Soup", price: 1.25, desc: "" },
+    { name: "Hummus", price: 1.5, desc: "" },
+    { name: "Mierza Ghasemi", price: 1.5, desc: "" },
+    { name: "Kashk Bademjaan", price: 1.5, desc: "" },
+  ],
+  salads: [
+    { name: "Shirazi Salad", price: 0.95, desc: "" },
+    { name: "Pomegranate Salad", price: 1.5, desc: "" },
+  ],
+  extras: [
+    { name: "Extra Fish", price: 4.65, desc: "" },
+    { name: "Extra Jujeh Lari", price: 1.85, desc: "" },
+    { name: "Extra Kabab Negini", price: 1.85, desc: "" },
+    { name: "Extra Jujeh (Shish Tawook)", price: 1.85, desc: "" },
+    { name: "Extra Koobideh", price: 1.85, desc: "" },
+    { name: "Extra Hakuka / White Rice", price: 1.85, desc: "" },
+    { name: "Extra Kenjeh (Tikka)", price: 2.45, desc: "" },
+    { name: "Extra Barg Kabab", price: 3.7, desc: "" },
+    { name: "Extra Kabab Vaziri", price: 3.7, desc: "" },
+    { name: "Extra Shishlik", price: 4.65, desc: "" },
+    { name: "Extra Mahiche", price: 6.25, desc: "" },
+    { name: "Extra Neck Meat", price: 5.75, desc: "" },
+  ],
+  dessert: [
+    { name: "Khame (5 pcs)", price: 1.5, desc: "" },
+  ],
+  drinks: [
+    { name: "Sparkling Water", price: 0.5, desc: "" },
+    { name: "Mineral Water", price: 0.5, desc: "" },
+    { name: "Soda (variety)", price: 0.5, desc: "" },
+    { name: "Doogh", price: 0.75, desc: "" },
+    { name: "Lemonade", price: 1.5, desc: "" },
+    { name: "Orange Juice", price: 1.5, desc: "" },
+    { name: "Strawberry Mojito", price: 1.75, desc: "" },
+    { name: "Lemon with Mint", price: 1.75, desc: "" },
+    { name: "Classic Mojito", price: 1.75, desc: "" },
+  ],
+};
+
+// ─── RENDER ITEMS ───
+function renderItems(gridId, items) {
+  const grid = document.getElementById(gridId);
+  items.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'menu-item';
+    card.innerHTML = `
+      <button class="add-btn" data-name="${item.name}" data-price="${item.price}" title="Add to order">+</button>
+      <div class="item-name">${item.name}</div>
+      ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
+      <div class="item-footer">
+        <span class="item-price">KWD ${item.price.toFixed(3)}</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+renderItems('grid-trays', menu.trays);
+renderItems('grid-main', menu.main);
+renderItems('grid-sides', menu.sides);
+renderItems('grid-sandwich', menu.sandwich);
+renderItems('grid-appetizer', menu.appetizer);
+renderItems('grid-salads', menu.salads);
+renderItems('grid-extras', menu.extras);
+renderItems('grid-dessert', menu.dessert);
+renderItems('grid-drinks', menu.drinks);
+
+// ─── CART STATE ───
+let cart = []; // { name, price, qty, note, id }
+let nextId = 0;
+
+function getTotal() {
+  return cart.reduce((sum, r) => sum + r.price * r.qty, 0);
+}
+
+function updateBadge() {
+  const total = cart.reduce((s, r) => s + r.qty, 0);
+  document.getElementById('cart-count').textContent = total;
+}
+
+function renderCart() {
+  const el = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  
+  if (cart.length === 0) {
+    el.innerHTML = '<p class="cart-empty">Your cart is empty.<br><span style="font-size:11px;color:#999">Add items from the menu.</span></p>';
+    totalEl.textContent = 'KWD 0.000';
+    return;
+  }
+
+  el.innerHTML = cart.map(row => `
+    <div class="cart-row" data-id="${row.id}">
+      <div class="cart-row-info">
+        <div class="cart-row-name">${row.name}</div>
+        <div class="cart-row-price">KWD ${row.price.toFixed(3)} × ${row.qty} = KWD ${(row.price * row.qty).toFixed(3)}</div>
+        <textarea class="cart-note-input" rows="1" placeholder="Special instructions…" data-id="${row.id}">${row.note}</textarea>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;margin-top:2px;">
+        <div class="qty-ctrl">
+          <button class="qty-btn" data-action="dec" data-id="${row.id}">−</button>
+          <span class="qty-num">${row.qty}</span>
+          <button class="qty-btn" data-action="inc" data-id="${row.id}">+</button>
+        </div>
+        <button class="remove-btn" data-action="del" data-id="${row.id}">✕</button>
+      </div>
+    </div>
+  `).join('');
+
+  totalEl.textContent = `KWD ${getTotal().toFixed(3)}`;
+}
+
+function updateWALink() {
+  if (cart.length === 0) return;
+  const lines = cart.map(r => {
+    let line = `• ${r.qty}× ${r.name} (KWD ${(r.price * r.qty).toFixed(3)})`;
+    if (r.note) line += ` — ${r.note}`;
+    return line;
+  });
+  const msg = `Hello CASPIA! 🌿\n\nI'd like to place an order:\n\n${lines.join('\n')}\n\n*Total: KWD ${getTotal().toFixed(3)}*\n\nThank you!`;
+  document.getElementById('wa-order-btn').href = `https://wa.me/96522213888?text=${encodeURIComponent(msg)}`;
+}
+
+// ─── EVENT: ADD TO CART ───
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.add-btn');
+  if (!btn) return;
+  const name = btn.dataset.name;
+  const price = parseFloat(btn.dataset.price);
+  const existing = cart.find(r => r.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id: nextId++, name, price, qty: 1, note: '' });
+  }
+  updateBadge();
+  showToast(`${name} added`);
+});
+
+// ─── EVENT: CART CONTROLS ───
+document.getElementById('cart-items').addEventListener('click', e => {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  const id = parseInt(btn.dataset.id);
+  const idx = cart.findIndex(r => r.id === id);
+  if (idx === -1) return;
+  if (btn.dataset.action === 'inc') cart[idx].qty++;
+  else if (btn.dataset.action === 'dec') {
+    cart[idx].qty--;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  } else if (btn.dataset.action === 'del') {
+    cart.splice(idx, 1);
+  }
+  updateBadge();
+  renderCart();
+  updateWALink();
+});
+
+document.getElementById('cart-items').addEventListener('input', e => {
+  const ta = e.target.closest('.cart-note-input');
+  if (!ta) return;
+  const id = parseInt(ta.dataset.id);
+  const row = cart.find(r => r.id === id);
+  if (row) row.note = ta.value;
+  updateWALink();
+});
+
+// ─── CART OPEN/CLOSE ───
+const overlay = document.getElementById('cart-overlay');
+const drawer = document.getElementById('cart-drawer');
+
+function openCart() {
+  renderCart();
+  updateWALink();
+  overlay.classList.add('open');
+  drawer.classList.add('open');
+}
+
+function closeCart() {
+  overlay.classList.remove('open');
+  drawer.classList.remove('open');
+}
+
+document.getElementById('cart-open-btn').addEventListener('click', openCart);
+document.getElementById('cart-close-btn').addEventListener('click', closeCart);
+overlay.addEventListener('click', closeCart);
+
+// ─── TOAST ───
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// ─── ACTIVE NAV ───
+const sections = document.querySelectorAll('.menu-section');
+const navLinks = document.querySelectorAll('.cat-list a');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
