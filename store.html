@@ -112,6 +112,14 @@
     .btn-order-whatsapp i{margin-right:0.5rem;}
     .cart-note{font-family:'Outfit',sans-serif;font-size:0.75rem;color:var(--grey);text-align:center;margin-top:0.8rem;line-height:1.5;}
 
+    /* Currency Switcher */
+    .currency-bar{background:linear-gradient(90deg,var(--baby-pink-pale),#fff8f0);border-bottom:1px solid rgba(128,0,32,0.08);padding:0.5rem 4rem;display:flex;align-items:center;justify-content:flex-end;gap:0.75rem;position:fixed;top:76px;left:0;right:0;z-index:999;font-family:'Outfit',sans-serif;font-size:0.78rem;color:var(--grey);letter-spacing:0.05em;}
+    .currency-toggle{display:flex;border:1px solid rgba(128,0,32,0.2);overflow:hidden;border-radius:2px;}
+    .currency-btn{padding:0.25rem 0.65rem;border:none;background:transparent;font-family:'Outfit',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;cursor:none;color:var(--grey);transition:all 0.2s;}
+    .currency-btn.active{background:var(--maroon);color:white;}
+    .currency-approx{font-size:0.72rem;color:var(--baby-pink-deep);font-style:italic;}
+    @media(max-width:768px){.currency-bar{padding:0.5rem 1.5rem;top:110px;}}
+
     /* Toast */
     .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--maroon);color:white;padding:0.7rem 1.5rem;font-family:'Outfit',sans-serif;font-size:0.85rem;letter-spacing:0.05em;opacity:0;pointer-events:none;transition:all 0.35s;z-index:2100;white-space:nowrap;}
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
@@ -166,7 +174,7 @@
       <a href="#" class="btn-order-whatsapp" id="cartWhatsappBtn" onclick="orderCartOnWhatsApp(event)">
         <i class="fab fa-whatsapp"></i> Order via WhatsApp
       </a>
-      <p class="cart-note">We'll confirm availability &amp; delivery details on WhatsApp.</p>
+      <p class="cart-note">We'll confirm availability &amp; delivery details on WhatsApp. <span id="cartCurrencyNote"></span></p>
     </div>
   </div>
 
@@ -190,7 +198,15 @@
     </ul>
   </nav>
 
-  <div style="padding-top:6rem;"></div>
+  <div class="currency-bar" id="currencyBar">
+    <span id="currencyNote">Detecting your region…</span>
+    <div class="currency-toggle">
+      <button class="currency-btn active" id="btnINR" onclick="setCurrency('INR')">₹ INR</button>
+      <button class="currency-btn" id="btnUSD" onclick="setCurrency('USD')">$ USD</button>
+    </div>
+  </div>
+
+  <div style="padding-top:7.5rem;"></div>
 
   <!-- Abayas -->
   <section class="store-section">
@@ -200,7 +216,7 @@
       <div class="card">
         <img src="images/abaya1.jpg" alt="Classic Black Abaya">
         <h3>Classic Black Abaya</h3>
-        <p class="price">₹4,500</p>
+        <p class="price" data-inr="4500">₹4,500</p>
         <div class="qty-row">
           <span class="qty-label">Qty</span>
           <div class="qty-controls">
@@ -225,7 +241,7 @@
       <div class="card">
         <img src="images/purse1.jpg" alt="Elegant Leather Purse">
         <h3>Elegant Leather Purse</h3>
-        <p class="price">₹2,800</p>
+        <p class="price" data-inr="2800">₹2,800</p>
         <div class="qty-row">
           <span class="qty-label">Qty</span>
           <div class="qty-controls">
@@ -250,7 +266,7 @@
       <div class="card">
         <img src="images/accessory1.jpg" alt="Golden Bracelet">
         <h3>Golden Bracelet</h3>
-        <p class="price">₹1,200</p>
+        <p class="price" data-inr="1200">₹1,200</p>
         <div class="qty-row">
           <span class="qty-label">Qty</span>
           <div class="qty-controls">
@@ -272,14 +288,15 @@
       <div class="footer-logo">
         <span class="footer-logo-text">BLACK HAVEN — Modest Fashion</span>
       </div>
-      <div class="social-links">
-        <a href="https://www.instagram.com/ablackhaven" class="social-link magnify-target" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.behance.net/fareenkashmira" class="social-link magnify-target" target="_blank" title="Behance"><i class="fab fa-behance"></i></a>
-        <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" class="social-link magnify-target" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://in.pinterest.com/ablackhaven" class="social-link magnify-target" target="_blank" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-        <a href="/cdn-cgi/l/email-protection#c7aea9a1a887a5aba6a4acafa6b1a2a9e9a4a8e9aea9" class="social-link magnify-target" title="Email"><i class="far fa-envelope"></i></a>
-        <a href="https://wa.me/+917011403207" class="social-link magnify-target" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
+    <div class="footer-social">
+      <a href="https://wa.me/917011403207" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.instagram.com/ablackhaven" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://in.pinterest.com/ablackhaven" target="_blank" class="social-icon" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+      <a href="https://www.behance.net/fareenkashmira" target="_blank" class="social-icon" title="Behance"><i class="fab fa-behance"></i></a>
+      <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://t.me/+917011403207" class="social-link magnify" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="mailto:info@blackhaven.co.in" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
       <div class="footer-links">
         <a href="about.html" class="magnify-target">About</a>
         <a href="termncondition.html" class="magnify-target">Terms &amp; Conditions</a>
@@ -291,7 +308,6 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
     /* ── Custom Cursor ── */
     const _cur=document.getElementById('bh-cursor');
@@ -313,9 +329,79 @@
       });
     });
 
+    /* ── Currency System ── */
+    let currentCurrency = 'INR';
+
+    /* ── Currency System ── */
+    let currentCurrency = 'INR';
+    let usdRate = 84; // fallback: ~84 INR per USD, updated live below
+
+    async function initCurrency() {
+      const note = document.getElementById('currencyNote');
+      try {
+        // Single API: exchangerate.host supports CORS and works on GitHub Pages
+        const fxRes = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+        const fx = await fxRes.json();
+        if (fx && fx.rates && fx.rates.INR) {
+          usdRate = fx.rates.INR;
+        }
+      } catch(e) {
+        // Keep fallback rate silently
+      }
+
+      try {
+        // Geo detect
+        const geoRes = await fetch('https://ipapi.co/country/');
+        const country = await geoRes.text();
+        if (country && country.trim() !== 'IN') {
+          setCurrency('USD');
+          note.textContent = 'Showing prices in USD for your region';
+        } else {
+          setCurrency('INR');
+          note.innerHTML = `Prices in INR &nbsp;·&nbsp; <span class="currency-approx">International visitors see USD</span>`;
+        }
+      } catch(e) {
+        setCurrency('INR');
+        note.textContent = '';
+      }
+    }
+
+    function setCurrency(cur) {
+      currentCurrency = cur;
+      document.getElementById('btnINR').classList.toggle('active', cur === 'INR');
+      document.getElementById('btnUSD').classList.toggle('active', cur === 'USD');
+
+      document.querySelectorAll('.price[data-inr]').forEach(el => {
+        const inr = parseInt(el.dataset.inr);
+        el.textContent = formatPrice(inr);
+      });
+
+      // Re-render cart with new currency
+      renderCart();
+      const cartNote = document.getElementById('cartCurrencyNote');
+      if (cartNote) cartNote.textContent = cur === 'USD' ? 'USD prices are approximate — final amount in INR confirmed on order.' : '';
+    }
+
+    function formatPrice(inrAmount) {
+      if (currentCurrency === 'USD') {
+        const usd = inrAmount / usdRate;
+        return '$' + usd.toFixed(2);
+      }
+      return '₹' + inrAmount.toLocaleString('en-IN');
+    }
+
+    function formatPriceRaw(inrAmount) {
+      if (currentCurrency === 'USD') {
+        return '$' + (inrAmount / usdRate).toFixed(2);
+      }
+      return '₹' + inrAmount.toLocaleString('en-IN');
+    }
+
+    initCurrency();
+
     /* ── Cart State ── */
     const PHONE = '917011403207';
-    let cart = {}; // { name: { name, price, qty, img } }
+    let cart = {}; // { name: { name, priceINR, qty, img } }
 
     function getQtyFromCard(btn) {
       const card = btn.closest('.card');
@@ -328,12 +414,12 @@
       input.value = newVal;
     }
 
-    function addToCart(btn, name, price, img) {
+    function addToCart(btn, name, priceINR, img) {
       const qty = getQtyFromCard(btn);
       if (cart[name]) {
         cart[name].qty += qty;
       } else {
-        cart[name] = { name, price, qty, img };
+        cart[name] = { name, priceINR, qty, img };
       }
       renderCart();
       showToast(`${qty}× ${name} added to cart`);
@@ -342,10 +428,12 @@
       setTimeout(() => { btn.textContent = 'Add to Cart'; btn.classList.remove('added'); }, 1800);
     }
 
-    function quickOrderWhatsApp(btn, name, price) {
+    function quickOrderWhatsApp(btn, name, priceINR) {
       const qty = getQtyFromCard(btn);
-      const total = (price * qty).toLocaleString('en-IN');
-      const msg = `Hi Black Haven! I'd like to order:\n\n• ${name} × ${qty} = ₹${total}\n\nPlease confirm availability and share delivery details. Thank you!`;
+      const totalINR = priceINR * qty;
+      const displayPrice = formatPriceRaw(totalINR);
+      const currency = currentCurrency === 'USD' ? 'USD (approx.)' : 'INR';
+      const msg = `Hi Black Haven! I'd like to order:\n\n• ${name} × ${qty} = ${displayPrice} ${currency}\n\nPlease confirm availability and share delivery details. Thank you!`;
       window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -355,10 +443,11 @@
       if (!keys.length) { showToast('Your cart is empty!'); return; }
       let lines = keys.map(k => {
         const it = cart[k];
-        return `• ${it.name} × ${it.qty} = ₹${(it.price * it.qty).toLocaleString('en-IN')}`;
+        return `• ${it.name} × ${it.qty} = ${formatPriceRaw(it.priceINR * it.qty)}`;
       });
-      const total = keys.reduce((s, k) => s + cart[k].price * cart[k].qty, 0);
-      const msg = `Hi Black Haven! I'd like to order:\n\n${lines.join('\n')}\n\nTotal: ₹${total.toLocaleString('en-IN')}\n\nPlease confirm availability and share delivery details. Thank you!`;
+      const totalINR = keys.reduce((s, k) => s + cart[k].priceINR * cart[k].qty, 0);
+      const currency = currentCurrency === 'USD' ? 'USD (approx. — final amount in INR confirmed on order)' : 'INR';
+      const msg = `Hi Black Haven! I'd like to order:\n\n${lines.join('\n')}\n\nTotal: ${formatPriceRaw(totalINR)} ${currency}\n\nPlease confirm availability and share delivery details. Thank you!`;
       window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -379,11 +468,11 @@
       const total = document.getElementById('cartTotal');
       const keys = Object.keys(cart);
       const totalCount = keys.reduce((s, k) => s + cart[k].qty, 0);
-      const totalPrice = keys.reduce((s, k) => s + cart[k].price * cart[k].qty, 0);
+      const totalINR = keys.reduce((s, k) => s + cart[k].priceINR * cart[k].qty, 0);
 
       badge.textContent = totalCount;
       badge.classList.toggle('visible', totalCount > 0);
-      total.textContent = '₹' + totalPrice.toLocaleString('en-IN');
+      total.textContent = formatPrice(totalINR);
 
       if (!keys.length) {
         list.innerHTML = `<div class="cart-empty"><img src="images/B.png" alt="" style="width:64px;height:64px;object-fit:contain;display:block;margin:0 auto 1rem;mix-blend-mode:multiply;opacity:0.35;"><p>Your cart is empty</p></div>`;
@@ -395,7 +484,7 @@
           <img src="${it.img}" alt="${it.name}" class="cart-item-img">
           <div class="cart-item-info">
             <div class="cart-item-name">${it.name}</div>
-            <div class="cart-item-price">₹${it.price.toLocaleString('en-IN')} each</div>
+            <div class="cart-item-price">${formatPrice(it.priceINR)} each</div>
             <div class="cart-item-qty">
               <button class="cart-item-qty-btn" onclick="changeCartQty('${k}',-1)">−</button>
               <span class="cart-item-qty-num">${it.qty}</span>
