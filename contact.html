@@ -151,6 +151,11 @@
     @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
     @media(max-width:1024px){.contact-grid{grid-template-columns:1fr;gap:4rem;}}
     @media(max-width:768px){nav{padding:1.4rem 2rem;flex-direction:column;gap:1.2rem;}nav ul{gap:1.2rem;flex-wrap:wrap;justify-content:center;}main{padding:11rem 1.5rem 5rem;}footer{padding:2rem 1.5rem;}.footer-links{flex-direction:column;gap:.8rem;text-align:center;}.social-strip{gap:1.5rem;}.custom-note{flex-direction:column;}}
+  
+    /* Social icons — unified styles for .footer-social / .social-icon */
+    .footer-social,.social-links{display:flex;gap:2.5rem;justify-content:center;align-items:center;margin-bottom:1.5rem;padding:1rem 0;border-top:1px solid rgba(227,181,77,0.2);border-bottom:1px solid rgba(227,181,77,0.2);flex-wrap:wrap;}
+    .social-icon,.social-link{color:var(--gold);text-decoration:none;font-size:1.2rem;transition:all 0.3s;}
+    .social-icon:hover,.social-link:hover{color:var(--gold);opacity:0.7;transform:translateY(-4px) scale(1.1);}
   </style>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XMK04PPSV2"></script>
@@ -221,7 +226,7 @@
           <div class="reach-buttons">
             <a href="https://wa.me/+917011403207?text=Hi%2C%20I'm%20interested%20in%20your%20services" target="_blank" class="reach-btn"><i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span><span class="arr">→</span></a>
             <a href="https://t.me/+917011403207" target="_blank" class="reach-btn"><i class="fab fa-telegram-plane"></i><span>Message on Telegram</span><span class="arr">→</span></a>
-            <a href="/cdn-cgi/l/email-protection#442d2a222b04262825272f2c2532212a6a272b6a2d2a" class="reach-btn"><i class="fas fa-paper-plane"></i><span>Send an Email</span><span class="arr">→</span></a>
+            <a href="mailto:info@blackhaven.co.in" class="reach-btn"><i class="fas fa-paper-plane"></i><span>Send an Email</span><span class="arr">→</span></a>
           </div>
         </div>
       </div>
@@ -298,7 +303,7 @@
       <a href="https://in.pinterest.com/ablackhaven" target="_blank" class="social-icon" title="Pinterest"><i class="fab fa-pinterest"></i></a>
       <a href="https://www.behance.net/fareenkashmira" target="_blank" class="social-icon" title="Behance"><i class="fab fa-behance"></i></a>
       <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://t.me/+917011403207" class="social-link magnify" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+        <a href="https://t.me/+917011403207" class="social-icon magnify-target" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
       <a href="mailto:info@blackhaven.co.in" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
     </div>
     </div>
@@ -316,7 +321,7 @@
     </div>
   </footer>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
         const _cur=document.getElementById('bh-cursor');
     let _mx=0,_my=0,_dx=0,_dy=0;
     document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cur.classList.add('active');});
