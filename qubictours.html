@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Qubic Tours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0b1929;
+  --navy-mid: #152440;
+  --navy-light: #1e3356;
+  --cyan: #00c5d4;
+  --blue: #1a6ef5;
+  --gold: #c9a84c;
+  --gold-light: #e2c57a;
+  --gold-pale: rgba(201,168,76,0.12);
+  --gold-border: rgba(201,168,76,0.28);
+  --gradient: linear-gradient(110deg, #00c5d4, #1a6ef5);
+  --gold-gradient: linear-gradient(110deg, #c9a84c, #e2c57a, #c9a84c);
+  --white: #ffffff;
+  --off: #f5f7fa;
+  --muted: #6b7a8d;
+  --border: #e2e8f0;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --bank: 'Bebas Neue', Impact, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--white);
+  color: var(--navy);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── LOGO MARK ── */
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 34px;
+  display: block;
+}
+
+/* Fallback: if no image, show styled QT monogram */
+.logo-monogram {
+  font-family: var(--bank);
+  font-size: 1.55rem;
+  letter-spacing: 0.05em;
+  color: var(--navy);
+  line-height: 1;
+  /* Brake-style: tight, bold, geometric */
+}
+
+.logo-monogram span {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 1px;
+}
+
+.logo-wordmark .wm-qubic {
+  font-family: var(--bank);
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--navy);
+}
+
+.logo-wordmark .wm-tours {
+  font-family: var(--bank);
+  font-size: 0.72rem;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5vw;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--navy);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.4rem;
+  background: var(--navy);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-cta:hover {
+  background: var(--gold);
+  color: var(--navy);
+  border-color: var(--gold);
+}
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  padding: 10rem 5vw 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 85% 35%, rgba(0,197,212,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 15% 75%, rgba(26,110,245,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 55% 50%, rgba(201,168,76,0.06) 0%, transparent 60%);
+}
+
+/* Fine dot grid */
+.hero-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(201,168,76,0.18) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(ellipse at 80% 30%, black 10%, transparent 65%);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 720px;
+}
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.hero-eyebrow span {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.eyebrow-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-gradient);
+}
+
+/* BIG STACKED HEADLINE */
+.hero-hl {
+  margin-bottom: 2rem;
+}
+
+.hl-top {
+  display: block;
+  font-family: var(--bank);
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.15);
+  text-transform: uppercase;
+}
+
+.hl-mid {
+  display: block;
+  font-family: var(--bank);
+  font-size: clamp(4rem, 11vw, 9.5rem);
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  color: var(--white);
+  text-transform: uppercase;
+}
+
+.hl-mid .gold-word {
+  color: var(--gold);
+}
+
+.hl-bot {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 4vw, 3rem);
+  line-height: 1.2;
+  color: rgba(255,255,255,0.55);
+  margin-top: 0.5rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-gold {
+  padding: 0.85rem 2.2rem;
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  border-radius: 3px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+.btn-ghost {
+  padding: 0.85rem 2.2rem;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 3px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+/* hero stat bar */
+.hero-stats {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+
+.hero-stat {
+  flex: 1;
+  padding: 1.5rem 5vw;
+  border-right: 1px solid rgba(201,168,76,0.10);
+}
+
+.hero-stat:last-child { border-right: none; }
+
+.hs-num {
+  font-family: var(--bank);
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.hs-label {
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 0.3rem;
+}
+
+/* ── SECTION SHELLS ── */
+section {
+  padding: 6rem 5vw;
+}
+
+.section-tag {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.section-title {
+  font-family: var(--bank);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.section-title .g {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 3rem;
+}
+
+/* ── WHAT WE DO ── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.service-card {
+  background: var(--white);
+  padding: 2.25rem 2rem;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold-gradient);
+  transition: width 0.35s ease;
+}
+
+.service-card:hover { background: #fdfaf4; }
+.service-card:hover::after { width: 100%; }
+
+.sc-icon {
+  font-family: var(--bank);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--gold-pale);
+  margin-bottom: 1.25rem;
+  color: rgba(201,168,76,0.18);
+  letter-spacing: -0.02em;
+}
+
+.service-card h3 {
+  font-family: var(--bank);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+
+.service-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.sc-tag {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold-border);
+  padding-bottom: 2px;
+}
+
+/* ── HOW IT WORKS ── */
+.how { background: var(--navy); }
+.how .section-title { color: var(--white); }
+.how .section-sub { color: rgba(255,255,255,0.4); }
+
+.steps-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  position: relative;
+}
+
+.steps-row::before {
+  content: '';
+  position: absolute;
+  top: 2.2rem; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+}
+
+.step {
+  padding: 0 2rem 2rem 0;
+  position: relative;
+}
+
+.step-num {
+  font-family: var(--bank);
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  width: 44px; height: 44px;
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  background: var(--navy);
+  position: relative;
+  z-index: 1;
+}
+
+.step h4 {
+  font-family: var(--bank);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.7;
+}
+
+/* ── DESTINATIONS ── */
+.dest-strip-wrap { overflow: hidden; margin-top: 2.5rem; }
+
+.dest-strip {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: slide 28s linear infinite;
+}
+
+.dest-strip:hover { animation-play-state: paused; }
+
+@keyframes slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.dest-pill {
+  flex-shrink: 0;
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: var(--bank);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  color: var(--navy);
+  background: var(--white);
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: border-color 0.2s, color 0.2s;
+  cursor: default;
+}
+
+.dest-pill:hover { border-color: var(--gold); color: var(--gold); }
+
+.dest-pill.ac {
+  background: var(--navy);
+  color: var(--gold);
+  border-color: var(--navy);
+}
+
+/* ── WHY DARK BAND ── */
+.why { background: var(--off); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.why-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2rem;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.why-card:hover {
+  border-color: var(--gold-border);
+  box-shadow: 0 0 0 4px var(--gold-pale);
+}
+
+.why-card-num {
+  font-family: var(--bank);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: rgba(201,168,76,0.12);
+  position: absolute;
+  top: 1.25rem; right: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.why-card h4 {
+  font-family: var(--bank);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+
+.why-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── CTA ── */
+.cta-band {
+  background: var(--navy);
+  padding: 7rem 5vw;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band::before {
+  content: 'QUBIC';
+  position: absolute;
+  font-family: var(--bank);
+  font-size: 28vw;
+  letter-spacing: -0.02em;
+  color: rgba(201,168,76,0.04);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.cta-band .section-tag { justify-content: center; }
+.cta-band .section-tag::before { display: none; }
+
+.cta-band h2 {
+  font-family: var(--bank);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.cta-band h2 span {
+  color: var(--gold);
+}
+
+.cta-band p {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.45);
+  font-weight: 300;
+  max-width: 460px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.8;
+  position: relative;
+}
+
+.cta-band .btn-gold { position: relative; }
+
+/* ── CONTACT SECTION ── */
+.contact-section {
+  background: var(--off);
+  padding: 6rem 5vw;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 900px;
+}
+
+.contact-block h3 {
+  font-family: var(--bank);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.ci-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--gold-border);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  background: var(--white);
+}
+
+.ci-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+
+.ci-val {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.ci-val a {
+  color: var(--navy);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ci-val a:hover { color: var(--gold); }
+
+.contact-reg {
+  background: var(--white);
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.cr-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.cr-num {
+  font-family: var(--bank);
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  color: var(--navy);
+}
+
+.cr-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.25rem;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.75rem;
+  background: #25d366;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: 1rem;
+}
+
+.btn-whatsapp:hover { opacity: 0.88; transform: translateY(-2px); }
+
+@media (max-width: 640px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #070f1c;
+  padding: 2.5rem 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  border-top: 1px solid rgba(201,168,76,0.12);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+footer small {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.05em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .hero { padding-top: 7rem; }
+  .hero-stats { position: relative; flex-wrap: wrap; }
+  .hero-stat { min-width: 50%; }
+  nav .nav-links { display: none; }
+  footer { flex-direction: column; align-items: flex-start; }
+  .steps-row::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo-wrap">
+    <img src="images/qt.png" alt="" class="logo-img" onerror="this.style.display='none'" />
+    <div class="logo-wordmark">
+      <span class="wm-qubic">QUBIC</span>
+      <span class="wm-tours">TOURS</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#why">Why Us</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Plan Your Trip</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-dots"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span>Flight Assistance · Travel Guidance · On-Ground Support</span>
+    </div>
+
+    <div class="hero-hl">
+      <span class="hl-top">Your Journey,</span>
+      <span class="hl-mid">Our <span class="gold-word">Expertise</span></span>
+      <span class="hl-bot">from first ticket to final memory.</span>
+    </div>
+
+    <p>We handle flights, food, accommodation, local guidance, and everything in between — so you arrive ready, not exhausted.</p>
+
+    <div class="hero-actions">
+      <a href="#services" class="btn-gold">Explore Services</a>
+      <a href="#how" class="btn-ghost">How It Works</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hs-num">34+</div>
+      <div class="hs-label">Countries Covered</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-num">2,400+</div>
+      <div class="hs-label">Travellers Assisted</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-num">100%</div>
+      <div class="hs-label">Online. No Office Visit.</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hs-num">24h</div>
+      <div class="hs-label">Average Response Time</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What We Handle</div>
+  <h2 class="section-title">Full-Trip <span class="g">Assistance</span></h2>
+  <p class="section-sub">Flight tickets, food, stays, and guidance — one team, start to finish.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="sc-icon">✈</div>
+      <h3>Flight Ticket Assistance</h3>
+      <p>We source, compare, and help you secure the best available flights — economy to business, one-way or complex multi-city routes. No hidden fees, no confusion.</p>
+      <span class="sc-tag">Visa-friendly routing</span>
+    </div>
+
+    <div class="service-card">
+      <div class="sc-icon">🏨</div>
+      <h3>Accommodation</h3>
+      <p>Hotels, serviced apartments, guesthouses — curated by location, budget, and halal-friendliness. We shortlist, you choose.</p>
+      <span class="sc-tag">Muslim-friendly options</span>
+    </div>
+
+    <div class="service-card">
+      <div class="sc-icon">🍽</div>
+      <h3>Food & Dining</h3>
+      <p>Halal-verified restaurant guides, local food trails, and dietary-safe suggestions for every destination we cover.</p>
+      <span class="sc-tag">Halal-verified</span>
+    </div>
+
+    <div class="service-card">
+      <div class="sc-icon">🗺</div>
+      <h3>On-Ground Guidance</h3>
+      <p>Day-by-day itineraries, transport connections, local culture briefings, and emergency contacts — so you're never lost.</p>
+      <span class="sc-tag">Day-by-day plans</span>
+    </div>
+
+    <div class="service-card">
+      <div class="sc-icon">🚌</div>
+      <h3>Local Transport</h3>
+      <p>Airport transfers, intercity routes, car rental guidance, and public transit maps — all prepped before you land.</p>
+      <span class="sc-tag">Pre-arrival ready</span>
+    </div>
+
+    <div class="service-card">
+      <div class="sc-icon">📋</div>
+      <h3>Travel Documentation</h3>
+      <p>Checklist support for visas, travel insurance, entry requirements, and destination-specific regulations — we keep you compliant.</p>
+      <span class="sc-tag">Destination-specific</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-tag">The Process</div>
+  <h2 class="section-title">How It <span style="color:var(--gold)">Works</span></h2>
+  <p class="section-sub">Simple. Fully online. No office visit, no back-and-forth chaos.</p>
+
+  <div class="steps-row">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Tell Us Your Trip</h4>
+      <p>Share your destination, dates, budget, and any special requirements. We'll ask the right questions.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>We Build Your Plan</h4>
+      <p>Flights, stays, food, transport, and a day-by-day guide — crafted within 24 hours.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Review & Confirm</h4>
+      <p>You review everything. We adjust until it fits perfectly. No pressure, no rush.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Travel With Ease</h4>
+      <p>We stay reachable throughout your trip. Questions mid-journey? We're a message away.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section id="destinations" style="padding-bottom: 4rem;">
+  <div class="section-tag">Where We Cover</div>
+  <h2 class="section-title">Destinations</h2>
+  <p class="section-sub">A growing list of cities we know well — and keep researching.</p>
+
+  <div class="dest-strip-wrap">
+    <div class="dest-strip">
+      <span class="dest-pill ac">Istanbul</span>
+      <span class="dest-pill">Marrakech</span>
+      <span class="dest-pill">Tbilisi</span>
+      <span class="dest-pill ac">Kyoto</span>
+      <span class="dest-pill">Sarajevo</span>
+      <span class="dest-pill">Muscat</span>
+      <span class="dest-pill">Zanzibar</span>
+      <span class="dest-pill ac">Baku</span>
+      <span class="dest-pill">Lisbon</span>
+      <span class="dest-pill">Amman</span>
+      <span class="dest-pill">Chiang Mai</span>
+      <span class="dest-pill ac">Almaty</span>
+      <span class="dest-pill">Kotor</span>
+      <span class="dest-pill">Cappadocia</span>
+      <span class="dest-pill">Dubai</span>
+      <span class="dest-pill ac">Kuala Lumpur</span>
+      <!-- duplicate for seamless loop -->
+      <span class="dest-pill ac">Istanbul</span>
+      <span class="dest-pill">Marrakech</span>
+      <span class="dest-pill">Tbilisi</span>
+      <span class="dest-pill ac">Kyoto</span>
+      <span class="dest-pill">Sarajevo</span>
+      <span class="dest-pill">Muscat</span>
+      <span class="dest-pill">Zanzibar</span>
+      <span class="dest-pill ac">Baku</span>
+      <span class="dest-pill">Lisbon</span>
+      <span class="dest-pill">Amman</span>
+      <span class="dest-pill">Chiang Mai</span>
+      <span class="dest-pill ac">Almaty</span>
+      <span class="dest-pill">Kotor</span>
+      <span class="dest-pill">Cappadocia</span>
+      <span class="dest-pill">Dubai</span>
+      <span class="dest-pill ac">Kuala Lumpur</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="section-tag">Why Qubic Tours</div>
+  <h2 class="section-title">Built Different</h2>
+  <p class="section-sub">Not a generic travel agency. Not a booking site. Something more personal.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-card-num">01</div>
+      <h4>Fully Online</h4>
+      <p>Plan your entire trip without stepping into an office. We operate remotely — fast, efficient, and available.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">02</div>
+      <h4>Muslim-Friendly by Default</h4>
+      <p>Halal food, prayer access, and modesty-aware recs are standard — not an add-on you have to ask for.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">03</div>
+      <h4>One Point of Contact</h4>
+      <p>No bouncing between departments. One person handles your flights, stay, food, and guidance — start to finish.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-num">04</div>
+      <h4>No Filler Itineraries</h4>
+      <p>We skip the tourist traps and souvenir streets. Real hours, real experiences, real places worth your time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="section-tag">Get Started</div>
+  <h2>Ready to <span>Go?</span></h2>
+  <p>Tell us where — or ask us where you should. We'll handle the rest, from the ticket to the table.</p>
+  <a href="#contact" class="btn-gold">Contact Us</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-tag">Reach Out</div>
+  <h2 class="section-title">Get In <span class="g">Touch</span></h2>
+  <p class="section-sub">We're fully online — reach us on WhatsApp or email and we'll get back within 24 hours.</p>
+
+  <div class="contact-grid">
+    <div class="contact-block">
+      <h3>Direct Contact</h3>
+
+      <div class="contact-item">
+        <div class="ci-icon">📱</div>
+        <div>
+          <div class="ci-label">WhatsApp</div>
+          <div class="ci-val">
+            <a href="https://wa.me/917011403207" target="_blank" rel="noopener">+91 70114 03207</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">📧</div>
+        <div>
+          <div class="ci-label">Email</div>
+          <div class="ci-val">
+            <a href="mailto:hello@qubictours.com">hello@qubictours.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">📸</div>
+        <div>
+          <div class="ci-label">Instagram</div>
+          <div class="ci-val">
+            <a href="https://instagram.com/qubictours" target="_blank" rel="noopener">@qubictours</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/917011403207" target="_blank" rel="noopener" class="btn-whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        Chat on WhatsApp
+      </a>
+    </div>
+
+    <div class="contact-block">
+      <h3>Business Details</h3>
+
+      <div class="contact-reg">
+        <div class="cr-label">MSME Registration (Udyam)</div>
+        <div class="cr-num">UDYAM-DL-05-0032600</div>
+        <div class="cr-sub">Ministry of MSME, Government of India</div>
+      </div>
+
+      <div class="contact-item" style="margin-top:1.5rem;">
+        <div class="ci-icon">📍</div>
+        <div>
+          <div class="ci-label">Operating From</div>
+          <div class="ci-val">New Delhi, India</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">🌐</div>
+        <div>
+          <div class="ci-label">Operations</div>
+          <div class="ci-val">100% Online · No office visit required</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="ci-icon">⏱</div>
+        <div>
+          <div class="ci-label">Response Time</div>
+          <div class="ci-val">Within 24 hours on all channels</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo-wrap">
+    <img src="images/qt.png" alt="" class="logo-img" onerror="this.style.display='none'" style="height:26px;filter:brightness(0) invert(1);" />
+    <div class="logo-wordmark">
+      <span class="wm-qubic" style="color:rgba(255,255,255,0.6);">QUBIC</span>
+      <span class="wm-tours">TOURS</span>
+    </div>
+  </a>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://instagram.com/qubictours" target="_blank" rel="noopener">Instagram</a></li>
+  </ul>
+  <small>&copy; 2026 Qubic Tours &nbsp;·&nbsp; UDYAM-DL-05-0032600</small>
+</footer>
+
+</body>
+</html>
