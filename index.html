@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, and explore world-class creative design services.">
+  <meta name="description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, cosmetics, and explore world-class creative design services.">
   <meta name="keywords" content="modest fashion india, abayas online india, luxury modest clothing, modest fashion brand, black haven fashion, islamic modest wear, brand identity design india, ux design studio india, graphic design services, abaya store india, designer abayas, elegant modest dresses, modest clothing delhi, fashion design studio india">
   <meta name="author" content="Fareen Kashmira — Black Haven">
   <meta name="robots" content="index, follow">
@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://blackhaven.co.in/index.html">
   <!-- Open Graph / Social -->
   <meta property="og:title" content="Black Haven | Luxury Modest Fashion & Design Studio India">
-  <meta property="og:description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, and explore world-class creative design services.">
+  <meta property="og:description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, cosmetics, and explore world-class creative design services.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://blackhaven.co.in/index.html">
   <meta property="og:image" content="https://blackhaven.co.in/images/BH.png">
@@ -21,7 +21,7 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Black Haven | Luxury Modest Fashion & Design Studio India">
-  <meta name="twitter:description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, and explore world-class creative design services.">
+  <meta name="twitter:description" content="Black Haven — Luxury modest fashion and bespoke brand design studio in India. Shop abayas, accessories, cosmetics, and explore world-class creative design services.">
   <meta name="twitter:image" content="https://blackhaven.co.in/images/BH.png">
   <title>Black Haven | Premium Modest Fashion House & Design Studio India</title>
 
@@ -63,7 +63,6 @@
       z-index: 0;
     }
 
-    /* ── Tiny Golden Dot Cursor ── */
     .custom-cursor {
       position: fixed;
       width: 8px;
@@ -78,9 +77,7 @@
       box-shadow: 0 0 12px rgba(227, 181, 77, 0.6), 0 0 24px rgba(227, 181, 77, 0.3);
     }
 
-    .custom-cursor.active {
-      opacity: 1;
-    }
+    .custom-cursor.active { opacity: 1; }
 
     .custom-cursor.hovering {
       width: 16px;
@@ -104,7 +101,6 @@
       color: var(--maroon);
     }
 
-    /* ── Nav ── */
     nav {
       position: fixed;
       top: 0;
@@ -138,11 +134,7 @@
       text-decoration: none;
     }
 
-    nav ul {
-      display: flex;
-      gap: 3rem;
-      list-style: none;
-    }
+    nav ul { display: flex; gap: 3rem; list-style: none; }
 
     nav a {
       font-family: 'Outfit', sans-serif;
@@ -168,16 +160,9 @@
       transition: width 0.3s;
     }
 
-    nav a:hover {
-      color: var(--maroon);
-      transform: scale(1.05);
-    }
+    nav a:hover { color: var(--maroon); transform: scale(1.05); }
+    nav a:hover::before { width: 100%; }
 
-    nav a:hover::before {
-      width: 100%;
-    }
-
-    /* ── Hero ── */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -250,6 +235,8 @@
       animation: fadeInUp 1s ease-out 2s forwards;
       position: relative;
       z-index: 10;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
@@ -280,14 +267,8 @@
       z-index: -1;
     }
 
-    .btn:hover::before {
-      width: 500px;
-      height: 500px;
-    }
-
-    .btn:hover {
-      transform: scale(1.04);
-    }
+    .btn:hover::before { width: 500px; height: 500px; }
+    .btn:hover { transform: scale(1.04); }
 
     .btn-primary {
       background: var(--maroon);
@@ -295,13 +276,8 @@
       border-color: var(--maroon);
     }
 
-    .btn-primary::before {
-      background: linear-gradient(135deg, var(--maroon-dark), #b8001c);
-    }
-
-    .btn-primary:hover {
-      background: var(--maroon-dark);
-    }
+    .btn-primary::before { background: linear-gradient(135deg, var(--maroon-dark), #b8001c); }
+    .btn-primary:hover { background: var(--maroon-dark); }
 
     .btn-secondary {
       background: transparent;
@@ -309,13 +285,8 @@
       border-color: var(--gold);
     }
 
-    .btn-secondary::before {
-      background: var(--baby-pink-light);
-    }
-
-    .btn-secondary:hover {
-      color: var(--maroon);
-    }
+    .btn-secondary::before { background: var(--baby-pink-light); }
+    .btn-secondary:hover { color: var(--maroon); }
 
     .scroll-indicator {
       position: absolute;
@@ -351,7 +322,6 @@
       50% { opacity: 1; transform: translateY(8px); }
     }
 
-    /* ── Dual Mission ── */
     .dual-mission {
       padding: 8rem 4rem;
       background: linear-gradient(180deg, transparent 0%, var(--baby-pink-pale) 50%, transparent 100%);
@@ -361,8 +331,8 @@
 
     .mission-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 4rem;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 3rem;
       max-width: 1400px;
       margin: 0 auto;
     }
@@ -370,7 +340,7 @@
     .mission-card {
       background: var(--white);
       border: 2px solid var(--baby-pink);
-      padding: 4rem;
+      padding: 3.5rem 3rem;
       position: relative;
       overflow: hidden;
       transition: all 0.5s;
@@ -379,10 +349,7 @@
       box-shadow: 0 4px 20px rgba(128, 0, 32, 0.06);
     }
 
-    .mission-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .mission-card.visible { opacity: 1; transform: translateY(0); }
 
     .mission-card::before {
       content: '';
@@ -395,9 +362,7 @@
       transition: left 0.8s;
     }
 
-    .mission-card:hover::before {
-      left: 100%;
-    }
+    .mission-card:hover::before { left: 100%; }
 
     .mission-card:hover {
       border-color: var(--maroon);
@@ -422,13 +387,11 @@
       transition: transform 0.2s;
     }
 
-    .mission-title:hover {
-      transform: scale(1.02);
-    }
+    .mission-title:hover { transform: scale(1.02); }
 
     .mission-description {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       line-height: 1.85;
       color: var(--black);
       margin-bottom: 2rem;
@@ -448,12 +411,8 @@
       transition: all 0.3s;
     }
 
-    .mission-link:hover {
-      color: var(--gold);
-      gap: 1rem;
-    }
+    .mission-link:hover { color: var(--gold); gap: 1rem; }
 
-    /* ── Footer ── */
     footer {
       padding: 4rem;
       text-align: center;
@@ -490,39 +449,7 @@
       transition: all 0.3s;
     }
 
-    .footer-links a:hover {
-      color: var(--gold);
-      opacity: 0.75;
-      transform: scale(1.05);
-    }
-
-    .footer-social {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
-    }
-
-    .social-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      color: var(--gold);
-      text-decoration: none;
-      transition: all 0.3s;
-      font-size: 1.1rem;
-    }
-
-    .social-icon:hover {
-      background: var(--gold);
-      color: var(--black);
-      transform: translateY(-5px);
-    }
+    .footer-links a:hover { color: var(--gold); opacity: 0.75; transform: scale(1.05); }
 
     .footer-copyright {
       font-family: 'Outfit', sans-serif;
@@ -538,57 +465,20 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
     @media (max-width: 768px) {
-      nav {
-        padding: 1.5rem 2rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      nav ul {
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .hero {
-        padding-bottom: 6rem;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 4rem;
-      }
-
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .dual-mission {
-        padding: 4rem 2rem;
-      }
-
-      .mission-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .mission-card {
-        padding: 2rem;
-      }
-
-      footer {
-        padding: 2rem;
-      }
+      nav { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; }
+      nav ul { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+      .hero { padding-bottom: 6rem; }
+      .cta-buttons { flex-direction: column; gap: 1rem; margin-bottom: 4rem; }
+      .btn { width: 100%; text-align: center; }
+      .dual-mission { padding: 4rem 2rem; }
+      .mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .mission-card { padding: 2rem; }
+      footer { padding: 2rem; }
     }
-  
-    /* Social icons — unified styles for .footer-social / .social-icon */
+
     .footer-social,.social-links{display:flex;gap:2.5rem;justify-content:center;align-items:center;margin-bottom:1.5rem;padding:1rem 0;border-top:1px solid rgba(227,181,77,0.2);border-bottom:1px solid rgba(227,181,77,0.2);flex-wrap:wrap;}
     .social-icon,.social-link{color:var(--gold);text-decoration:none;font-size:1.2rem;transition:all 0.3s;}
     .social-icon:hover,.social-link:hover{color:var(--gold);opacity:0.7;transform:translateY(-4px) scale(1.1);}
@@ -631,9 +521,9 @@
       Crafting timeless abayas, refined accessories, and visionary brand experiences.
     </p>
     <div class="cta-buttons">
-      <a href="cosmetics.html" class="btn btn-primary">Explore Store</a>
-      <a href="store.html" class="btn btn-secondary">Explore Store</a>
-      <a href="#missions" class="btn btn-primary">Design Studio</a>
+      <a href="cosmetics.html" class="btn btn-secondary">Shop Cosmetics</a>
+      <a href="store.html" class="btn btn-primary">Explore Store</a>
+      <a href="#missions" class="btn btn-secondary">Design Studio</a>
     </div>
     <div class="scroll-indicator">
       <span class="scroll-text">Discover</span>
@@ -642,17 +532,16 @@
   </section>
 
   <section class="dual-mission" id="missions">
-<div class="mission-grid">
-      <div class="mission-card" data-card="Cosmetics">
-        <div class="mission-icon">☾</div>
+    <div class="mission-grid">
+      <div class="mission-card" data-card="cosmetics">
+        <div class="mission-icon">✧</div>
         <h2 class="mission-title magnify-text">Cosmetic Store</h2>
         <p class="mission-description">
           Handcrafted soaps and nourishing oils for skin and hair that thrive naturally. Deeply cleansing exfoliants restore your skin's glow, while herbal-infused oils strengthen roots and reduce hair fall — pure self-care, simplified.
         </p>
         <a href="cosmetics.html" class="mission-link magnify-text">View Store <span>→</span></a>
       </div>
-  
-    <div class="mission-grid">
+
       <div class="mission-card" data-card="fashion">
         <div class="mission-icon">☾</div>
         <h2 class="mission-title magnify-text">Clothing & Accessories Store</h2>
@@ -685,81 +574,10 @@
       <a href="shippingpolicy.html">Shipping Policy</a>
     </div>
     <div class="footer-social">
-      <a href="https://wa.me/917011403207" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://www.instagram.com/ablackhaven" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://in.pinterest.com/ablackhaven" target="_blank" class="social-icon" title="Pinterest"><i class="fab fa-pinterest"></i></a>
-      <a href="https://www.behance.net/fareenkashmira" target="_blank" class="social-icon" title="Behance"><i class="fab fa-behance"></i></a>
-      <a href="https://www.linkedin.com/in/fareen-kashmira-53087020a" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://t.me/+917011403207" class="social-icon magnify-target" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-      <a href="mailto:info@blackhaven.co.in" class="social-icon" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/917011403</a>
+      <!-- add remaining social links here -->
     </div>
-    <p class="footer-copyright">&copy; 2023&ndash;2026 Black Haven. All rights reserved. | Designed by Fareen.</p>
+    <div class="footer-copyright">© 2026 Black Haven. All rights reserved.</div>
   </footer>
-
-  <script>
-    // Tiny Golden Dot Cursor
-        const _cur=document.getElementById('bh-cursor');
-    let _mx=0,_my=0,_dx=0,_dy=0;
-    document.addEventListener('mousemove',e=>{_mx=e.clientX;_my=e.clientY;_cur.classList.add('active');});
-    document.addEventListener('mouseleave',()=>_cur.classList.remove('active'));
-    (function _ca(){_dx+=(_mx-_dx)*0.2;_dy+=(_my-_dy)*0.2;_cur.style.left=_dx+'px';_cur.style.top=_dy+'px';requestAnimationFrame(_ca);})();
-    document.querySelectorAll('a,button').forEach(el=>{
-      el.addEventListener('mouseenter',()=>_cur.classList.add('hovering'));
-      el.addEventListener('mouseleave',()=>_cur.classList.remove('hovering'));
-    });
-
-    // Letter proximity 3D effect
-    const letters = document.querySelectorAll('.letter');
-    document.addEventListener('mousemove', e => {
-      letters.forEach(letter => {
-        const rect = letter.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dist = Math.sqrt((e.clientX - cx) ** 2 + (e.clientY - cy) ** 2);
-        const max = 150;
-        const influence = Math.max(0, 1 - dist / max);
-        
-        if (influence > 0) {
-          const rotateX = (e.clientY - cy) / max * 15 * influence;
-          const rotateY = -(e.clientX - cx) / max * 15 * influence;
-          const scale = 1 + influence * 0.1;
-          letter.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
-        } else {
-          letter.style.transform = 'none';
-        }
-      });
-    });
-
-    // Text magnify near cursor
-    const magnifyTargets = document.querySelectorAll('.magnify-text, nav a, .page-title');
-    document.addEventListener('mousemove', e => {
-      magnifyTargets.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-        const dist = Math.hypot(e.clientX - cx, e.clientY - cy);
-        const threshold = 120;
-        
-        if (dist < threshold) {
-          const scale = 1 + (1 - dist / threshold) * 0.08;
-          el.style.transform = `scale(${scale})`;
-          el.style.transformOrigin = 'center';
-        } else {
-          el.style.transform = 'scale(1)';
-        }
-      });
-    });
-
-    // Mission cards intersection observer
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 200);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.mission-card').forEach(card => observer.observe(card));
-  </script>
 </body>
 </html>
