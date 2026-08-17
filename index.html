@@ -525,7 +525,7 @@
       <a href="store.html" class="btn btn-primary">Explore Store</a>
       <a href="#missions" class="btn btn-secondary">Design Studio</a>
     </div>
-    
+
     <div class="scroll-indicator">
       <span class="scroll-text">Discover</span>
       <div class="scroll-line"></div>
@@ -575,10 +575,55 @@
       <a href="shippingpolicy.html">Shipping Policy</a>
     </div>
     <div class="footer-social">
-      <a href="https://wa.me/917011403</a>
-      <!-- add remaining social links here -->
+      <!-- Replace 91XXXXXXXXXX with your full WhatsApp number including country code -->
+      <a href="https://wa.me/91XXXXXXXXXX" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+      <a href="https://instagram.com/blackhaven" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
     </div>
     <div class="footer-copyright">© 2026 Black Haven. All rights reserved.</div>
   </footer>
+
+  <script>
+    // ── Custom cursor tracking ──
+    const cursor = document.getElementById('bh-cursor');
+    let cursorActivated = false;
+
+    document.addEventListener('mousemove', (e) => {
+      if (!cursorActivated) {
+        cursor.classList.add('active');
+        cursorActivated = true;
+      }
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursor.classList.remove('active');
+      cursorActivated = false;
+    });
+
+    const hoverTargets = document.querySelectorAll('a, button, .mission-card');
+    hoverTargets.forEach((el) => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+    });
+
+    // ── Scroll-reveal for mission cards ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.mission-card').forEach((card) => {
+      revealObserver.observe(card);
+    });
+  </script>
 </body>
 </html>
