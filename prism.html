@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prism Hair Oil</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #4a0505;
+    --bg-2: #0d0303;
+    --cream: #f1ead9;
+    --gold: #d9a752;
+    --gold-soft: #e8c583;
+    --rust: #8f2a1e;
+    --line: rgba(232,197,131,0.22);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--bg-2);
+    color: var(--cream);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    display:flex;
+    justify-content:center;
+    padding: 40px 16px;
+  }
+
+  .poster{
+    width:100%;
+    max-width: 760px;
+    background:
+      linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 100%);
+    background:
+      radial-gradient(ellipse at 12% 8%, rgba(217,167,82,0.14), transparent 45%),
+      radial-gradient(ellipse at 90% 90%, rgba(0,0,0,0.5), transparent 55%),
+      linear-gradient(165deg, var(--bg) 0%, var(--bg-2) 100%);
+    border: 1px solid var(--line);
+    padding: 56px 44px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .leaf-corner{ position:absolute; opacity:0.5; }
+  .leaf-corner.tl{ top:18px; left:18px; width:64px; }
+  .leaf-corner.br{ bottom:18px; right:18px; width:64px; transform: rotate(180deg); }
+  .leaf-corner svg{ width:100%; height:auto; stroke: var(--gold-soft); }
+
+  .masthead{
+    position:relative; z-index:2;
+    padding-bottom: 26px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+
+  .kicker{
+    font-size: 13px;
+    color: var(--gold-soft);
+    margin: 0 0 14px;
+    max-width: 34ch;
+    line-height:1.5;
+  }
+
+  h1{
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(46px, 9vw, 68px);
+    line-height: 0.98;
+    margin: 0 0 6px;
+    color: var(--cream);
+  }
+  h1 em{ font-style: italic; color: var(--gold); }
+
+  .tagline{
+    font-size: 16px;
+    opacity: 0.82;
+    max-width: 48ch;
+    line-height: 1.55;
+    margin: 14px 0 0;
+  }
+
+  .price-tag{
+    position:absolute;
+    top: 4px;
+    right: 0;
+    text-align:right;
+    z-index:2;
+  }
+  .price-tag .amt{
+    font-family: 'DM Serif Display', serif;
+    font-size: 40px;
+    color: var(--gold);
+    line-height: 0.95;
+    display:block;
+  }
+  .price-tag .amt sup{ font-size: 18px; }
+  .price-tag .lbl{
+    font-size: 11.5px;
+    opacity: 0.62;
+    display:block;
+    max-width: 120px;
+    margin-top: 4px;
+  }
+
+  .stat-row{
+    position: relative; z-index:2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 32px;
+  }
+  .stat{
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+  }
+  .stat .num{
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--gold-soft);
+    display:block;
+    line-height: 1.1;
+  }
+  .stat .lbl{
+    font-size: 12px;
+    opacity: 0.65;
+    display:block;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .divider-leaf{
+    display:flex; align-items:center; gap: 14px;
+    margin: 4px 0 26px;
+    color: var(--gold-soft); opacity: 0.7;
+  }
+  .divider-leaf .rule{ flex:1; height:1px; background: var(--line); }
+
+  .howto{
+    position: relative; z-index: 2;
+    margin-bottom: 30px;
+  }
+  .howto h2{
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0 0 16px;
+    color: var(--gold);
+  }
+  .steps{
+    list-style: none;
+    margin: 0; padding: 0;
+    counter-reset: step;
+    display: grid;
+    gap: 12px;
+  }
+  .steps li{
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    opacity: 0.9;
+  }
+  .steps li::before{
+    content: counter(step);
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--gold-soft);
+    opacity: 0.85;
+  }
+
+  .adjust{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 18px;
+  }
+  .adjust div{
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 14px 16px;
+    background: rgba(0,0,0,0.16);
+  }
+  .adjust div h3{
+    margin: 0 0 6px;
+    font-size: 13px;
+    color: var(--gold-soft);
+    font-weight: 600;
+  }
+  .adjust div p{
+    margin: 0;
+    font-size: 13.5px;
+    opacity: 0.85;
+    line-height: 1.5;
+  }
+
+  .fine-print{
+    position: relative; z-index: 2;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 24px 26px 22px;
+  }
+  .fine-print h2{
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 21px;
+    margin: 0 0 12px;
+    color: var(--gold);
+  }
+  .fine-print p{
+    font-size: 14px;
+    line-height: 1.65;
+    opacity: 0.88;
+    margin: 0 0 11px;
+  }
+  .fine-print p:last-child{ margin-bottom:0; }
+  .fine-print strong{ color: var(--gold-soft); font-weight: 600; }
+
+  .signoff{
+    position: relative; z-index: 2;
+    display:flex; justify-content: space-between; align-items: flex-end;
+    margin-top: 32px; padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px; opacity: 0.6;
+  }
+  .signoff .brand{
+    font-family: 'DM Serif Display', serif;
+    font-style: italic; font-size: 15px; opacity: 0.85;
+  }
+
+  @media (max-width: 520px){
+    .poster{ padding: 44px 24px 36px; }
+    .price-tag{ position:static; margin-bottom: 16px; }
+    .price-tag .amt{ font-size: 34px; }
+    .stat-row{ grid-template-columns: 1fr; gap: 10px; }
+    .adjust{ grid-template-columns: 1fr; }
+    .signoff{ flex-direction: column; gap: 10px; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <div class="leaf-corner tl">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4C4 4 20 2 30 14C40 26 38 42 38 42" stroke-width="1.2"/>
+        <path d="M4 4C4 4 2 20 14 30C26 40 42 38 42 38" stroke-width="1.2"/>
+        <circle cx="4" cy="4" r="2.5" fill="none" stroke-width="1.2"/>
+      </svg>
+    </div>
+    <div class="leaf-corner br">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 4C4 4 20 2 30 14C40 26 38 42 38 42" stroke-width="1.2"/>
+        <path d="M4 4C4 4 2 20 14 30C26 40 42 38 42 38" stroke-width="1.2"/>
+        <circle cx="4" cy="4" r="2.5" fill="none" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+    <div class="masthead">
+      <div class="price-tag">
+        <span class="amt"><sup>₹</sup>150</span>
+        <span class="lbl">30ml / lasts 3–5 months</span>
+      </div>
+      <p class="kicker">A unique blend of herbs and oils, slow-pressed and quietly persistent</p>
+      <h1>Prism<br><em>Hair Oil</em></h1>
+      <p class="tagline">One bottle, built from a considered mix of botanical extracts and carrier oils — not a single-note fix, a full-spectrum one. What it does after that is a two-way effort.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat">
+        <span class="num">2×</span>
+        <span class="lbl">a week, minimum</span>
+      </div>
+      <div class="stat">
+        <span class="num">2–6 wk</span>
+        <span class="lbl">for visible results, hair-type dependent</span>
+      </div>
+      <div class="stat">
+        <span class="num">30ml</span>
+        <span class="lbl">₹150 / 3–5 months of use</span>
+      </div>
+    </div>
+
+    <div class="divider-leaf">
+      <span class="rule"></span><span>✦</span><span class="rule"></span>
+    </div>
+
+    <div class="howto">
+      <h2>How to Use</h2>
+      <ol class="steps">
+        <li>Use twice a week — consistency beats quantity.</li>
+        <li>Take 5–6 drops in your palm, section your hair, and apply to the scalp.</li>
+        <li>Massage with firm pressure for 10 minutes. Circular motions, not a light pat — the scalp needs the pressure, not just the oil.</li>
+        <li>Leave it in for 10–15 minutes before washing. Longer isn't required; it's not marinating.</li>
+      </ol>
+
+      <div class="adjust">
+        <div>
+          <h3>Dry hair</h3>
+          <p>Lean toward more drops and the longer end of the wait time — your hair can take the extra oil and needs it.</p>
+        </div>
+        <div>
+          <h3>Oily hair</h3>
+          <p>Stick closer to 5 drops and the shorter wait — adjust down rather than skipping oiling altogether.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fine-print">
+      <h2>The Fine Print (read it, we mean it)</h2>
+      <p>This oil is <strong>genuinely nourishing</strong> — used consistently, it strengthens and visibly improves what you already have. What it won't do is <strong>edit your genetics</strong>. Inherited hair loss patterns don't reverse because of a bottle, however well-blended.</p>
+      <p>It's also not a substitute for <strong>washing your hair</strong>. Oil over days of scalp buildup isn't treatment, it's a marinade. Cleanse, then oil — order matters as much as the massage.</p>
+      <p>And it won't manage your <strong>stress, sleep, or diet</strong> for you. Hair reflects the body it grows out of — no oil out-argues a skipped meal or a string of 3am nights. Use it as the best-supporting actor your hair will ever have, not the whole cast.</p>
+    </div>
+
+    <div class="signoff">
+      <span class="brand">Full spectrum, honest about the rest</span>
+      <span>30ml / ₹150 / results depend on you too</span>
+    </div>
+  </div>
+</body>
+</html>
