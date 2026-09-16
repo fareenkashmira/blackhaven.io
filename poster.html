@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prism Hair Oil — Brief</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #4a0505;
+    --bg-2: #0d0303;
+    --cream: #f1ead9;
+    --gold: #d9a752;
+    --gold-soft: #e8c583;
+    --line: rgba(232,197,131,0.25);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--bg-2);
+    color: var(--cream);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    display:flex;
+    justify-content:center;
+    padding: 40px 16px;
+  }
+
+  .poster{
+    width:100%;
+    max-width: 560px;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(217,167,82,0.14), transparent 45%),
+      radial-gradient(ellipse at 90% 90%, rgba(0,0,0,0.5), transparent 55%),
+      linear-gradient(165deg, var(--bg) 0%, var(--bg-2) 100%);
+    border: 1px solid var(--line);
+    padding: 44px 36px 38px;
+    position: relative;
+  }
+
+  .kicker{
+    font-size: 12.5px;
+    color: var(--gold-soft);
+    opacity: 0.85;
+    margin: 0 0 10px;
+  }
+
+  h1{
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(38px, 8vw, 52px);
+    line-height: 1;
+    margin: 0 0 4px;
+    color: var(--cream);
+  }
+  h1 em{ font-style: italic; color: var(--gold); }
+
+  .price-line{
+    display:flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 14px 0 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    opacity: 0.85;
+  }
+  .price-line .amt{
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+  }
+
+  h2{
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--gold);
+    margin: 0 0 10px;
+  }
+
+  .steps{
+    list-style: none;
+    margin: 0 0 26px; padding: 0;
+    counter-reset: step;
+    display: grid;
+    gap: 8px;
+  }
+  .steps li{
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+  .steps li::before{
+    content: counter(step);
+    color: var(--gold-soft);
+    font-weight: 600;
+  }
+
+  .fine-print{
+    font-size: 12.5px;
+    line-height: 1.6;
+    opacity: 0.78;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .fine-print strong{ color: var(--gold-soft); font-weight: 600; }
+
+  .signoff{
+    margin-top: 20px;
+    font-size: 11.5px;
+    opacity: 0.55;
+    display:flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 480px){
+    .poster{ padding: 36px 24px 30px; }
+    .price-line{ flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <p class="kicker">Made with a unique blend of herbs and oils</p>
+    <h1>Prism<br><em>Hair Oil</em></h1>
+
+    <div class="price-line">
+      <span class="amt">₹150</span>
+      <span>30ml</span>
+    </div>
+
+    <h2>How to Use</h2>
+    <ol class="steps">
+      <li>Twice a week.</li>
+      <li>5–6 drops, massage into scalp with pressure for 10 minutes.</li>
+      <li>Leave in 10–15 minutes, then wash out.</li>
+      <li>Dry hair: more drops, longer wait. Oily hair: less of both.</li>
+    </ol>
+
+    <p class="fine-print">Results in <strong>2–6 weeks</strong>, depending on hair type and damage. Won't change your <strong>genetics</strong>, replace <strong>washing</strong>, or fix what <strong>stress, sleep, and diet</strong> are doing to your hair.</p>
+
+    <div class="signoff">
+      <span>Black Haven</span>
+      <span>Prism Hair Oil</span>
+    </div>
+  </div>
+</body>
+</html>
+
